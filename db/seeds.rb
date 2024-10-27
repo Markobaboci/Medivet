@@ -39,10 +39,19 @@ Pet.create([
   {
     name: "Rex",
     age: 4,
-    species: "Dog",
+    species: "Bird",
     breed: "German Shepherd",
     weight: 40.3,
     description: "Loyal and protective, great with kids.",
+    user_id: 3
+  },
+  {
+    name: "Loco",
+    age: 12,
+    species: "Iguana",
+    breed: "Amazon iguana",
+    weight: 15.7,
+    description: "Aggressive, great defensor",
     user_id: 3
   },
   {
@@ -67,7 +76,7 @@ Clinic.create([
     logitude: -74.0059728,
     latitude: 40.7127753,
     rate: 4.5,
-    care_type: "General Care",
+    care_type: "Dog",
     user_id: 4
   },
   {
@@ -80,7 +89,7 @@ Clinic.create([
     logitude: -73.935242,
     latitude: 40.73061,
     rate: 4.8,
-    care_type: "Specialty Care",
+    care_type: "Exotic",
     user_id: 5
   },
   {
@@ -93,7 +102,7 @@ Clinic.create([
     logitude: -74.006,
     latitude: 40.714,
     rate: 4.3,
-    care_type: "Emergency Care",
+    care_type: "Cats",
     user_id: 6
   }
 ])
