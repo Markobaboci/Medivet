@@ -1,1 +1,8 @@
 <p><%= @clinic.description %></p>
+
+
+
+<%= link_to "Edit this clinic", edit_user_clinic_path(@clinic) %>
+<%= button_to 'Delete this clinic', user_clinic_path(@clinic), method: :delete, data: {turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+
+<%= link_to "Go back to see all clinics", clinics_path, class: "btn btn-primary" %>

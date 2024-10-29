@@ -1,7 +1,7 @@
 class ClinicsController < ApplicationController
   before_action :set_user
   before_action :set_clinic, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!
 
   def index
     @clinics = Clinic.all
@@ -40,8 +40,8 @@ class ClinicsController < ApplicationController
   end
 
   def destroy
-    @clinic.destory
-    redirect_to user_path(@user), status: :see_other
+    @clinic.destroy
+    redirect_to clinics_path, status: :see_other
   end
 
   private
