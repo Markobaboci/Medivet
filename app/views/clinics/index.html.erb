@@ -1,0 +1,16 @@
+<% @clinics.each do |clinic| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-auto">
+        <p>Address : <%= clinic.address %></p>
+        <p>Email : <%= clinic.email %></p>
+        <p>Phone Number : <%= clinic.phone_number %></p>
+        <p>Rate : <%= clinic.rate %></p>
+        <p>Care Type : <%= clinic.care_type %></p>
+        <p><%= link_to "Webpage", clinic_path(clinic) %></p>
+        <p>Species : <%= clinic.species %></p>
+        <p><%= clinic.description %></p>
+      </div>
+    </div>
+  </div>
+<% end %>

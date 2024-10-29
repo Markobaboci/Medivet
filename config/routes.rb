@@ -18,5 +18,5 @@ Rails.application.routes.draw do
     resources :clinics
   end
 
-  # resources :clinics, only: [:index, :show]
+  resources :clinics, only: [:index, :show]
 end
