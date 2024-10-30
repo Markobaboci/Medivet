@@ -1,0 +1,11 @@
+<%= simple_form_for [@user, @clinic] do |f| %>
+  <%= f.input :address %>
+  <%= f.input :phone_numer %>
+  <%= f.input :email %>
+  <%= f.input :care_type %>
+  <%= f.input :rate %>
+  <%= f.input :species %>
+  <%= f.input :description %>
+  <%= f.submit @clinic.persisted? ? 'Update Clinic' : 'Add Clinic',
+    data: { confirm: @clinic.persisted? ? "Are you sure you want to update this clinic?" : "Are you sure you want to add this clinic?" } %>
+<% end %>
