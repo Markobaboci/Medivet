@@ -1,0 +1,10 @@
+<h1>All Pets of <%= current_user %></h1>
+
+<%= link_to 'New Pet', new_pet_path %>
+<ul>
+  <% @pets.each do |pet| %>
+    <li>
+      <%= link_to pet.name, pet%>
+    </li>
+  <% end %>
+</ul>
