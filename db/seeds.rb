@@ -9,12 +9,12 @@
 #   end
 
 User.create([
-  { name: "Quentin", email: "quentin@example.com", password: "password" },
-  { name: "Marko", email: "marko@example.com", password: "password" }
-  { name: "Joseph", email: "joseph@example.com", password: "password" }
-  { name: "Liza", email: "liza@example.com", password: "password" }
-  { name: "Louiza", email: "louiza@example.com", password: "password" }
-  { name: "VetPro", email: "vetpro@example.com", password: "password" }
+  {email: "quentin@example.com", password: "password" },
+  {email: "marko@example.com", password: "password" },
+  {email: "joseph@example.com", password: "password" },
+  {email: "liza@example.com", password: "password" },
+  {email: "louiza@example.com", password: "password" },
+  {email: "vetpro@example.com", password: "password" },
 ])
 
 Pet.create([
