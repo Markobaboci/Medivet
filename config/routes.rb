@@ -20,4 +20,5 @@ Rails.application.routes.draw do
 
   resources :clinics, only: [:index, :show]
   resources :pets
+  resources :bookings
 end
