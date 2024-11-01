@@ -1,6 +1,10 @@
 <h1>New booking</h1>
 
-<%= form_with model: @booking, local: true, data: { turbo: false } do |f| %>
+<%= form_with model: [@clinic, @booking], local: true, data: { turbo: false } do |f| %>
+   <p>
+    <%= f.label :pet %><br>
+    <%= f.select :pet_id, current_user.pets.map { |pet| [pet.name, pet.id] }, include_blank: true %>
+  </p>
   <p>
     <%= f.label :date %><br>
     <%= f.date_field :date %>

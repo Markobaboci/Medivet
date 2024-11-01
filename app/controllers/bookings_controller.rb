@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings
   def index
-    @bookings = Booking.all
+    @bookings = Booking.all.order(:date, :time) # Order by date and time for readability
   end
 
   # GET /bookings/:id
@@ -14,13 +14,16 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    @clinic = Clinic.find(params[:clinic_id])
   end
 
   # POST /bookings
   def create
     @booking = Booking.new(booking_params)
+    @clinic = Clinic.find(params[:clinic_id])
+    @booking.clinic = @clinic
     if @booking.save
-      redirect_to @booking, notice: 'Booking was successfully created.'
+      redirect_to clinic_path(@clinic), notice: 'Booking was successfully created.'
     else
       render :new
     end
@@ -33,7 +36,7 @@ class BookingsController < ApplicationController
   # PATCH/ /bookings/:id
   def update
     if @booking.update(booking_params)
-      redirect_to @booking, notice: 'Booking was successfully updated.'
+      redirect_to booking_path(@booking), notice: 'Booking was successfully updated.'
     else
       render :edit
     end
@@ -54,7 +57,7 @@ class BookingsController < ApplicationController
 
   # Only allow trusted parameters
   def booking_params
-    params.require(:booking).permit(:date, :time, :description)
+    params.require(:booking).permit(:date, :time, :description, :pet_id)
   end
 
 end

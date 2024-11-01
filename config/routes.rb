@@ -18,7 +18,10 @@ Rails.application.routes.draw do
     resources :clinics
   end
 
-  resources :clinics, only: [:index, :show]
+  resources :clinics, only: [:index, :show] do
+    resources :bookings, only: [:new, :create]
+  end
+
   resources :pets
-  resources :bookings
+  resources :bookings, except: [:new, :create]
 end
