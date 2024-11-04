@@ -10,4 +10,5 @@ class Clinic < ApplicationRecord
   validates :latitude, presence: true, uniqueness: true, numericality: { greater_than_or_equal_to: -90, less_than_or_equal_to: 90 }
   validates :rate, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :care_type, presence: true, inclusion: { in: %w[general emergency vaccination specialty], message: "%{value} is not a valid care type" }
+  has_many :bookings, dependent: :destroy
 end

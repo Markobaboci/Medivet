@@ -1,0 +1,56 @@
+
+<div class="navbar navbar-expand-sm navbar-light navbar-medivet">
+  <div class="container-fluid">
+    <!-- Logo linking to homepage -->
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "medivet_logo.png", alt: "Medivet Logo" %>
+    <% end %>
+
+    <!-- Navbar Toggler for Mobile View -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Right section: Navbar Links and User Menu -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto align-items-center"> <!-- align-items-center for vertical alignment -->
+        <% if user_signed_in? %>
+          <li class="nav-item mx-4">
+            <%= link_to "My Appointments", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item mx-4">
+            <%= link_to "My Pets", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item mx-4">
+            <%= link_to "Messages", "#", class: "nav-link" %>
+          </li>
+
+          <!-- Profile Dropdown with Dropdown Arrow on Left Side -->
+          <li class="nav-item dropdown d-flex align-items-center">
+            <a href="#" class="nav-link d-flex align-items-center" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-chevron-down me-2"></i> <!-- Dropdown arrow icon on the left -->
+              <span class="profile-text me-2">user name</span> <!-- Display user's name -->
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "User Avatar" %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "#", class: "dropdown-item" do %>
+                <i class="fas fa-user"></i> My account
+              <% end %>
+              <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" do %>
+                <i class="fas fa-sign-out-alt"></i> Log out
+              <% end %>
+            </div>
+          </li>
+        <% else %>
+         <!-- "Sign Up as a Vet" Button -->
+          <li class="nav-item mx-4">
+            <%= link_to "Are you a veterinary professional?", "#", class: "btn btn-on-primary" %> 
+          </li>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
