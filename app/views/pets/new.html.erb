@@ -18,7 +18,19 @@
   </p>
   <p>
     <%= f.label :species %><br>
-    <%= f.text_field :species %>
+    <%= f.select :species, %w[cat dog bird rabbit exotic] %>
+  </p>
+    <p>
+    <%= f.label :breed %><br>
+    <%= f.text_field :breed %>
+  </p>
+  <p>
+    <%= f.label :weight %><br>
+    <%= f.number_field :weight %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
   </p>
   <p>
     <%= f.label :age %><br>

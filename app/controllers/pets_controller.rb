@@ -33,7 +33,6 @@ class PetsController < ApplicationController
     end
   end
 
-
   def destroy
     @pet = Pet.find(params[:id])
     @pet.destroy
@@ -43,6 +42,6 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :species, :age)
+    params.require(:pet).permit(:name, :species, :age, :breed, :weight, :description)
   end
 end
