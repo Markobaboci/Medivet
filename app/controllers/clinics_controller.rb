@@ -4,7 +4,11 @@ class ClinicsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @clinics = Clinic.all
+    if params[:query].present?
+      @clinics = Clinic.search_by_address(params[:query])
+    else
+      @clinics = Clinic.all
+    end
   end
 
   def show

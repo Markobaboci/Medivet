@@ -65,3 +65,19 @@
     }
   }
 }
+
+/* aligning the dropdown to be below the profile on small screens */
+@media (max-width: 767.98px) {
+  .custom-dropdown-menu {
+    position: static;
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 767.98px) {
+  .text-md-center {
+    text-align: center;
+  }
+}
