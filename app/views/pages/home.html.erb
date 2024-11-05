@@ -1,3 +1,25 @@
+<%= render partial: "shared/filters" %>
+
+<% if params[:query].present? %>
+  <% @clinics.each do |clinic| %> <!-- This can be replaced by a clinics card, put this here just to test the search bar-->
+    <div class="container">
+      <div class="row">
+        <div class="col-auto">
+          <p>Address : <%= clinic.address %></p>
+          <p>Email : <%= clinic.email %></p>
+          <p>Phone Number : <%= clinic.phone_numer %></p>
+          <p>Rate : <%= clinic.rate %></p>
+          <p>Care Type : <%= clinic.care_type %></p>
+          <p>Webpage : <%= clinic.webpage  %></p>
+          <p>Species : <%= clinic.species %></p>
+          <p><%= clinic.description %></p>
+          <%= link_to "Clinic details", clinic_path(clinic) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 <div class="container">
