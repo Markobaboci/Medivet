@@ -1,12 +1,17 @@
 
-<div class="navbar navbar-expand-sm navbar-light navbar-medivet">
+<div class="navbar navbar-expand-xl navbar-light navbar-medivet sticky-top">
   <div class="container-fluid">
+
     <!-- Logo linking to homepage -->
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "medivet_logo.png", alt: "Medivet Logo" %>
-    <% end %>
+      <%= link_to root_path, class: "navbar-brand d-none d-md-block" do %>
+        <%= image_tag "medivet_logo.png", alt: "Medivet Logo" %>
+      <% end %>
+
+
+      <%= render partial: "shared/searchbar" %>
 
     <!-- Navbar Toggler for Mobile View -->
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,13 +31,13 @@
           </li>
 
           <!-- Profile Dropdown with Dropdown Arrow on Left Side -->
-          <li class="nav-item dropdown d-flex align-items-center">
+          <li class="nav-item dropdown d-flex align-items-center flex-column align-items-md-end">
             <a href="#" class="nav-link d-flex align-items-center" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-chevron-down me-2"></i> <!-- Dropdown arrow icon on the left -->
               <span class="profile-text me-2">user name</span> <!-- Display user's name -->
               <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "User Avatar" %>
             </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-end w-100 w-md-auto custom-dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "#", class: "dropdown-item" do %>
                 <i class="fas fa-user"></i> My account
               <% end %>
@@ -43,12 +48,14 @@
           </li>
         <% else %>
          <!-- "Sign Up as a Vet" Button -->
-          <li class="nav-item mx-4">
-            <%= link_to "Are you a veterinary professional?", "#", class: "btn btn-on-primary" %> 
-          </li>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
+         <div class="mt-3 mt-md-2 mt-lg-0 d-flex flex-column flex-md-row align-items-center">
+            <li class="nav-item mx-4 w-100">
+              <%= link_to "Are you a veterinary professional?", "#", class: "btn btn-on-primary w-100" %>
+            </li>
+            <li class="nav-item d-flex justify-content-center">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
+         </div>
         <% end %>
       </ul>
     </div>

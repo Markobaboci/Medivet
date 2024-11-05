@@ -3,6 +3,10 @@ class PagesController < ApplicationController
 
   def home
     @user = current_user
-    @clinics = Clinic.all
+    if params[:query].present?
+      @clinics = Clinic.search_by_address(params[:query])
+    else
+      @clinics = Clinic.all
+    end
   end
 end
