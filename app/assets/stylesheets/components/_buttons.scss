@@ -1,15 +1,16 @@
 .btn-on-primary {
-  color: #ffffff;
-  border: 2px solid #ffffff;
+  color: #ffff;
+  background-color: #169f76;
+  border: none;
   padding: 0.4rem 1rem;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: 10px;
   transition: background-color 0.3s ease, color 0.3s ease;
   margin-right: 1rem; // Adds space between the button and the login link
 
 
   &:hover {
-    background-color: #ffffff;
-    color: $primary_green;
+    background-color: #000402;
+    color: #ffff;
   }
 }
