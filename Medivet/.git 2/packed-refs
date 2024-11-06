@@ -1,0 +1,10 @@
+# pack-refs with: peeled fully-peeled sorted 
+36239a96f6e952aa83a661650b6d419bc4a09c40 refs/remotes/origin/booking
+7a57c87530ed2757097f337e0c4c08d211c547e3 refs/remotes/origin/clinic
+c1875d15090fc01b39b33ac49420e50f574038b5 refs/remotes/origin/dependabot/bundler/rails-7.2.2
+73944684d7b761855e0c0019c99f26500c2f72e0 refs/remotes/origin/dependabot/bundler/selenium-webdriver-4.26.0
+8a7ba34ad0810f56b57821d37682338bcc596d1f refs/remotes/origin/header
+e1c0c6bbeab48eb0a939bd99b6273a5ad24da328 refs/remotes/origin/master
+781ee3a60b466cef72acd7b3ca5207ad7a116e20 refs/remotes/origin/pets_c
+0e290b116f41f7e4ebb14fcf9e0d2890797a0a6d refs/remotes/origin/seed
+c9a04b639d6762f75b72285d2b90cfaa53c21775 refs/remotes/origin/validation
