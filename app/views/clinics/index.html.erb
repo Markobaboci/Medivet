@@ -1,24 +1,23 @@
-<% @clinics.each do |clinic| %>
-  <div class="container">
+  <div class="container mt-5">
+    <h1 class="mb-3">Clinics near you</h1>
     <div class="row">
-      <div class="col-auto">
-        <p>Address : <%= clinic.address %></p>
-        <p>Email : <%= clinic.email %></p>
-        <p>Phone Number : <%= clinic.phone_numer %></p>
-        <p>Rate : <%= clinic.rate %></p>
-        <p>Care Type : <%= clinic.care_type %></p>
-        <p>Webpage : <%= clinic.webpage  %></p>
-        <p>Species : <%= clinic.species %></p>
-        <p><%= clinic.description %></p>
-        <%= link_to "Clinic details", clinic_path(clinic) %>
-      </div>
+      <% @clinics.each do |clinic| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
+            <div class="clinic-image mb-3">
+              <%= image_tag 'clinic.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
+            </div>
+            <p><strong>Address</strong> : <%= clinic.address %></p>
+            <p><strong>Email</strong> : <%= clinic.email %></p>
+            <p><strong>Phone Number</strong> : <%= clinic.phone_numer %></p>
+            <p><strong>Rate</strong> : <%= clinic.rate %></p>
+            <p><strong>Care Type</strong> : <%= clinic.care_type %></p>
+            <p><strong>Webpage</strong> : <%= clinic.webpage %></p>
+            <p><strong>Species</strong> : <%= clinic.species %></p>
+            <p><em><%= clinic.description %></em></p>
+            <%= link_to "Clinic details", clinic_path(clinic), class: "btn btn-primary mt-2" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-<% end %>
-
-
-<% if user_signed_in? %>
-    <%= link_to 'Add a clinic', new_user_clinic_path(current_user), class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to 'Add a clinic', new_user_session_path, class: "btn btn-primary" %>
-<% end %>

@@ -23,7 +23,7 @@ class BookingsController < ApplicationController
     @clinic = Clinic.find(params[:clinic_id])
     @booking.clinic = @clinic
     if @booking.save
-      redirect_to clinic_path(@clinic), notice: 'Booking was successfully created.'
+      redirect_to booking_path(@booking), notice: 'Booking was successfully created.'
     else
       render :new
     end
