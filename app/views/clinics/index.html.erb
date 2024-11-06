@@ -21,3 +21,18 @@
       <% end %>
     </div>
   </div>
+<% end %>
+
+
+<% if user_signed_in? %>
+    <%= link_to 'Add a clinic', new_user_clinic_path(current_user), class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to 'Add a clinic', new_user_session_path, class: "btn btn-primary" %>
+<% end %>
+
+<h1>Clinics Index</h1>
+<div class="vet-cards-container">
+  <% @vets.each do |vet| %>
+    <%= render 'vet_card', vet: vet %>
+  <% end %>
+</div>

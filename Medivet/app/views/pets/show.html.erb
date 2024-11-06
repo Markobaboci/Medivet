@@ -1,0 +1,8 @@
+<h1><%= @pet.name %></h1>
+<p>Species: <%= @pet.species %></p>
+<p>Age: <%= @pet.age %></p>
+<%= link_to 'Edit', edit_pet_path(@pet) %> |
+<%= button_to 'Delete', pet_path(@pet), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+<!-- app/views/restaurants/show.html.erb -->
+<%= link_to 'Back', pets_path %>
+<%# <%= button_to 'Delete this clinic', user_clinic_path(@clinic), method: :delete, data: {turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %> %>
