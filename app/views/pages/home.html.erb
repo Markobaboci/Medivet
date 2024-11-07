@@ -1,51 +1,55 @@
 <%= render partial: "shared/filters" %>
 
 <% if params[:query].present? %>
-  <% @clinics.each do |clinic| %> <!-- This can be replaced by a clinics card, put this here just to test the search bar-->
-    <div class="container">
-      <div class="row">
-        <div class="col-auto">
-          <p>Address : <%= clinic.address %></p>
-          <p>Email : <%= clinic.email %></p>
-          <p>Phone Number : <%= clinic.phone_numer %></p>
-          <p>Rate : <%= clinic.rate %></p>
-          <p>Care Type : <%= clinic.care_type %></p>
-          <p>Webpage : <%= clinic.webpage  %></p>
-          <p>Species : <%= clinic.species %></p>
-          <p><%= clinic.description %></p>
-          <%= link_to "Clinic details", clinic_path(clinic) %>
+  <div class="container mt-5">
+    <h1 class="mb-3">Veterinarians that matched your search : "<%= params[:query] %>"</h1>
+    <div class="row">
+      <% if @clinics.any? %>
+        <% @clinics.each do |clinic| %>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
+              <div class="clinic-image mb-3">
+                <%= image_tag 'vet_logo.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
+              </div>
+              <p><strong>Address</strong>: <%= clinic.address %></p>
+              <p><strong>Email</strong>: <%= clinic.email %></p>
+              <p><strong>Phone Number</strong>: <%= clinic.phone_numer %></p>
+              <p><strong>Rate</strong>: <%= clinic.rate %></p>
+              <p><strong>Care Type</strong>: <%= clinic.care_type %></p>
+              <p><strong>Webpage</strong>: <%= clinic.webpage %></p>
+              <p><strong>Species</strong>: <%= clinic.species %></p>
+              <p><em><%= clinic.description %></em></p>
+              <%= link_to "Clinic details", clinic_path(clinic), class: "btn btn-primary mt-2" %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No veterinarians matched your search. Please try a different query.</p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="container mt-5">
+  <h1 class="mb-3">Best rated veterinarians near you</h1>
+  <div class="row">
+    <% @all_clinics.each do |clinic| %>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
+          <div class="clinic-image mb-3">
+            <%= image_tag 'vet_logo.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
+          </div>
+          <p><strong>Address</strong>: <%= clinic.address %></p>
+          <p><strong>Email</strong>: <%= clinic.email %></p>
+          <p><strong>Phone Number</strong>: <%= clinic.phone_numer %></p>
+          <p><strong>Rate</strong>: <%= clinic.rate %></p>
+          <p><strong>Care Type</strong>: <%= clinic.care_type %></p>
+          <p><strong>Webpage</strong>: <%= clinic.webpage %></p>
+          <p><strong>Species</strong>: <%= clinic.species %></p>
+          <p><em><%= clinic.description %></em></p>
+          <%= link_to "Clinic details", clinic_path(clinic), class: "btn btn-primary mt-2" %>
         </div>
       </div>
-    </div>
-  <% end %>
-<% end %>
-
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<div class="container">
-
-<% if user_signed_in? %>
-  <% @user.clinics.each do |clinic| %>
-    <%= clinic.address %>
-  <% end %>
-<% end %>
-
-  <%= link_to pets_path do %>
-    <div class="home-cards" style="border: 1px solid; border-radius: 8px; padding: 20px; text-align: center; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-      <div><%= image_tag "pets.png", class: "img-thumbnail", style: "width: 100%; height: auto; border-radius: 4px;" %></div>
-      <div class="card-content">
-        <h3 class="card-title">Your pet(s)</h3>
-      </div>
-    </div>
-  <% end %>
-
-  <%= link_to clinics_path do %>
-    <div class="home-cards" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-      <div><%= image_tag "clinic.png", class: "img-thumbnail", style: "width: 100%; height: auto; border-radius: 4px;" %></div>
-      <div class="card-content">
-        <h3 class="card-title" style="text-decoration: none;">Your clinic(s)</h3>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
   </div>
 </div>
