@@ -2,7 +2,7 @@
 
 <% if params[:query].present? %>
   <div class="container mt-5">
-    <h1 class="mb-3">Veterinarians that matched your search</h1>
+    <h1 class="mb-3">Veterinarians that matched your search : "<%= params[:query] %>"</h1>
     <div class="row">
       <% if @clinics.any? %>
         <% @clinics.each do |clinic| %>
@@ -24,7 +24,7 @@
           </div>
         <% end %>
       <% else %>
-        <p>No clinics matched your search. Please try a different query.</p>
+        <p>No veterinarians matched your search. Please try a different query.</p>
       <% end %>
     </div>
   </div>
