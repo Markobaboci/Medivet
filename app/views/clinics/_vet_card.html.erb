@@ -1,0 +1,7 @@
+<div class="vet-card">
+  <h3><%= vet.name %></h3>
+  <p>Specialization: <%= vet.specialization %></p>
+  <p>Experience: <%= vet.experience_years %> years</p>
+  <p>Clinic: <%= vet.clinic.name %></p>
+  <%= link_to 'View Profile', vet_path(vet), class: 'btn' %>
+</div>

@@ -44,6 +44,12 @@
               <%= link_to "#", class: "dropdown-item" do %>
                 <i class="fas fa-user"></i> My account
               <% end %>
+              <%= link_to new_user_clinic_path(current_user), class: "dropdown-item" do %>
+                <i class="fa-solid fa-house-chimney-medical"></i> Add a clinic
+              <% end %>
+              <%= link_to new_pet_path, class: "dropdown-item" do %>
+                <i class="fa-solid fa-paw"></i> Add a pet
+              <% end %>
               <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" do %>
                 <i class="fas fa-sign-out-alt"></i> Log out
               <% end %>
