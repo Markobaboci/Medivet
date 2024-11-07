@@ -1,6 +1,6 @@
 class ClinicsController < ApplicationController
   before_action :set_user
-  before_action :set_clinic, only: [:show, :edit, :update, :destroy]
+  before_action :set_clinic, only: %i[show edit update destroy]
   skip_before_action :authenticate_user!
 
   def index
@@ -19,6 +19,11 @@ class ClinicsController < ApplicationController
       @clinic = Clinic.find(params[:id])
       @user = @clinic.user
     end
+
+    @marker = {
+      lat: @clinic.latitude,
+      lng: @clinic.longitude
+    }
   end
 
   def new
