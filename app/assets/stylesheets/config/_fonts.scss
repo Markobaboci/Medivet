@@ -1,9 +1,13 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Nunito+Sans:wght@400;600;700&display=swap');
+ /* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Nunito+Sans:wght@400;600;700&display=swap');
+/* _fonts.scss */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=PT+Sans:wght@400;700&display=swap');
 
 /* Define font variables */
 $body-font: "Roboto", "Arial", "sans-serif";
-$headers-font: 'Nunito Sans', 'Helvetica Neue', sans-serif;
+$headers-font: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+
 
 /* General font styling */
 body {
