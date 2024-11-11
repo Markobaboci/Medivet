@@ -7,7 +7,8 @@ class ClinicsController < ApplicationController
     if params[:query].present?
       @clinics = Clinic.search_by_address(params[:query])
     else
-      @clinics = Clinic.all
+      @user_clinics = current_user.clinics if user_signed_in?
+      @all_clinics = Clinic.all
     end
   end
 
@@ -64,6 +65,7 @@ class ClinicsController < ApplicationController
   end
 
   def clinic_params
-    params.require(:clinic).permit(:email, :phone_numer, :address, :description, :rate, :care_type, :webpage, :species)
+    params.require(:clinic).permit(:email, :phone_numer, :address, :description, :rate, :care_type, :webpage, :species,
+                                   :image)
   end
 end

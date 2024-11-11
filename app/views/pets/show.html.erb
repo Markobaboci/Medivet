@@ -6,3 +6,8 @@
 <!-- app/views/restaurants/show.html.erb -->
 <%= link_to 'Back', pets_path %>
 <%# <%= button_to 'Delete this clinic', user_clinic_path(@clinic), method: :delete, data: {turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+<% if @pet.photo.attached? %>
+  <%= cl_image_tag @pet.photo.key, height: 300, width: 400, crop: :fill %>
+<% else %>
+  <p>No photo available</p>
+<% end %>

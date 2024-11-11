@@ -1,7 +1,8 @@
-  <div class="container mt-5">
-    <h1 class="mb-3">Clinics near you</h1>
+<div class="container mt-5">
+  <% if user_signed_in? && @user_clinics.present? %>
+    <h2 class="mb-3">Your Clinics:</h2>
     <div class="row">
-      <% @clinics.each do |clinic| %>
+      <% @user_clinics.each do |clinic| %>
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
             <div class="clinic-image mb-3">
@@ -16,15 +17,38 @@
             <p><strong>Species</strong> : <%= clinic.species %></p>
             <p><em><%= clinic.description %></em></p>
             <%= link_to "Clinic details", clinic_path(clinic), class: "btn btn-primary mt-2" %>
+
+            <% if current_user.role == 'vet' && clinic.user_id == current_user.id %>
+              <%= link_to 'Edit', edit_clinic_path(clinic), class: "btn btn-warning mt-2" %>
+              <%= link_to 'Delete', clinic_path(clinic), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger mt-2" %>
+            <% end %>
           </div>
         </div>
       <% end %>
     </div>
+  <% else %>
+    <h2>You don't have any clinics yet.</h2>
+  <% end %>
+
+  <h1 class="mt-5">Clinics near you</h1>
+  <div class="row">
+    <% @all_clinics.each do |clinic| %>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
+          <div class="clinic-image mb-3">
+            <%= image_tag 'clinic.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
+          </div>
+          <p><strong>Address</strong> : <%= clinic.address %></p>
+          <p><strong>Email</strong> : <%= clinic.email %></p>
+          <p><strong>Phone Number</strong> : <%= clinic.phone_numer %></p>
+          <p><strong>Rate</strong> : <%= clinic.rate %></p>
+          <p><strong>Care Type</strong> : <%= clinic.care_type %></p>
+          <p><strong>Webpage</strong> : <%= clinic.webpage %></p>
+          <p><strong>Species</strong> : <%= clinic.species %></p>
+          <p><em><%= clinic.description %></em></p>
+          <%= link_to "Clinic details", clinic_path(clinic), class: "btn btn-primary mt-2" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-
-<%# <h1>Clinics Index</h1>
-<div class="vet-cards-container">
-  <% @vets.each do |vet| %>
-    <%#= render 'vet_card', vet: vet %>
-  <%# end %>
+</div>
