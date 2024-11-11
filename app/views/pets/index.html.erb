@@ -1,10 +1,17 @@
-<h1> <%= current_user.email %></h1>
-
-<%= link_to 'New Pet', new_pet_path %>
-<ul>
-  <% @pets.each do |pet| %>
-    <li>
-      <%= link_to pet.name, pet%>
-    </li>
-  <% end %>
-</ul>
+<div class="container mt-5">
+  <h1 class="mb-3">My Pets</h1>
+  <div class="row">
+    <% @pets.each do |pet| %>
+      <div class="col-md-6 col-lg-4 mb-4 c-card">
+        <%= link_to pet_path(pet), class: "text-decoration-none" do %>
+          <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
+            <div class="clinic-image mb-3">
+              <%= image_tag 'pets.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
+            </div>
+            <p class="mb-0"><strong><%= pet.name %></strong></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

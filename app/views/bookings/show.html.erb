@@ -1,4 +1,4 @@
-<h1><%= @booking.pet %></h1>
+<h1>Booking details for <%= @booking.pet.name %></h1>
 <p>Date: <%= @booking.date %></p>
 <p>Time: <%= @booking.time %></p>
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
