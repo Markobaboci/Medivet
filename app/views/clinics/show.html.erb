@@ -3,9 +3,11 @@
   <div class="clinic-image mb-3">
     <%= image_tag 'clinic.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
   </div>
-
-  <div><%= cl_image_tag @clinic.image.key,  height: 300, width: 400, crop: :fill %></div>
-
+  <% if @clinic.image.attached? %>
+    <%= cl_image_tag @clinic.image.key,  height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <p>No photo available</p>
+  <% end %>
   <div class="clinic-header">
     <h1><%= @clinic.address %></h1>
   </div>

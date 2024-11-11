@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get "font_test/index"
   get "button_test/index"
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users
   root to: "pages#home"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
