@@ -24,4 +24,5 @@ class Clinic < ApplicationRecord
   validates :care_type, presence: true,
                         inclusion: { in: %w[general emergency vaccination specialty], message: "%<value>s is not a valid care type, must be either : general, emergency, vaccination, or specialty" }
   has_many :bookings, dependent: :destroy
+  has_many :reviews, through: :bookings
 end
