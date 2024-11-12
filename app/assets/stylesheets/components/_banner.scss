@@ -1,0 +1,38 @@
+.banner {
+  // Set background image and size
+  background-image: url('/assets/banner-background.png');
+  background-size: cover;
+  background-position: center;
+  height: 33vh; // One-third of the viewport height for mobile screens
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  position: relative;
+
+  // Define behavior on larger screens
+  @media (min-width: 768px) {
+    height: 200px; // Set a fixed height for larger screens
+  }
+
+  @media (min-width: 1024px) {
+    height: 250px; // Increase height on even larger screens
+  }
+
+  .back-button {
+    background: rgba(255, 255, 255, 0.8); // Semi-transparent white for better visibility
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #333;
+    transition: background 0.3s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 1); // Full white on hover
+    }
+  }
+}
