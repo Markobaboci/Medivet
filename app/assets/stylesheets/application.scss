@@ -13,5 +13,39 @@
 @import "components/index";
 @import "pages/index";
 @import "components/header_navbar";
-@import "components/layout";
-@import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
+
+.vet-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.vet-card {
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Inner space */
+  margin: 10px; /* Space between cards */
+  width: calc(33% - 20px); /* Adjust width for responsiveness */
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  transition: transform 0.3s; /* Animation for hover */
+}
+
+.vet-card:hover {
+  transform: scale(1.05); /* Enlarge card on hover */
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #007bff; /* Button background */
+  color: white; /* Button text color */
+  text-decoration: none; /* No underline */
+  border-radius: 5px; /* Rounded corners for button */
+  transition: background-color 0.3s; /* Button hover effect */
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+@import "login_signup";

@@ -1,14 +1,15 @@
 class Clinic < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
   include PgSearch::Model
   pg_search_scope :search_by_address,
-    against: :address,
-    using: {
-      tsearch: { prefix: true }
-    }
+                  against: :address,
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :phone_numer, presence: true, uniqueness: true
