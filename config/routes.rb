@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'button_test', to: 'button_test#index'
   get 'font_test', to: 'font_test#index'
 
+  # Nested resources
   resources :users do
     resources :clinics, only: [:new, :create, :index, :show]
   end
@@ -26,5 +27,8 @@ Rails.application.routes.draw do
   end
 
   resources :pets
-  resources :bookings, except: [:new, :create]
+
+  resources :bookings, except: [:new, :create] do
+    resource :review, only: %i[new create edit update destroy]
+  end
 end

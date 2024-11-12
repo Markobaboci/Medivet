@@ -7,18 +7,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
-
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://ga.jspm.io/npm:star-rating.js@4.3.0/dist/star-rating.css">
+
     <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+  <%= yield :head %>
   </head>
 
   <body>
-     <div class="d-flex flex-column min-vh-100">
+    <div class="d-flex flex-column min-vh-100">
       <%= render "shared/header_navbar" %>
       <%= render "shared/flashes" %>
       <main class="flex-grow-1">
@@ -27,7 +29,7 @@
         </div>
       </main>
       <%= render "shared/footer" %>
-     </div>
+    </div>
   </body>
 
 </html>
