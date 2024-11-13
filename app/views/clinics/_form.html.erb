@@ -7,6 +7,7 @@
   <%= f.input :species %>
   <%= f.input :webpage %>
   <%= f.input :description %>
+  <%= f.input :image, as: :file %>
   <%= f.submit @clinic.persisted? ? 'Update Clinic' : 'Add Clinic',
     data: { confirm: @clinic.persisted? ? "Are you sure you want to update this clinic?" : "Are you sure you want to add this clinic?" } %>
 <% end %>

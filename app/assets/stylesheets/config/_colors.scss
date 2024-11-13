@@ -2,7 +2,7 @@
 
 //Primary Colors
 $primary_green:	#2FA878; // main branding elements like buttons, links, and icons related to vets
-$primary_blue:	#3887BE; // for navigation, headers, or highlighted text
+$primary_blue:	#214D8E; // for navigation, headers, or highlighted text
 $vet_green: #006666;
 
 //Accent color
@@ -14,7 +14,7 @@ $gray: #B0BEC5; // Secondary Elements for backgrounds and light dividers
 $dark_gray: #333333; //Text (for main text)
 
 // Colors for bootstrap (Feedback colors)
-$green: #28a745; //messages and actions that indicate successful outcomes ("Appointment Confirmed.")
-$blue: #17a2b8; //informational messages or hints, ("Please check your pet’s details)
-$red: #dc3545; //errors or warnings, ("Payment Failed)
-$yellow: #FFC107; //grab attention for important but not critical information ("Appointment in 10 minutes)
+$green: #2FA878; //messages and actions that indicate successful outcomes ("Appointment Confirmed.")
+$blue: #214D8E; //informational messages or hints, ("Please check your pet’s details)
+$red: #FF9A9A; //errors or warnings, ("Payment Failed)
+$yellow: #F5CC80; //grab attention for important but not critical information ("Appointment in 10 minutes)

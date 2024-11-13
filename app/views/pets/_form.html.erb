@@ -5,8 +5,7 @@
   </p>
   <p>
     <%= f.label :species %><br>
-    <%#= f.text_field :species, %w[cat dog bird rabbit exotic]%>
-    <%= f.select :species, options_for_select(['cat', 'dog', 'bird', 'rabbit', 'exotic'])%>
+    <%= f.select :species, %w[cat dog bird rabbit exotic]%>
   </p>
     <p>
     <%= f.label :breed  %><br>
@@ -24,6 +23,16 @@
     <%= f.label :age %><br>
     <%= f.number_field :age %>
   </p>
+  <% if @pet.photo.attached? %>
+  <p>Current Photo:</p>
+  <%= cl_image_tag @pet.photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
+<p>
+  <%= f.label :photo %><br>
+  <%= f.file_field :photo %>
+</p>
+
   <p>
     <%= f.submit %>
   </p>

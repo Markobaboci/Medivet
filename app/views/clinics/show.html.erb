@@ -1,8 +1,13 @@
-<div class="clinic-show-page container mt-5">
+<!-- app/views/clinics/show.html.erb -->
 
-  <div class="clinic-image mb-3">
-    <%= image_tag 'clinic.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
-  </div>
+<div class="clinic-show-page container mt-5">
+  <%= render "banner" %>
+
+  <% if @clinic.image.attached? %>
+    <%= cl_image_tag @clinic.image.key,  height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <p>No photo available</p>
+  <% end %>
 
   <div class="clinic-header">
     <h1><%= @clinic.address %></h1>
@@ -12,26 +17,37 @@
       data-controller="map"
       data-map-markers-value="<%= [{ lat: @marker[:lat], lng: @marker[:lng] }].to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-  </div>
 
   <div class="clinic-specialization d-flex justify-content-center">
     <p>Specialization: <%= @clinic.species %></p>
   </div>
 
-
   <div class="clinic-details d-flex justify-content-center ">
     <p class="clinic-description">Description: <%= @clinic.description %></p>
   </div>
 
+  <!-- Clinic Actions -->
   <div class="clinic-actions mt-4 d-flex justify-content-center">
     <%= link_to "Book an Appointment", new_clinic_booking_path(clinic_id: @clinic.id), class: "btn btn-primary" %>
   </div>
   <div class="clinic-actions mt-4 d-flex justify-content-center">
-    <%= link_to "Edit Clinic", edit_user_clinic_path(@clinic), class: "btn btn-secondary" %>
+    <%= link_to "Edit Clinic", edit_user_path(@clinic), class: "btn btn-secondary" %>
     <%= button_to 'Delete Clinic', user_clinic_path(@clinic), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
   </div>
 
   <div class="back-link mt-3">
     <%= link_to "← Back to All Clinics", clinics_path, class: "btn btn-outline-secondary" %>
+  </div>
+
+  <!-- Reviews Section -->
+  <div class="reviews-section mt-5">
+    <h3>Reviews</h3>
+    <div class="row">
+      <% @clinic.reviews.each do |review| %>
+        <div class="col-md-4">
+          <%= render 'reviews/rating_card', review: review %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

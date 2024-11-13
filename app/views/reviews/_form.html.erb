@@ -1,0 +1,23 @@
+
+<div class="card shadow-sm p-4 mb-4">
+  <div class="card-body">
+    <h4 class="card-title mb-4"><%= @review.persisted? ? "Update your Review" : "Leave a Review" %></h4>
+
+    <%= simple_form_for [@booking, @review], url: @review.persisted? ? booking_review_path(@booking) : booking_review_path(@booking), local: true do |form| %>
+
+      <!-- Responsive Rating Field -->
+      <div class="mb-3">
+      <%= form.input :rating, collection: (0..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
+      <!-- <%= form.input :rating, as: :integer, label: "Rating (1-5)", input_html: { class: "form-control", min: 1, max: 5 } %> -->
+      </div>
+
+      <!-- Enlarged Content Field -->
+      <div class="mb-3">
+        <%= form.input :content, label: "Review Content", as: :text, input_html: { class: "form-control", rows: 6, style: "resize: vertical;" } %>
+      </div>
+
+      <!-- Submit Button -->
+      <%= form.button :submit, "Submit Review", class: "btn btn-primary mt-3 w-100" %>
+    <% end %>
+  </div>
+</div>

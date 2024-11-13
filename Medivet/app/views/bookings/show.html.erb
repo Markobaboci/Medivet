@@ -1,6 +1,0 @@
-<h1><%= @booking.pet %></h1>
-<p>Date: <%= @booking.date %></p>
-<p>Time: <%= @booking.time %></p>
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= button_to 'Delete', booking_path(@booking), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
-<%= link_to 'Back', bookings_path %>
