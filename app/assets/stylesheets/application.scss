@@ -13,6 +13,7 @@
 @import "components/index";
 @import "pages/index";
 @import "components/header_navbar";
+// @import "login_signup";
 
 .vet-cards-container {
   display: flex;
@@ -47,5 +48,3 @@
 .btn:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
-
-@import "login_signup";
