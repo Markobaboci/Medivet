@@ -5,7 +5,8 @@
   </p>
   <p>
     <%= f.label :species %><br>
-    <%= f.text_field :species, %w[cat dog bird rabbit exotic]%>
+    <%#= f.text_field :species, %w[cat dog bird rabbit exotic]%>
+    <%= f.select :species, options_for_select(['cat', 'dog', 'bird', 'rabbit', 'exotic'])%>
   </p>
     <p>
     <%= f.label :breed  %><br>

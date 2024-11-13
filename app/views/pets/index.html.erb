@@ -1,14 +1,19 @@
-<div class="container mt-5">
-  <h1 class="mb-3">My Pets</h1>
-  <div class="row">
+
+
+<div class="container mt-4">
+  <h1 class="mb-3 text-center"><strong>My Pets</strong> <i class="fa-solid fa-paw"></i></h1>
+  <div class="boundary"></div>
+  <div class="row <%= @pets.size % 3 == 0 ? '' : 'justify-content-center' %>">
     <% @pets.each do |pet| %>
-      <div class="col-md-6 col-lg-4 mb-4 c-card">
+      <div class="col-md-6 col-lg-4 mb-4">
         <%= link_to pet_path(pet), class: "text-decoration-none" do %>
-          <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
-            <div class="clinic-image mb-3">
-              <%= image_tag 'pets.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
+          <div class="pets-card-container py-3 px-2 text-center">
+            <div class="pets-card">
+              <div class="pets-image-container mb-3">
+                <%= image_tag 'brownbunny.avif', alt: 'Pet image', class: 'img-fluid pets-image' %>
+              </div>
+              <p class="mb-0"><strong><%= pet.name %></strong></p>
             </div>
-            <p class="mb-0"><strong><%= pet.name %></strong></p>
           </div>
         <% end %>
       </div>
