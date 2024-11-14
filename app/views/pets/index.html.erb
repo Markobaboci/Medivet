@@ -1,5 +1,3 @@
-
-
 <div class="container mt-4">
   <h1 class="mb-3 text-center"><strong>My Pets</strong> <i class="fa-solid fa-paw"></i></h1>
   <div class="boundary"></div>
@@ -10,7 +8,11 @@
           <div class="pets-card-container py-3 px-2 text-center">
             <div class="pets-card">
               <div class="pets-image-container mb-3">
-                <%= image_tag 'brownbunny.avif', alt: 'Pet image', class: 'img-fluid pets-image' %>
+                <% if pet.photo.attached? %>
+                  <%= cl_image_tag pet.photo.key, alt: 'Pet image', class: 'img-fluid pet-image' %>
+                <% else %>
+                  <%= image_tag 'pets.png', alt: 'Pet image', class: 'img-fluid pet-image' %>
+                <% end %>
               </div>
               <p class="mb-0"><strong><%= pet.name %></strong></p>
             </div>

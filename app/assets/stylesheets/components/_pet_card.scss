@@ -51,12 +51,12 @@
 
 
 .img-fluid.pet-image {
-  width: auto; /* Allow the image to maintain its natural width */
-  height: auto; /* Maintain the natural height */
+  width: auto;
+  height: auto;
   max-width: 100%;
-  max-height: 350px;
-  display: block; /* Center the image inside its parent container */
-  margin: 0 auto; /* Optional: center horizontally if needed */
+  max-height: 300px;
+  display: block;
+  margin: 0 auto;
 }
 
 .pet-list {

@@ -41,7 +41,7 @@
               <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "User Avatar" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end w-100 w-md-auto custom-dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "#", class: "dropdown-item" do %>
+              <%= link_to user_path(current_user), class: "dropdown-item" do %>
                 <i class="fas fa-user"></i> My account
               <% end %>
               <%= link_to new_user_clinic_path(current_user), class: "dropdown-item" do %>
@@ -58,6 +58,9 @@
         <% else %>
          <!-- "Sign Up as a Vet" Button -->
          <div class="mt-3 mt-md-2 mt-lg-0 d-flex flex-column flex-md-row align-items-center">
+             <li class="nav-item mx-4 d-md-none">
+              <%= link_to "Home", root_path, class: "nav-link" %>
+            </li>
             <li class="nav-item mx-4 w-100">
               <%= link_to "Are you a veterinary professional?", "#", class: "btn btn-on-primary w-100" %>
             </li>
