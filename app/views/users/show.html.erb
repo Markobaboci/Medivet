@@ -1,4 +1,42 @@
-<h1><%= @user.name %>'s Profile</h1>
-<p><strong>Email:</strong> <%= @user.email %></p>
-<p><strong>Role:</strong> <%= @user.role %></p>
-<%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-primary' %>
+<div class="container mt-4">
+  <h1 class="mb-3 text-center"><strong>Vet's profile</strong></h1>
+  <div class="boundary"></div>
+  <div class="row">
+    <div class="col-12 mb-4 d-flex align-items-center justify-content-center">
+      <div class="pet-card-container p-3">
+        <div class="pet-card">
+          <div class="pets-image-container">
+            <% if @user.photo.attached? %>
+              <%= cl_image_tag @user.photo.key, alt: 'vet image', class: 'img-fluid pet-image' %>
+            <% else %>
+              <%= image_tag 'ashkan.jpg', alt: 'vet image', class: 'img-fluid pet-image' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="boundary"></div>
+    <h2 class="px-4"><strong>About Me</strong></h2>
+    <div class="col-12 mb-4 px-4">
+      <div class="pet-card-details text-right">
+        <div class="pet-stats row">
+          <div class="col-12">
+          <% if @user.description.present? %>
+            <p><%= @user.description %></p>
+          <% else %>
+            <p><em>No description provided yet.</em></p>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<h1><%#= @user.name %>Vet's Profile</h1>
+<p><strong>Email:</strong> <%#= @user.email %></p>
+<p><strong>Role:</strong> <%#= @user.role %></p>
+<% if user_signed_in? %>
+  <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-primary' %>
+<% end %>

@@ -6,7 +6,11 @@
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
             <div class="clinic-image mb-3">
-              <%= image_tag 'clinic.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
+              <% if clinic.image.attached? %>
+                <%= cl_image_tag clinic.image.key, alt: 'clinic image', class: 'img-fluid pet-image' %>
+              <% else %>
+                <%= image_tag 'clinic.png', alt: 'clinic image', class: 'img-fluid pet-image' %>
+              <% end %>
             </div>
             <p><strong>Address</strong> : <%= clinic.address %></p>
             <p><strong>Email</strong> : <%= clinic.email %></p>
@@ -36,7 +40,11 @@
       <div class="col-md-6 col-lg-4 mb-4">
         <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
           <div class="clinic-image mb-3">
-            <%= image_tag 'clinic.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
+            <% if clinic.image.attached? %>
+              <%= cl_image_tag clinic.image.key, alt: 'clinic image', class: 'img-fluid pet-image' %>
+            <% else %>
+              <%= image_tag 'clinic.png', alt: 'clinic image', class: 'img-fluid pet-image' %>
+            <% end %>
           </div>
           <p><strong>Address</strong> : <%= clinic.address %></p>
           <p><strong>Email</strong> : <%= clinic.email %></p>

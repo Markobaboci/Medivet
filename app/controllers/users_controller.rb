@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User profile updated successfully.'
+      redirect_to user_path(@user), notice: 'User profile updated successfully.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -25,6 +25,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :name, :role)  # Add other permitted fields as needed
+    params.require(:user).permit(:email, :name, :role, :description)  # Add other permitted fields as needed
   end
 end

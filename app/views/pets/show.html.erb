@@ -1,13 +1,62 @@
-<h1><%= @pet.name %></h1>
-<p>Species: <%= @pet.species %></p>
-<p>Age: <%= @pet.age %></p>
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= button_to 'Delete', pet_path(@pet), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
-<!-- app/views/restaurants/show.html.erb -->
-<%= link_to 'Back', pets_path %>
-<%# <%= button_to 'Delete this clinic', user_clinic_path(@clinic), method: :delete, data: {turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
-<% if @pet.photo.attached? %>
-  <%= cl_image_tag @pet.photo.key, height: 300, width: 400, crop: :fill %>
-<% else %>
-  <p>No photo available</p>
-<% end %>
+<div class="container mt-4">
+  <h1 class="mb-3 text-center"><strong><%= @pet.name %></strong></h1>
+  <div class="boundary"></div>
+  <div class="row">
+    <div class="col-12 mb-4 d-flex align-items-center justify-content-center">
+      <div class="pet-card-container p-3">
+        <div class="pet-card">
+          <div class="pets-image-container">
+            <% if @pet.photo.attached? %>
+              <%= cl_image_tag @pet.photo.key, alt: 'Pet image', class: 'img-fluid pet-image' %>
+            <% else %>
+              <%= image_tag 'pets.png', alt: 'Pet image', class: 'img-fluid pet-image' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mb-4 px-4">
+      <div class="pet-card-details text-center">
+        <div class="pet-stats row">
+
+          <div class="col-6 col-md-6 mb-3 mb-md-0" id="pet-list-left">
+            <ul class="pet-list text-left">
+              <li><b>Species</b>: <%= @pet.species %></li>
+              <li><b>Age</b>: <%= pluralize(@pet.age, 'year') %> old</li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-md-6" id="pet-list-right">
+            <ul class="pet-list text-left">
+              <li><b>Breed</b>: <%= @pet.breed %></li>
+              <li><b>Weight</b>: <%= @pet.weight %> kg</li>
+            </ul>
+          </div>
+
+          <div class="col-12" id="pet-description">
+            <p><b>Pet description</b>: <em><%= @pet.description %></em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 d-flex justify-content-space-between">
+      <% if current_user.pets.include?(@pet) %>
+        <div class="col-6 text-center">
+          <%= link_to edit_pet_path(@pet), class: "pet-link" do %>
+            <i class="fa-solid fa-pen-to-square"></i> Edit pet
+          <% end %>
+        </div>
+
+        <div class="col-6 text-center">
+          <%= button_to pet_path(@pet), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this pet?' } do %>
+            <i class="fa-solid fa-trash"></i> Remove pet
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="back-link mt-5">
+  <%= link_to "← Back", pets_path, class: "btn btn-outline-secondary" %>
+</div>

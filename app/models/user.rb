@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :pets, dependent: :destroy # Ensures a user has many pets
-
+  has_one_attached :photo
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
