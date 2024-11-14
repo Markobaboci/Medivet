@@ -1,5 +1,5 @@
 <div class="container mt-2">
-  <h3>Appoitment details for <%= @booking.pet.name %> 🐯</h3>
+  <h3>Appointment details for <%= @booking.pet.name %> 🐯</h3>
     <p>🏥 <strong>Clinic address:</strong> <%= @booking.clinic.address %> </p>
     <p>📅 <strong>Date:</strong> <%= @booking.date %></p>
     <p>⏰ <strong>Time:</strong> <%= @booking.time %></p>
@@ -11,10 +11,10 @@
     <%= link_to 'Edit', edit_booking_path(@booking) %> |
     <%= link_to 'Cancel', booking_path(@booking), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
   <br>
- <h5 class="mt-2">Tell us how did it go?</h5>
+ <h5 class="mt-3">Tell us how did it go?</h5>
   <% if @booking.review.present? %>
     <!-- Display the review if it exists -->
-    <h6>You rated this visit <%= @booking.review.rating %>/5</h6>
+    <h6>You rated this visit <%= @booking.review.rating %>/5 ⭐️</h6>
     <p><em><%= @booking.review.content %></em></p>
     <%= link_to "Edit Review", edit_booking_review_path(@booking, @booking.review), class: "btn btn-secondary" %>
   <% else %>

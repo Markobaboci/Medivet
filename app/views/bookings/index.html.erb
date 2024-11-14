@@ -23,11 +23,11 @@
               <td class="text-center ">
                 <%= link_to pet_path(booking.pet), class: "text-decoration-none" do %>
                   <% if booking.pet&.photo&.attached? %>
-                    <%= cl_image_tag booking.pet.photo.key, alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 50px; height: 50px;' %>
+                    <%= cl_image_tag booking.pet.photo.key, alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 60px; height: 60px;' %>
                   <% else %>
-                    <%= image_tag 'pets.png', alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 50px; height: 50px;' %>
+                    <%= image_tag 'pets.png', alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 60px; height: 60px;' %>
                   <% end %>
-                  <div class="pet-name mt-2"><%= booking.pet.name %></div>
+                  <div class="pet-name mt-0"><%= booking.pet.name %></div>
                 <% end %>
               </td>
               <td><%= booking.date %></td>
@@ -68,14 +68,14 @@
               <td class="text-center">
                 <%= link_to pet_path(booking.pet), class: "text-decoration-none" do %>
                   <% if booking.pet&.photo&.attached? %>
-                    <%= cl_image_tag booking.pet.photo.key, alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 50px; height: 50px;' %>
+                    <%= cl_image_tag booking.pet.photo.key, alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 60px; height: 60px;' %>
                   <% else %>
-                    <%= image_tag 'pets.png', alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 50px; height: 50px;' %>
+                    <%= image_tag 'pets.png', alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 60px; height: 60px;' %>
                   <% end %>
-                  <div class="pet-name mt-2"><%= booking.pet.name %></div>
+                  <div class="pet-name mt-0"><%= booking.pet.name %></div>
                 <% end %>
               </td>
-              <td><%= booking.date %></td>
+              <td ><%= booking.date %></td>
               <td><%= booking.time.strftime("%I:%M %p") %></td>
               <td class="d-none d-sm-table-cell"><%= booking.description %></td>
               <td class="d-none d-sm-table-cell"><%= booking.clinic.email if booking.clinic %></td>
