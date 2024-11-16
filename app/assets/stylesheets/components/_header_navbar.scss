@@ -15,7 +15,34 @@
       }
     }
   }
+  }
 
+  .dropdown-toggle {
+    font-family: inherit; // Avoid inheriting custom .btn font styles
+    border-radius: 0; // Reset border radius if inherited
+    color: #ffffff; // Ensure white text color
+    box-shadow: none; // Reset button shadow
+    background-color: transparent; // Transparent background
+    padding: 0.5rem 1rem; // Match the expected padding for the dropdown button
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover,
+    &:focus {
+      color: #ffffff; // Keep text white on hover and focus
+      background-color: transparent; // Prevent background change
+      box-shadow: none; // Prevent hover shadow
+    }
+
+    &:active {
+      color: #ffffff;
+      background-color: transparent;
+      box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.2); // Add active state shadow
+    }
+  }
+
+  .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: white;
+}
   .nav-link,
   .navbar-brand {
     color: #ffffff;
@@ -23,7 +50,6 @@
   }
 
   .nav-link:hover {
-    color: #E0E0E0;
     transform: scale(1.05); // Slightly enlarge the link on hover
   }
 
@@ -56,7 +82,7 @@
 
       &:hover {
         background-color: rgba(47, 168, 120, 0.1); // Light green background on hover
-        color: $primary_green;                     // Text remains primary green on hover
+        color: $primary_green;// Text remains primary green on hover
       }
 
       &:active {
@@ -64,10 +90,21 @@
       }
     }
   }
-}
+
 
 body.vet-theme .navbar-medivet {
   background: $primary_blue; // Vet-specific color
+}
+
+body.vet-theme .dropdown-item {
+  color: $primary_blue;  // Vet-specific color
+  &:hover {
+    background-color: rgba(173, 216, 230, 0.1); // Light blue background on hover
+    color: $primary_blue;
+  }
+  &:active {
+    background-color: rgba(173, 216, 230, 0.2); // Darker background on active
+  }
 }
 
 /* aligning the dropdown to be below the profile on small screens */

@@ -21,8 +21,7 @@ Rails.application.routes.draw do
     resources :clinics, only: [:new, :create, :index, :show]
   end
 
-
-  resources :clinics, only: [:index, :show] do
+  resources :clinics, only: [:index, :show, :edit, :update] do
     resources :bookings, only: [:new, :create]
   end
 

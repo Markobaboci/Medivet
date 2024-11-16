@@ -7,8 +7,12 @@
         <%= image_tag "medivet_logo.png", alt: "Medivet Logo" %>
       <% end %>
 
+<% if !current_user || (current_user && current_user.role.nil?) || (current_user && !current_user.vet?) %>
+  <%= render partial: "shared/searchbar" %>
+<% end %>
 
-      <%= render partial: "shared/searchbar" %>
+
+
 
     <!-- Navbar Toggler for Mobile View -->
 
