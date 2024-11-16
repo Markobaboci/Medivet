@@ -4,6 +4,7 @@ import "controllers";
 import "@popperjs/core";
 import "bootstrap";
 
+
 // Initialize Stimulus
 // import { Application } from "@hotwired/stimulus";
 // import StarRatingController from "./controllers/star_rating_controller"; // Import your star-rating controller

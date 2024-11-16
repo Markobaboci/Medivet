@@ -1,6 +1,6 @@
 .navbar-medivet {
   justify-content: space-between;
-  background: $primary_green; // Default color
+  background: $secondary_blue;
 
   .navbar-brand {
     display: flex;
@@ -46,7 +46,7 @@
     padding: 10px 0;             // Top and bottom padding for spacing
 
     .dropdown-item {
-      color: $primary_green;     // Primary green for item text color
+      color: $secondary_blue;     // secondary blue for item text color
       padding: 8px 20px;         // Padding for each item
       font-weight: 500;          // Slightly bolder text for readability
       display: flex;
@@ -55,8 +55,8 @@
       border-radius: 6px;        // Rounded corners for hover effect
 
       &:hover {
-        background-color: rgba(47, 168, 120, 0.1); // Light green background on hover
-        color: $primary_green;                     // Text remains primary green on hover
+        background-color: rgba(47, 168, 120, 0.1); // Light blue background on hover
+        color: $secondary_blue;                     // Text remains secondary blue on hover
       }
 
       &:active {
@@ -64,10 +64,6 @@
       }
     }
   }
-}
-
-body.vet-theme .navbar-medivet {
-  background: $primary_blue; // Vet-specific color
 }
 
 /* aligning the dropdown to be below the profile on small screens */

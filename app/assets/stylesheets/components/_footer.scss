@@ -23,6 +23,7 @@
 
       &:hover {
         text-decoration: underline;
+        color: white;
       }
     }
 
@@ -38,9 +39,21 @@
         text-decoration: none;
 
         &:hover {
-          color: blue;
+          color: #427dd3;
         }
       }
+    }
+  }
+}
+body.vet-theme .footer {
+  background-color: $primary_blue; // Footer color for vet users
+  color: white;
+
+  a {
+    color: lighten($primary_blue, 20%);
+
+    &:hover {
+      color: white;
     }
   }
 }

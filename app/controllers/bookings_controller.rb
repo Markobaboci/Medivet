@@ -5,8 +5,6 @@ class BookingsController < ApplicationController
   # GET /bookings
   def index
     @bookings = Booking.all.order(:date, :time) # Order by date and time for readability
-    @upcoming_bookings = @bookings.where("date >= ?", Date.today)
-    @past_bookings = @bookings.where("date < ?", Date.today)
   end
 
   # GET /bookings/:id
