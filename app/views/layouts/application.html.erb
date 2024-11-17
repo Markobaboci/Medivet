@@ -21,7 +21,7 @@
 
   <body class="<%= current_user&.vet? ? 'vet-theme' : '' %>">
     <div class="d-flex flex-column min-vh-100">
-     <%= render partial: @navbar_partial %>
+      <%= render partial: @navbar_partial %>
       <%= render "shared/flashes" %>
       <main class="flex-grow-1">
         <div class="centered-container">
