@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # Nested resources
   resources :users do
-    resources :clinics, only: [:new, :create, :index, :show]
+    resources :clinics
   end
 
 

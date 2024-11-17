@@ -5,7 +5,8 @@
     </h5>
     <p class="card-text"><%= review.content %></p>
     <p class="card-text">
-    <small class="text-muted">Reviewed by <%= "#{review.user.first_name}" %></small>
+    <!-- <small class="text-muted">Reviewed by <%= "#{review.user.first_name}" %></small> -->
+    <small class="text-muted">Reviewed by <%= review.user.first_name.blank? ? "Anonymous User" : review.user.first_name %></small>
     </p>
   </div>
 </div>

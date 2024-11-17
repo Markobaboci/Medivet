@@ -28,7 +28,7 @@
 
           <div class="col-6 col-md-6" id="pet-list-right">
             <ul class="pet-list text-left">
-              <li><b>Breed</b>: <%= @pet.breed %></li>
+              <li><b>Breed</b>: <%= @pet.breed.blank? ? "N/A" : @pet.breed %></li>
               <li><b>Weight</b>: <%= @pet.weight %> kg</li>
             </ul>
           </div>
@@ -38,6 +38,50 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-12 mb-4">
+      <% if @pet.bookings.any? %>
+        <div class="boundary"></div>
+        <h2 class="mb-4">Appointments for your pet</h2>
+        <div class="table-responsive bg-light">
+          <table class="table table-striped">
+            <thead class="table-success">
+              <tr>
+                <th>Pet</th> <!-- New column for pet image -->
+                <th>Date</th>
+                <th>Time</th>
+                <th class="d-none d-sm-table-cell">Description</th>
+                <th class="d-none d-sm-table-cell">Clinic</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @pet.bookings.each do |booking| %>
+                <tr>
+                  <!-- Pet Image and Name Column with Link -->
+                  <td class="text-center ">
+                    <%= link_to pet_path(booking.pet), class: "text-decoration-none" do %>
+                      <% if booking.pet&.photo&.attached? %>
+                        <%= cl_image_tag booking.pet.photo.key, alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 60px; height: 60px;' %>
+                      <% else %>
+                        <%= image_tag 'pets.png', alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 60px; height: 60px;' %>
+                      <% end %>
+                      <div class="pet-name mt-0"><%= booking.pet.name %></div>
+                    <% end %>
+                  </td>
+                  <td><%= booking.date %></td>
+                  <td><%= booking.time.strftime("%I:%M %p") %></td>
+                  <td class="d-none d-sm-table-cell"><%= booking.description %></td>
+                  <td class="d-none d-sm-table-cell"><%= booking.clinic.email if booking.clinic %></td>
+                  <td class="text-center">
+                    <%= link_to "Show", booking_path(booking), class: "btn btn-primary btn-sm text-white" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
     </div>
     <div class="col-12 d-flex justify-content-space-between">
       <% if current_user.pets.include?(@pet) %>
