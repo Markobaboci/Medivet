@@ -29,13 +29,19 @@
 </div>
 
   <h6 class="mt-2">How to get there?</h6>
-  <div style="width: 100%; height: 200px;"
+<div class="map-wrapper">
+  <div
+      id="map-container"
+      class=" custom-map"
       data-controller="map"
       data-map-markers-value="<%= [{ lat: @marker[:lat], lng: @marker[:lng] }].to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
+
 
 <!-- Reviews Section -->
-<div class="reviews-section mt-5">
+<div class="reviews-section mt-3">
   <h3 class="text-center">Reviews</h3>
   <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
     <!-- Indicators (optional, for navigation dots) -->
