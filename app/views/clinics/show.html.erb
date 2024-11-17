@@ -41,9 +41,38 @@
 </div>
 
 
+
   <div class="back-link mt-3">
     <%= link_to "← Back to All Clinics", clinics_path, class: "btn btn-outline-secondary" %>
   </div>
+
+  <h6 class="mt-2">How to get there?</h6>
+<div class="map-wrapper">
+  <div
+      id="map-container"
+      class=" custom-map"
+      data-controller="map"
+      data-map-markers-value="<%= [{ lat: @marker[:lat], lng: @marker[:lng] }].to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
+
+
+<!-- Reviews Section -->
+<div class="reviews-section mt-3">
+  <h3 class="text-center">Reviews</h3>
+  <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- Indicators (optional, for navigation dots) -->
+    <div class="carousel-indicators">
+      <% @clinic.reviews.each_with_index do |review, index| %>
+        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="<%= index %>"
+                class="<%= 'active' if index == 0 %>"
+                aria-current="<%= 'true' if index == 0 %>"
+                aria-label="Slide <%= index + 1 %>">
+        </button>
+      <% end %>
+    </div>
+
 
   <!-- Reviews Section -->
   <div class="reviews-section mt-5">
