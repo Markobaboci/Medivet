@@ -137,4 +137,5 @@
 <p><strong>Role:</strong> <%#= @user.role %></p>
 <% if user_signed_in? %>
   <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-primary' %>
+  <%#= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-primary' %>
 <% end %>
