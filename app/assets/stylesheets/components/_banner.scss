@@ -1,6 +1,7 @@
 .banner {
   // Set background image and size
   background-image: url('/assets/banner-background.png');
+  //background-image: url('<%= asset_path 'banner-background.png' %>');
   background-size: cover;
   background-position: center;
   height: 33vh; // One-third of the viewport height for mobile screens

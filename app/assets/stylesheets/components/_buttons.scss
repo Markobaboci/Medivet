@@ -5,11 +5,11 @@
   padding: 0.5rem 1rem;
   color: white; // Default font color set to white
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08);
+  //box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08);
 
   &:hover {
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15), 0px 2px 4px rgba(0, 0, 0, 0.12);
-    color: $light-gray; // Change font color to light gray on hover
+    color: white // Change font color to light gray on hover
   }
 
   &:active {
@@ -233,5 +233,12 @@
     background-color: white;
     color: $primary_blue;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+body.vet-theme .btn-primary {
+  background-color: $primary_blue;
+
+  &:hover {
+    background-color: darken($primary_blue, 5%);
   }
 }
