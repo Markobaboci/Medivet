@@ -56,30 +56,30 @@
                     </div>
 
                       <%= form_with model: @user, url: user_path(@user), method: :patch, local: true do |f| %>
-                      <div class="form-group mb-3">
-                        <%= f.label :first_name, 'Your Name:' %>
-                        <%= f.text_field :first_name, class: 'form-control', placeholder: 'Enter first name' %>
-                      </div>
+                        <div class="form-group mb-3">
+                          <%= f.label :first_name, 'Your Name:' %>
+                          <%= f.text_field :first_name, class: 'form-control', placeholder: @user.first_name.present? ? @user.first_name : 'Enter first name' %>
+                        </div>
 
-                      <div class="form-group mb-3">
-                        <%= f.label :last_name, 'Last Name:' %>
-                        <%= f.text_field :last_name, class: 'form-control', placeholder: 'Enter last name' %>
-                      </div>
+                        <div class="form-group mb-3">
+                          <%= f.label :last_name, 'Last Name:' %>
+                          <%= f.text_field :last_name, class: 'form-control', placeholder: @user.last_name.present? ? @user.last_name : 'Enter last name' %>
+                        </div>
 
-                      <div class="form-group mb-3">
-                        <%= f.label :phone_number, 'Add Phone Number' %>
-                        <%= f.telephone_field :phone_number, class: 'form-control', placeholder: 'Enter phone number' %>
-                      </div>
+                        <div class="form-group mb-3">
+                          <%= f.label :phone_number, 'Add Phone Number' %>
+                          <%= f.telephone_field :phone_number, class: 'form-control', placeholder: 'Enter phone number' %>
+                        </div>
 
-                      <div class="form-group mb-3">
-                        <%= f.label :address, 'Add Address (Optional)' %>
-                        <%= f.text_field :address, class: 'form-control', placeholder: 'Enter address' %>
-                      </div>
+                        <div class="form-group mb-3">
+                          <%= f.label :address, 'Add Address (Optional)' %>
+                          <%= f.text_field :address, class: 'form-control', placeholder: 'Enter address' %>
+                        </div>
 
-                      <div class="d-flex justify-content-center">
-                        <%= f.submit 'Update Account', class: 'btn btn-success' %>
-                      </div>
-                    <% end %>
+                        <div class="d-flex justify-content-center">
+                          <%= f.submit 'Update Account', class: 'btn btn-success' %>
+                        </div>
+                      <% end %>
 
                     <div class="d-flex justify-content-center mt-3">
                       <%= link_to 'Account settings', edit_user_registration_path, class: 'btn btn-secondary' %>
@@ -137,4 +137,5 @@
 <p><strong>Role:</strong> <%#= @user.role %></p>
 <% if user_signed_in? %>
   <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-primary' %>
+  <%#= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-primary' %>
 <% end %>

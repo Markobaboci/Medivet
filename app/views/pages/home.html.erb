@@ -1,8 +1,8 @@
 <%= render partial: "shared/filters" %>
 
-<% if params[:query].present? %>
+<% if params[:query].present? || params[:species].present? || params[:care_type].present? %>
   <div class="container mt-5">
-    <h1 class="mb-3">Veterinarians that matched your search : "<%= params[:query] %>"</h1>
+    <h1 class="mb-3">Filtered Veterinarians</h1>
     <div class="row">
       <% if @clinics.any? %>
         <% @clinics.each do |clinic| %>
@@ -10,24 +10,21 @@
     <%= render partial: 'shared/vet_card', locals: { clinic: clinic } %>
           </div>
         <% end %>
-
-<% else %>
-        <p>No veterinarians matched your search. Please try a different query.</p>
+      <% else %>
+        <p>No veterinarians matched your search criteria. Please try different filters or queries.</p>
       <% end %>
     </div>
   </div>
-<% end %>
+<% else %>
 
-<div class="container mt-5">
-  <h1 class="mb-3">Best rated veterinarians near you</h1>
-  <div class="row">
-    <% @all_clinics.each do |clinic| %>
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="clinic-card p-1 border rounded text-center" style="background-color: #f8f9fa;">
-       <%= render partial: 'shared/vet_card', locals: { clinic: clinic } %>
+  <div class="container mt-5">
+    <h1 class="mb-3">Best Rated Veterinarians</h1>
+    <div class="row">
+      <% @clinics.each do |clinic| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <%= render partial: 'shared/vet_card', locals: { clinic: clinic } %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-
-</div>
+      <% end %>
+    </div>
+<% end %>

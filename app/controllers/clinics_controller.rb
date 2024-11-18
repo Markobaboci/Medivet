@@ -1,6 +1,6 @@
 class ClinicsController < ApplicationController
   before_action :set_user
-  before_action :set_clinic, only: %i[show edit update destroy]
+  before_action :set_clinic, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!
 
   def index
@@ -45,8 +45,12 @@ class ClinicsController < ApplicationController
   end
 
   def update
-    @clinic.update(clinic_params)
-    redirect_to clinic_path(@clinic)
+    if @clinic.update(clinic_params)
+      redirect_to clinic_path(@clinic), notice: 'Clinic updated successfully.'
+    else
+      Rails.logger.debug "Clinic update failed: #{@clinic.errors.full_messages.join(', ')}"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -66,6 +70,6 @@ class ClinicsController < ApplicationController
 
   def clinic_params
     params.require(:clinic).permit(:email, :phone_numer, :address, :description, :rate, :care_type, :webpage, :species,
-                                   :image)
+    :image)
   end
 end
