@@ -1,10 +1,19 @@
-<div class="container mt-2">
-  <h3>Appointment details for <%= @booking.pet.name %> 🐯</h3>
-    <p>🏥 <strong>Clinic address:</strong> <%= @booking.clinic.address %> </p>
-    <p>📅 <strong>Date:</strong> <%= @booking.date %></p>
-    <p>⏰ <strong>Time:</strong> <%= @booking.time %></p>
-    <p>🗒️ <strong>Description:</strong> <%= @booking.description %></p>
-    <h5 class="text-center mt-5" >Show this QR code to the vet</h5>
+<div class="container mt-4">
+  <h1 class="text-center mb-3"><strong>Appointment details for <%= @booking.pet.name %></strong> 🐯</h1>
+    <div class="row">
+      <div class="col-12">
+        <div class="pet-card-details ml-3">
+          <div class="pet-stats">
+            <p class="ms-3">🏥 <strong>Clinic address:</strong> <%= @booking.clinic.address %> </p>
+            <p class="ms-3">📅 <strong>Date:</strong> <%= @booking.date %></p>
+            <p class="ms-3">⏰ <strong>Time:</strong> <%= @booking.time %></p>
+            <p class="ms-3">🗒️ <strong>Description:</strong> <%= @booking.description %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="boundary"></div>
+    <h5 class="text-center"><em>Show this QR code to the vet</em></h5>
     <%= image_tag 'QR.png', alt: 'QR image', class: 'img-fluid w-100', style: 'max-width: 100%;' %>
     <br>
   <h5 class="mt-2">Did you change your mind?</h5>
