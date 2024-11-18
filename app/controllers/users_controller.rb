@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     # @user is already set by the before_action
+    @pets = @user.pets
   end
 
   def edit

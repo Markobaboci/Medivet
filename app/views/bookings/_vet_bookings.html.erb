@@ -1,0 +1,41 @@
+<div class="vet-bookings-overview">
+  <h1>Vet Booking Overview</h1>
+
+  <% if @bookings.present? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Pet Name</th>
+          <th>Owner</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each do |booking| %>
+          <tr>
+            <td><%= booking.id %></td>
+            <td><%= booking.pet.name %></td>
+            <td><%= booking.pet.user.name %></td> <!-- Assuming pet's owner is a user -->
+            <td><%= booking.date %></td>
+            <td><%= booking.time.strftime('%I:%M %p') %></td>
+            <td><%= booking.description %></td>
+          </tr>
+              <%= link_to 'View Details', booking_path(booking), class: 'btn btn-primary btn-sm' %>
+              <%= link_to 'Cancel', cancel_booking_path(booking),
+                          method: :post,
+                          class: 'btn btn-danger btn-sm',
+                          data: { confirm: 'Are you sure you want to cancel this booking?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No bookings found. Check back later!</p>
+  <% end %>
+</div>

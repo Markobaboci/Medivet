@@ -1,3 +1,101 @@
+ <div class="container mt-4">
+  <h1 class="mb-3 text-center"><strong>Your account</strong></h1>
+  <div class="boundary"></div>
+  <div class="row">
+    <div class="col-12 mb-4 d-flex align-items-center justify-content-center">
+      <div class="pet-card-container p-3">
+        <div class="pet-card">
+
+              <%# <<<<<<<<<<<<<<<<<<<<   PETS SECTION >>>>>>>>>>>>>>>>>>>>> %>
+
+            <div class="container mt-4">
+              <h2 class="mb-3 text-center"><strong>Pets</strong> <i class="fa-solid fa-paw"></i></h2>
+                <div class="boundary"></div>
+                  <div class="row <%= @pets.size % 3 == 0 ? '' : 'justify-content-center' %>">
+                    <% @pets.each do |pet| %>
+                      <div class="col-md-6 col-lg-4 mb-4">
+                        <%= link_to pet_path(pet), class: "text-decoration-none" do %>
+                          <div class="pets-card-container py-3 px-2 text-center">
+                            <div class="pets-card">
+                              <div class="pets-image-container mb-3">
+                                <% if pet.photo.attached? %>
+                                  <%= cl_image_tag pet.photo.key, alt: 'Pet image', class: 'img-fluid pet-image' %>
+                                <% else %>
+                                  <%= image_tag 'pets.png', alt: 'Pet image', class: 'img-fluid pet-image' %>
+                                <% end %>
+                              </div>
+                              <p class="mb-0"><strong><%= pet.name %></strong></p>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                    <div class="d-flex justify-content-center my-3">
+                      <%= link_to 'Add a pet', edit_user_path(@user), class: 'btn btn-primary' %>
+                    </div>
+                  </div>
+                </div>
+            <div class="boundary"></div>
+
+              <%# <<<<<<<<<<<<<<<<<<<<   Account and Personal Information as a Client >>>>>>>>>>>>>>>>>>>>> %>
+
+            <div class="container mt-4">
+              <h2 class="mb-3 text-center"><strong>Personal Information</strong></h2>
+              <div class="boundary"></div>
+              <div class="row">
+                <div class="col-12 mb-4 d-flex align-items-center justify-content-center">
+                  <div class="account-summary-container p-3">
+
+                    <div class="mb-3">
+                      <p><strong>Email:</strong> <%= @user.email %></p>
+                      <p><strong>Password:</strong> <input type="password" value="********" disabled class="form-control" style="display: inline-block; width: auto; margin-right: 10px;"></p>
+                      <div class="d-inline-block">
+                        <%= link_to 'Edit Password', edit_user_registration_path, class: 'btn btn-secondary' %>
+                      </div>
+                    </div>
+
+                      <%= form_with model: @user, url: user_path(@user), method: :patch, local: true do |f| %>
+                      <div class="form-group mb-3">
+                        <%= f.label :first_name, 'Your Name:' %>
+                        <%= f.text_field :first_name, class: 'form-control', placeholder: 'Enter first name' %>
+                      </div>
+
+                      <div class="form-group mb-3">
+                        <%= f.label :last_name, 'Last Name:' %>
+                        <%= f.text_field :last_name, class: 'form-control', placeholder: 'Enter last name' %>
+                      </div>
+
+                      <div class="form-group mb-3">
+                        <%= f.label :phone_number, 'Add Phone Number' %>
+                        <%= f.telephone_field :phone_number, class: 'form-control', placeholder: 'Enter phone number' %>
+                      </div>
+
+                      <div class="form-group mb-3">
+                        <%= f.label :address, 'Add Address (Optional)' %>
+                        <%= f.text_field :address, class: 'form-control', placeholder: 'Enter address' %>
+                      </div>
+
+                      <div class="d-flex justify-content-center">
+                        <%= f.submit 'Update Account', class: 'btn btn-success' %>
+                      </div>
+                    <% end %>
+
+                    <div class="d-flex justify-content-center mt-3">
+                      <%= link_to 'Account settings', edit_user_registration_path, class: 'btn btn-secondary' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+<%# --------------------------------------- <%# <<<<<<<<<<<<<<<<<<<<  User is a Vet (Previous view unchanged) >>>>>>>>>>>>>>>>>>>>> %>
+
+
 <div class="container mt-4">
   <h1 class="mb-3 text-center"><strong>Vet's profile</strong></h1>
   <div class="boundary"></div>

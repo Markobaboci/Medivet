@@ -1,13 +1,13 @@
+<%# <%= render 'form' %>
+
 <div class="container mt-4">
   <h1 class="text-center mb-4">New Appointment 📅</h1>
-
-  <%= form_with model: [@clinic, @booking], local: true, data: { turbo: false }, class: "p-4 border rounded shadow-sm bg-light" do |f| %>
+<%= form_with model: [@clinic, @booking], local: true, data: { turbo: false }, class: "p-4 border rounded shadow-sm bg-light" do |f| %>
     <div class="form-group mb-3">
       <%= f.label :pet, "🐾 Pet ", class: "form-label" %>
       <%= f.select :pet_id, current_user.pets.map { |pet| [pet.name, pet.id] }, include_blank: true, class: "form-select" %>
     </div>
-
-    <div class="form-group mb-3">
+ <div class="form-group mb-3">
       <%= f.label :date, class: "form-label" %>
       <%= f.date_field :date, class: "form-control" %>
     </div>
@@ -31,3 +31,5 @@
     <%= link_to 'Back', bookings_path, class: "btn btn-secondary" %>
   </div>
 </div>
+
+<%# <%= link_to 'Back', bookings_path %>
