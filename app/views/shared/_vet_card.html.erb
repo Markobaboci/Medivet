@@ -1,0 +1,47 @@
+<div class="vet-card card shadow-sm border-0 rounded p-3 h-100">
+  <div class="d-flex align-items-start mb-3">
+    <!-- Profile Image -->
+    <div class="vet-image">
+      <% if clinic.image.attached? %>
+        <%= cl_image_tag clinic.image.key, alt: 'Vet Image', class: 'img-fluid vet-profile-img' %>
+      <% else %>
+        <%= image_tag 'clinic.png', alt: 'Vet Image', class: 'img-fluid vet-profile-img' %>
+      <% end %>
+    </div>
+ </div>
+    <!-- Name -->
+    <div class="text-start ms-2">
+      <h5 class="card-title text-success"><strong>Vet Care Provider</strong></h5>
+    </div>
+ 
+
+  <!-- Rating -->
+  <div class="rating d-flex justify-content-center align-items-center mb-3">
+  <% 5.times do |i| %>
+    <% if i < clinic.average_rating.to_i %> <!-- Use `average_rating` method -->
+      <i class="fas fa-star text-warning"></i>
+    <% else %>
+      <i class="far fa-star text-warning"></i>
+    <% end %>
+  <% end %>
+</div>
+
+  <!-- Information box -->
+  <div class="info-box w-100">
+    <!-- Address -->
+    <div class="d-flex">
+      <i class="fas fa-map-marker-alt text-success flex-shrink-0"></i>
+      <span class="text-wrap ms-2"><%= clinic.address %></span>
+    </div>
+    <!-- Species -->
+    <div class="d-flex mt-2">
+      <i class="fas fa-paw text-success flex-shrink-0"></i>
+      <span class="text-wrap ms-2"><%= clinic.species %></span>
+    </div>
+  </div>
+
+  <!-- View Profile Button -->
+  <div class="mt-3">
+    <%= link_to 'View Profile', clinic_path(clinic), class: 'btn btn-primary btn-sm' %>
+  </div>
+</div>

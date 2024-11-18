@@ -26,4 +26,9 @@ class Clinic < ApplicationRecord
                         inclusion: { in: %w[general emergency vaccination specialty], message: "%<value>s is not a valid care type, must be either : general, emergency, vaccination, or specialty" }
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
+
+  def average_rating
+    # Calculate the average rating from associated reviews
+    reviews.average(:rating)&.round(1) || 0
+  end
 end

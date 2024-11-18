@@ -12,7 +12,9 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable
 
 
-  has_many :clinics
+  has_many :clinics, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+  has_many :reviews, through: :bookings
   # validates :first_name, presence: true, length: { minimum: 2, maximum: 50 }
   # validates :last_name, presence: true, length: { minimum: 2, maximum: 50 }
   # validates :address, presence: true
@@ -35,7 +37,7 @@ class User < ApplicationRecord
   def vet?
     role == 'vet'
   end
-  
+
   private
 
   # Assign role based on the virtual `is_vet` attribute

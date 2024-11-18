@@ -7,23 +7,11 @@
       <% if @clinics.any? %>
         <% @clinics.each do |clinic| %>
           <div class="col-md-6 col-lg-4 mb-4">
-            <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
-              <div class="clinic-image mb-3">
-                <%= image_tag 'vet_logo.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
-              </div>
-              <p><strong>Address</strong>: <%= clinic.address %></p>
-              <p><strong>Email</strong>: <%= clinic.email %></p>
-              <p><strong>Phone Number</strong>: <%= clinic.phone_numer %></p>
-              <p><strong>Rate</strong>: <%= clinic.rate %></p>
-              <p><strong>Care Type</strong>: <%= clinic.care_type %></p>
-              <p><strong>Webpage</strong>: <%= clinic.webpage %></p>
-              <p><strong>Species</strong>: <%= clinic.species %></p>
-              <p><em><%= clinic.description %></em></p>
-              <%= link_to "Clinic details", clinic_path(clinic), class: "btn btn-primary mt-2" %>
-            </div>
+    <%= render partial: 'shared/vet_card', locals: { clinic: clinic } %>
           </div>
         <% end %>
-      <% else %>
+
+<% else %>
         <p>No veterinarians matched your search. Please try a different query.</p>
       <% end %>
     </div>
@@ -35,21 +23,11 @@
   <div class="row">
     <% @all_clinics.each do |clinic| %>
       <div class="col-md-6 col-lg-4 mb-4">
-        <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
-          <div class="clinic-image mb-3">
-            <%= image_tag 'vet_logo.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
-          </div>
-          <p><strong>Address</strong>: <%= clinic.address %></p>
-          <p><strong>Email</strong>: <%= clinic.email %></p>
-          <p><strong>Phone Number</strong>: <%= clinic.phone_numer %></p>
-          <p><strong>Rate</strong>: <%= clinic.rate %></p>
-          <p><strong>Care Type</strong>: <%= clinic.care_type %></p>
-          <p><strong>Webpage</strong>: <%= clinic.webpage %></p>
-          <p><strong>Species</strong>: <%= clinic.species %></p>
-          <p><em><%= clinic.description %></em></p>
-          <%= link_to "Clinic details", clinic_path(clinic), class: "btn btn-primary mt-2" %>
+        <div class="clinic-card p-1 border rounded text-center" style="background-color: #f8f9fa;">
+       <%= render partial: 'shared/vet_card', locals: { clinic: clinic } %>
         </div>
       </div>
     <% end %>
   </div>
+
 </div>
