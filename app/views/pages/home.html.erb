@@ -1,8 +1,8 @@
 <%= render partial: "shared/filters" %>
 
-<% if params[:query].present? %>
+<% if params[:query].present? || params[:species].present? || params[:care_type].present? %>
   <div class="container mt-5">
-    <h1 class="mb-3">Veterinarians that matched your search : "<%= params[:query] %>"</h1>
+    <h1 class="mb-3">Filtered Veterinarians</h1>
     <div class="row">
       <% if @clinics.any? %>
         <% @clinics.each do |clinic| %>
@@ -24,32 +24,33 @@
           </div>
         <% end %>
       <% else %>
-        <p>No veterinarians matched your search. Please try a different query.</p>
+        <p>No veterinarians matched your search criteria. Please try different filters or queries.</p>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+
+  <div class="container mt-5">
+    <h1 class="mb-3">Best Rated Veterinarians</h1>
+    <div class="row">
+      <% @clinics.each do |clinic| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
+            <div class="clinic-image mb-3">
+              <%= image_tag 'vet_logo.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
+            </div>
+            <p><strong>Address</strong>: <%= clinic.address %></p>
+            <p><strong>Email</strong>: <%= clinic.email %></p>
+            <p><strong>Phone Number</strong>: <%= clinic.phone_numer %></p>
+            <p><strong>Rate</strong>: <%= clinic.rate %></p>
+            <p><strong>Care Type</strong>: <%= clinic.care_type %></p>
+            <p><strong>Webpage</strong>: <%= clinic.webpage %></p>
+            <p><strong>Species</strong>: <%= clinic.species %></p>
+            <p><em><%= clinic.description %></em></p>
+            <%= link_to "Clinic details", clinic_path(clinic), class: "btn btn-primary mt-2" %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
 <% end %>
-
-<div class="container mt-5">
-  <h1 class="mb-3">Best rated veterinarians near you</h1>
-  <div class="row">
-    <% @all_clinics.each do |clinic| %>
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="clinic-card p-3 border rounded text-center" style="background-color: #f8f9fa;">
-          <div class="clinic-image mb-3">
-            <%= image_tag 'vet_logo.png', alt: 'Logo of the clinic', class: 'img-fluid rounded' %>
-          </div>
-          <p><strong>Address</strong>: <%= clinic.address %></p>
-          <p><strong>Email</strong>: <%= clinic.email %></p>
-          <p><strong>Phone Number</strong>: <%= clinic.phone_numer %></p>
-          <p><strong>Rate</strong>: <%= clinic.rate %></p>
-          <p><strong>Care Type</strong>: <%= clinic.care_type %></p>
-          <p><strong>Webpage</strong>: <%= clinic.webpage %></p>
-          <p><strong>Species</strong>: <%= clinic.species %></p>
-          <p><em><%= clinic.description %></em></p>
-          <%= link_to "Clinic details", clinic_path(clinic), class: "btn btn-primary mt-2" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>

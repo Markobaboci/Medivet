@@ -1,28 +1,21 @@
-<nav class="navbar navbar-expand-lg border-top w-100 p-2 filter-container">
-  <div class="d-flex align-items-start ms-1 ms-sm-5 gap-3 gap-sm-4 w-100 p-0 filter-box">
+<div class="container">
+  <div class="row">
+    <div class="col-12 d-flex align-items-flex-start justify-content-space-between">
+      <%= form_with url: root_path, method: :get, local: true do %>
+          <div class="input-group mt-4 gap-3">
+            <div>
+                <%= select_tag :species, options_for_select(['All', 'Cat', 'Dog', 'Bird', 'Rabbit', 'Exotic'], params[:species]), prompt: "Species", class: "form-control form-select" %>
+            </div>
 
-    <div class="nav-item dropdown me-3">
-      <i class="fa-regular fa-clock"></i>
-      <button class="btn btn-light dropdown-toggle nav-filter" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
-        Time
-      </button>
-      <ul class="dropdown-menu filter-ul" aria-labelledby="dropdownMenu1">
-        <li><a class="dropdown-item" href="#">Category 1</a></li>
-        <li><a class="dropdown-item" href="#">Category 2</a></li>
-        <li><a class="dropdown-item" href="#">Category 3</a></li>
-      </ul>
-    </div>
+            <div>
+                <%= select_tag :care_type, options_for_select(['All', 'General', 'Emergency', 'Vaccination', 'Specialty'], params[:care_type]), prompt: "Care Type", class: "form-control form-select" %>
+            </div>
 
-    <div class="nav-item dropdown">
-      <i class="fa-solid fa-paw"></i>
-      <button class="btn btn-light dropdown-toggle nav-filter" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-        Pet
-      </button>
-      <ul class="dropdown-menu filter-ul" aria-labelledby="dropdownMenu2">
-        <li><a class="dropdown-item" href="#">Region 1</a></li>
-        <li><a class="dropdown-item" href="#">Region 2</a></li>
-        <li><a class="dropdown-item" href="#">Region 3</a></li>
-      </ul>
+            <div>
+                <%= submit_tag "Filter", class: "btn btn-primary filter-submit" %>
+            </div>
+          </div>
+      <% end %>
     </div>
   </div>
-</nav>
+</div>
