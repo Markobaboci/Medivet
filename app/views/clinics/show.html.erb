@@ -1,88 +1,110 @@
-<!-- app/views/clinics/show.html.erb -->
+<!-- [Section 1] Clinic Show Page Container -->
+<div class="clinic-show-page container mt-0">
+  <%# <%= render "banner" %>
 
-<div class="clinic-show-page container mt-5">
-  <%= render "banner" %>
-
+  <!-- [Section 2] Clinic Image -->
   <% if @clinic.image.attached? %>
-    <%= cl_image_tag @clinic.image.key,  height: 300, width: 400, crop: :fill %>
+    <%= cl_image_tag @clinic.image.key, class: 'clinic-image', crop: :fill %>
   <% else %>
-    <p>No photo available</p>
+    <%= image_tag 'banner-background.png', class: 'clinic-image', alt: 'Default Clinic Image' %>
   <% end %>
 
-  <div class="clinic-header">
-    <h1><%= @clinic.address %></h1>
+  <!-- [Section 3] Clinic Header -->
+  <div class="clinic-header mt-4">
+    <h2>🐾 Vet Care Provider 🐾</h2>
+    <p><strong>📍 Address:</strong> <%= @clinic.address %></p>
+    <p><strong>🧑🏼‍⚕️ Specialization:</strong> <%= @clinic.species %></p>
+    <p>4.89 ⭐️ | Pet's owner favorite | 365 reviews</p>
   </div>
 
-  <div style="width: 100%; height: 400px;"
-      data-controller="map"
-      data-map-markers-value="<%= [{ lat: @marker[:lat], lng: @marker[:lng] }].to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
-  <div class="clinic-specialization d-flex justify-content-center">
-    <p>Specialization: <%= @clinic.species %></p>
+  <!-- [Section 4] Clinic Details -->
+  <div class="clinic-details d-flex justify-content-center">
+    <p class="clinic-description"><strong>Description:</strong> <%= @clinic.description %></p>
   </div>
 
-  <div class="clinic-details d-flex justify-content-center ">
-    <p class="clinic-description">Description: <%= @clinic.description %></p>
+  <!-- [Section 5A] Opening Hours and Booking Button -->
+  <div class="opening-hours-box">
+    <h6 class="mt-2">Opening Hours</h6>
+    <p>Mon - Fri from 9:00 to 19:00</p>
   </div>
 
- <!-- Clinic Action Buttons -->
-<% if !current_user || (current_user && !current_user.vet?) %>
-  <div class="clinic-actions mt-4 d-flex justify-content-center">
+  <div class="clinic-actions mt-1 d-flex justify-content-center">
     <%= link_to "Book an Appointment", new_clinic_booking_path(clinic_id: @clinic.id), class: "btn btn-primary" %>
   </div>
-<% end %>
 
-<div class="clinic-actions mt-4 d-flex justify-content-center">
-  <% if current_user&.vet? && @clinic.user_id == current_user.id %>
-    <%= link_to "Edit Clinic", edit_clinic_path(@clinic), class: "btn btn-secondary" %>
-    <%= button_to 'Delete Clinic', clinic_path(@clinic), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-  <% end %>
-</div>
-
-
-
-  <div class="back-link mt-3">
-    <%= link_to "← Back to All Clinics", clinics_path, class: "btn btn-outline-secondary" %>
-  </div>
-
+  <!-- Map Section -->
   <h6 class="mt-2">How to get there?</h6>
-<div class="map-wrapper">
-  <div
-      id="map-container"
-      class=" custom-map"
-      data-controller="map"
-      data-map-markers-value="<%= [{ lat: @marker[:lat], lng: @marker[:lng] }].to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  <div style="width: 100%; height: 200px;"
+    data-controller="map"
+    data-map-markers-value="<%= [{ lat: @marker[:lat], lng: @marker[:lng] }].to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-</div>
-
-
-<!-- Reviews Section -->
-<div class="reviews-section mt-3">
-  <h3 class="text-center">Reviews</h3>
-  <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
-    <!-- Indicators (optional, for navigation dots) -->
-    <div class="carousel-indicators">
-      <% @clinic.reviews.each_with_index do |review, index| %>
-        <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="<%= index %>"
-                class="<%= 'active' if index == 0 %>"
-                aria-current="<%= 'true' if index == 0 %>"
-                aria-label="Slide <%= index + 1 %>">
-        </button>
-      <% end %>
-    </div>
-
 
   <!-- Reviews Section -->
   <div class="reviews-section mt-5">
-    <h3>Reviews</h3>
-    <div class="row">
-      <% @clinic.reviews.each do |review| %>
-        <div class="col-md-4">
-          <%= render 'reviews/rating_card', review: review %>
-        </div>
-      <% end %>
+    <h3 class="text-center">Reviews</h3>
+    <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <% @clinic.reviews.each_with_index do |review, index| %>
+          <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="<%= index %>"
+                  class="<%= 'active' if index == 0 %>"
+                  aria-current="<%= 'true' if index == 0 %>"
+                  aria-label="Slide <%= index + 1 %>">
+          </button>
+        <% end %>
+      </div>
+
+      <!-- Carousel Items -->
+      <div class="carousel-inner">
+        <% @clinic.reviews.each_with_index do |review, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <div class="card mb-3 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">
+                  Rating: <%= review.rating %> / 5 ⭐️
+                </h5>
+                <p class="card-text"><%= review.content %></p>
+                <p class="card-text">
+                  <small class="text-muted">Reviewed by <%= "#{review.user.first_name}" %></small>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </div>
-</div>
+
+  <!-- Clinic Action Buttons -->
+  <div class="clinic-actions_container">
+    <% if !current_user || (current_user && !current_user.vet?) %>
+      <div class="clinic-actions mt-4 d-flex justify-content-center">
+        <%= link_to "Book an Appointment", new_clinic_booking_path(clinic_id: @clinic.id), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <% if current_user&.vet? && @clinic.user_id == current_user.id %>
+      <div class="clinic-actions mt-4 d-flex justify-content-center">
+        <%= link_to "Edit Clinic", edit_clinic_path(@clinic), class: "btn btn-secondary" %>
+        <%= button_to 'Delete Clinic', clinic_path(@clinic), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+
+    <!-- Back to All Clinics Link -->
+    <div class="back-link mt-3">
+      <%= link_to "← Back to All Clinics", clinics_path, class: "btn btn-outline-secondary" %>
+    </div>
+  </div> <!-- End of .clinic-actions_container -->
+
+</div> 
