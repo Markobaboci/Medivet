@@ -1,0 +1,19 @@
+.map-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center; // Center the map container horizontally, if needed
+  align-items: center;
+   // Center the map container vertically, if needed
+
+  #map-container {
+    width: 100%;
+    height: 200px; // Adjust height as needed
+    border: 2px solid #ccc;
+    overflow: visible; // Ensure markers stay within the bounds
+  }
+  .mapboxgl-marker {
+    position: absolute;
+    transform: none; // Ensure the marker is not transformed unexpectedly
+    border-radius: 8px;
+  }
+}
