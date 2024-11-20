@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 d-flex align-items-flex-start justify-content-space-between">
+    <div class="col-12 d-flex align-items-flex-start justify-content-space-between p-0">
       <%= form_with url: root_path, method: :get, local: true do %>
           <div class="input-group mt-4 gap-3">
             <div>
-                <%= select_tag :species, options_for_select(['All', 'Cat', 'Dog', 'Bird', 'Rabbit', 'Exotic'], params[:species]), prompt: "Species", class: "form-control form-select" %>
+                <%= select_tag :species, options_for_select(['All', 'Cat', 'Dog', 'Bird', 'Rabbit', 'Exotic'], params[:species]), prompt: "Species", class: "form-control form-select filter-select" %>
             </div>
 
             <div>
-                <%= select_tag :care_type, options_for_select(['All', 'General', 'Emergency', 'Vaccination', 'Specialty'], params[:care_type]), prompt: "Care Type", class: "form-control form-select" %>
+                <%= select_tag :care_type, options_for_select(['All', 'General', 'Emergency', 'Vaccination', 'Specialty'], params[:care_type]), prompt: "Care Type", class: "form-control form-select filter-select" %>
             </div>
 
             <div>

@@ -33,9 +33,9 @@
           <li class="nav-item mx-4">
             <%= link_to "My Pets", pets_path, class: "nav-link" %>
           </li>
-          <li class="nav-item mx-4">
+          <!-- <li class="nav-item mx-4">
             <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
+          </li> -->
 
           <!-- Profile Dropdown with Dropdown Arrow on Left Side -->
           <li class="nav-item dropdown d-flex align-items-center flex-column align-items-md-end">
@@ -66,7 +66,7 @@
               <%= link_to "Home", root_path, class: "nav-link" %>
             </li>
             <li class="nav-item mx-4 w-100">
-              <%= link_to "Are you a veterinary professional?", "#", class: "btn btn-on-primary w-100" %>
+              <%= link_to "Are you a veterinary professional?", new_user_session_path, class: "btn btn-on-primary w-100" %>
             </li>
             <li class="nav-item d-flex justify-content-center">
               <%= link_to "Customer Login", new_user_session_path, class: "nav-link text-md-center" %>
