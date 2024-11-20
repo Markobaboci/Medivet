@@ -7,7 +7,7 @@
       <% if @clinics.any? %>
         <% @clinics.each do |clinic| %>
           <div class="col-md-6 col-lg-4 mb-4">
-    <%= render partial: 'shared/vet_card', locals: { clinic: clinic } %>
+            <%= render partial: 'shared/vet_card', locals: { clinic: clinic } %>
           </div>
         <% end %>
       <% else %>
@@ -16,15 +16,14 @@
     </div>
   </div>
 <% else %>
-
   <div class="container mt-5">
     <h1 class="mb-3">Best Rated Veterinarians</h1>
     <div class="row">
       <% @clinics.each do |clinic| %>
         <div class="col-md-6 col-lg-4 mb-4">
           <%= render partial: 'shared/vet_card', locals: { clinic: clinic } %>
-          </div>
         </div>
       <% end %>
     </div>
+  </div>
 <% end %>

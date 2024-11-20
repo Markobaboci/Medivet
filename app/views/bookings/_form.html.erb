@@ -1,6 +1,6 @@
 <div class="card shadow-sm p-4 mb-4">
   <div class="card-body">
-    <h4 class="card-title mb-4"><%= @booking.persisted? ? "Update Your Appointment Deetails" : "Schedule Your Doctor's Appointment" %></h4>
+    <h4 class="card-title mb-4"><%= @booking.persisted? ? "Update Your Appointment Details" : "Schedule Your Doctor's Appointment" %></h4>
 
     <%= simple_form_for @booking, local: true do |form| %>
 
@@ -12,6 +12,21 @@
                         input_html: { class: "form-control" } %>
       </div>
 
+<!-- Species Selection -->
+<div class="mb-3">
+  <%= form.input :species, collection: ['cat', 'dog', 'bird', 'small mammal', 'reptile/amphibian', 'farm animal', 'horse', 'fish', 'other/exotic'],
+                  label: "Pet Species",
+                  include_blank: "Select species",
+                  input_html: { class: "form-control" } %>
+</div>
+
+<!-- Care Type Selection -->
+<div class="mb-3">
+  <%= form.input :care_type, collection: ['general', 'emergency', 'vaccination', 'flea and tick', 'dental', 'surgery', 'microchipping', 'neutering', 'grooming', 'holistic', 'house calls', 'routine check', 'skin and ear infections', 'urinary problems', 'eye issues', 'diarrhea and vomiting', 'mobility concerns', 'trauma and injury', 'nutrition', 'toxin ingestion', 'x-ray', 'preventive care'],
+                  label: "Care Type",
+                  include_blank: "Select care type",
+                  input_html: { class: "form-control" } %>
+</div>
       <!-- Booking Date -->
       <div class="mb-3">
         <%= form.input :date, as: :date,

@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings
   def index
-    @bookings = Booking.joins(:pet).where(pets: { user_id: current_user.id })
+    @bookings = Booking.joins(:pet).where(pets: { user_id: current_user.id }).order(:date, :time)
     # Booking.all.order(:date, :time) # Order by date and time for readability
     @upcoming_bookings = @bookings.where("date >= ?", Date.today)
     @past_bookings = @bookings.where("date < ?", Date.today)
@@ -18,6 +18,8 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @clinic = Clinic.find(params[:clinic_id])
+    @booking.first_name = current_user.first_name if current_user.first_name.present?
+    @booking.last_name = current_user.last_name if current_user.last_name.present?
   end
 
   # POST /bookings
@@ -52,15 +54,12 @@ class BookingsController < ApplicationController
   end
 
   private
+  def booking_params
+    params.require(:booking).permit(:date, :time, :description, :pet_id, :species, :care_type, :first_name, :last_name)
+  end
 
   # Set the booking based on the ID in params
   def set_booking
     @booking = Booking.find(params[:id])
   end
-
-  # Only allow trusted parameters
-  def booking_params
-    params.require(:booking).permit(:date, :time, :description, :pet_id)
-  end
-
 end

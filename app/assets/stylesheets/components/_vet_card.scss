@@ -1,74 +1,104 @@
+/* Card Styling */
 .vet-card {
-  background-color: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%; /* Ensures it adapts to Bootstrap grid */
-  min-height: 350px; /* Consistent height for all cards */
-  padding: 20px; /* Slightly increased padding */
+  background-color: #ffffff; /* Card background */
+  border: 1px solid #e5e5e5; /* Subtle border */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Prevent header overflow */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
 }
 
-.vet-card:hover {
-  transform: translateY(-5px); /* Adds hover lift effect */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+/* Full Width Header with Green Background */
+.vet-card-header {
+  background-color: #28a745; /* Green background */
+  padding: 40px 20px; /* Spacious padding */
+  color: #ffffff; /* White text */
+  text-align: center; /* Center align */
+  width: 100%; /* Full-width header */
+  border-top-left-radius: 10px; /* Rounded top corners */
+  border-top-right-radius: 10px;
 }
 
 /* Profile Image */
-.vet-profile-img{
-  width: 50px; /* Smaller image */
-  height: 50px; /* Match height for circular shape */
-  border-radius: 50%; /* Makes the image circular */
-  object-fit: cover; /* Crops the image properly */
-  border: 2px solid #ddd; /* Adds a light border */
-  margin-bottom: 10px; /* Space below the image */
+.vet-card-header .vet-profile-img {
+  width: 80px; /* Larger image */
+  height: 80px; /* Match circular dimensions */
+  border-radius: 50%; /* Circular shape */
+  object-fit: cover; /* Proper cropping */
+  border: 3px solid #ffffff; /* White border around image */
+  margin-bottom: 15px; /* Space below image */
 }
 
-/* Card Title */
-.vet-card .card-title {
-  font-size: 1.1rem; /* Slightly smaller font size */
+/* Card Title and Subtitle */
+.vet-card-header .card-title {
+  font-size: 1.3rem; /* Larger font for title */
   font-weight: bold; /* Bold title */
-  color: #28a745; /* Success green color */
-  margin-top: 5px; /* Space from image */
-  margin-bottom: 10px; /* Space below the title */
+  margin-bottom: 5px; /* Space below title */
 }
 
-/* Rating */
+.vet-card-header p {
+  font-size: 0.95rem; /* Smaller font for subtitle */
+  margin-bottom: 0; /* Remove extra space below */
+}
+
+/* Wide Button Styling */
+.btn-lg {
+  padding: 15px 20px; /* Larger padding */
+  font-size: 1rem; /* Slightly larger text */
+}
+
+.btn-success {
+  background-color: #218838; /* Slightly darker green */
+  color: #ffffff; /* White text */
+  border-radius: 50px; /* Rounded edges */
+  width: 90%; /* Wider button */
+  max-width: 300px; /* Prevent it from becoming too wide */
+}
+
+.btn-success:hover {
+  background-color: #1e7e34; /* Darker green on hover */
+  color: #ffffff; /* Keep text white */
+}
+
+/* Rating Section */
 .rating {
-  font-size: 1rem; /* Adjusted font size for stars */
+  font-size: 1.1rem; /* Slightly larger stars */
   display: flex;
   justify-content: center; /* Center-align stars */
-  align-items: center; /* Vertically align */
-  color: #ffc107; /* Yellow for stars */
+  align-items: center; /* Vertical alignment */
+  color: #ffc107; /* Yellow color for stars */
 }
 
 .rating .fas,
 .rating .far {
-  margin-right: 2px; /* Small gap between stars */
+  margin-right: 2px; /* Small space between stars */
 }
 
-/* Info Box */
+/* Information Section */
 .info-box {
-  width: 100%; /* Ensures content spans the card */
-  padding-left: 10px; /* Align text more to the left */
-}
-
-.info-box div {
-  font-size: 0.95rem; /* Uniform font size for details */
-  display: flex;
-  align-items: flex-start; /* Align icon with the first line */
+  padding: 20px; /* Add spacing */
 }
 
 .info-box i {
-  margin-right: 8px; /* Space between icons and text */
+  color: #28a745; /* Green icons */
   font-size: 1rem; /* Icon size */
+  margin-right: 8px; /* Space between icon and text */
 }
 
 .info-box span {
-  color: #495057; /* Neutral dark gray text color */
-  line-height: 1.4; /* Improve line spacing for wrapped text */
+  color: #495057; /* Neutral gray text */
+  line-height: 1.4; /* Line spacing for wrapped text */
+}
+
+/* View Profile Button */
+.btn-outline-success {
+  color: #28a745; /* Green border and text */
+  border: 1px solid #28a745; /* Green outline */
+  padding: 8px 15px; /* Button padding */
+  font-size: 0.9rem; /* Smaller button text */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745; /* Green background on hover */
+  color: #ffffff; /* White text on hover */
 }
