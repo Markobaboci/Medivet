@@ -1,2 +1,6 @@
 
 <%= render 'form', booking: @booking, review: @review %>
+
+<div class="d-flex justify-content-start mt-3">
+  <%= link_to "← Back", booking_path(@booking), class: "btn btn-outline-secondary" %>
+</div>
