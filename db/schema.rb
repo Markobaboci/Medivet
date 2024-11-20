@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_20_131433) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_20_143703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,11 +64,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_20_131433) do
     t.string "webpage"
     t.string "address"
     t.string "description"
-    t.string "species"
+    t.string "species", default: [], array: true
     t.float "longitude"
     t.float "latitude"
     t.float "rate"
-    t.string "care_type"
+    t.string "care_type", default: [], array: true
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
