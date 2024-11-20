@@ -35,40 +35,65 @@ puts "Users created: #{users.map(&:email)}"
 
 # Create Pets
 puts "Creating pets..."
-pets = Pet.create([
-  { name: "Buddy", age: 3, species: "dog", breed: "Golden Retriever", weight: 30.5, description: "Friendly and energetic, loves playing fetch.", user: users[0] },
-  { name: "Whiskers", age: 2, species: "cat", breed: "Siamese", weight: 5.2, description: "Independent yet affectionate, loves sunbathing.", user: users[0] },
-  { name: "Rex", age: 4, species: "dog", breed: "German Shepherd", weight: 40.3, description: "Loyal and protective, great with kids.", user: users[0] },
-  { name: "Loco", age: 12, species: "exotic", breed: "Amazon Iguana", weight: 15.7, description: "Aggressive, great defensor.", user: users[0] },
-  # { name: "Fluffy", age: 1, species: "rabbit", breed: "Angora", weight: 2.5, description: "Soft and cuddly, loves carrots and hopping around.", user: users.sample },
-  # { name: "Max", age: 5, species: "dog", breed: "Bulldog", weight: 24.0, description: "Calm and friendly, enjoys short walks.", user: users.sample },
-  # { name: "Bella", age: 2, species: "cat", breed: "Persian", weight: 4.0, description: "Loves being pampered, has a fluffy coat.", user: users.sample },
-  # { name: "Charlie", age: 3, species: "bird", breed: "Parrot", weight: 0.9, description: "Talkative and smart, knows several words.", user: users.sample },
-  # { name: "Daisy", age: 4, species: "dog", breed: "Beagle", weight: 10.0, description: "Playful and curious, loves exploring.", user: users.sample },
-  # { name: "Oscar", age: 1, species: "cat", breed: "Maine Coon", weight: 6.5, description: "Gentle giant, very sociable.", user: users.sample },
-  # { name: "Shadow", age: 6, species: "dog", breed: "Labrador Retriever", weight: 28.0, description: "Loyal and energetic, loves swimming.", user: users.sample },
-  # { name: "Mittens", age: 3, species: "cat", breed: "Tabby", weight: 4.8, description: "Playful and curious, enjoys chasing laser pointers.", user: users.sample },
-  # { name: "Zazu", age: 2, species: "bird", breed: "Cockatiel", weight: 0.5, description: "Very talkative and loves whistling tunes.", user: users.sample },
-  # { name: "Thumper", age: 1, species: "rabbit", breed: "Netherland Dwarf", weight: 1.8, description: "Small and cuddly, loves hopping around.", user: users.sample },
-  # { name: "Spike", age: 5, species: "exotic", breed: "Bearded Dragon", weight: 0.9, description: "Calm and hardy, loves basking under heat lamps.", user: users.sample },
-  # { name: "Coco", age: 8, species: "dog", breed: "Poodle", weight: 22.0, description: "Smart and active, loves performing tricks.", user: users.sample },
-  # { name: "Ginger", age: 2, species: "cat", breed: "Bengal", weight: 5.5, description: "Energetic and loves climbing trees.", user: users.sample },
-  # { name: "Sunny", age: 1, species: "bird", breed: "Canary", weight: 0.2, description: "Chirpy and cheerful, sings beautifully.", user: users.sample },
-  # { name: "Blue", age: 3, species: "fish", breed: "Betta", weight: 0.1, description: "Solitary and colorful, loves clean water.", user: users.sample },
-  # { name: "Luna", age: 4, species: "dog", breed: "Husky", weight: 25.0, description: "Energetic and loves the snow.", user: users.sample },
-  # { name: "Shelly", age: 12, species: "exotic", breed: "Red-Eared Slider Turtle", weight: 1.5, description: "Calm and loves swimming in the pond.", user: users.sample },
-  # { name: "Leo", age: 8, species: "exotic", breed: "Box Turtle", weight: 1.8, description: "Shy and prefers staying on land, loves leafy greens.", user: users.sample },
-  # { name: "Karma", age: 4, species: "exotic", breed: "Panther Chameleon", weight: 0.2, description: "Color-changing and loves climbing trees.", user: users.sample },
-  # { name: "Webster", age: 2, species: "exotic", breed: "Tarantula", weight: 0.15, description: "Quiet and fascinating, spins intricate webs.", user: users.sample },
-  # { name: "Slither", age: 6, species: "exotic", breed: "Ball Python", weight: 3.5, description: "Gentle and enjoys coiling around branches.", user: users.sample }
-])
+pets = Pet.create(
+  [ { name: "Buddy", age: 3, species: "dog", breed: "Golden Retriever", weight: 30.5, description: "Friendly and energetic, loves playing fetch.", user: users[0] },
+    { name: "Whiskers", age: 2, species: "cat", breed: "Siamese", weight: 5.2, description: "Independent yet affectionate, loves sunbathing.", user: users[0] },
+    { name: "Rex", age: 4, species: "dog", breed: "German Shepherd", weight: 40.3, description: "Loyal and protective, great with kids.", user: users[0] },
+    { name: "Loco", age: 12, species: "reptile/amphibian", breed: "Amazon Iguana", weight: 15.7, description: "Aggressive, great defensor.", user: users[0] },
+    { name: "Fluffy", age: 1, species: "small mammal", breed: "Angora", weight: 2.5, description: "Soft and cuddly, loves carrots and hopping around.", user: users.sample },
+    { name: "Max", age: 5, species: "dog", breed: "Bulldog", weight: 24.0, description: "Calm and friendly, enjoys short walks.", user: users.sample },
+    { name: "Bella", age: 2, species: "cat", breed: "Persian", weight: 4.0, description: "Loves being pampered, has a fluffy coat.", user: users.sample },
+    { name: "Charlie", age: 3, species: "bird", breed: "Parrot", weight: 0.9, description: "Talkative and smart, knows several words.", user: users.sample },
+    { name: "Daisy", age: 4, species: "dog", breed: "Beagle", weight: 10.0, description: "Playful and curious, loves exploring.", user: users.sample },
+    { name: "Oscar", age: 1, species: "cat", breed: "Maine Coon", weight: 6.5, description: "Gentle giant, very sociable.", user: users.sample },
+    { name: "Shadow", age: 6, species: "dog", breed: "Labrador Retriever", weight: 28.0, description: "Loyal and energetic, loves swimming.", user: users.sample },
+    { name: "Mittens", age: 3, species: "cat", breed: "Tabby", weight: 4.8, description: "Playful and curious, enjoys chasing laser pointers.", user: users.sample },
+    { name: "Zazu", age: 2, species: "bird", breed: "Cockatiel", weight: 0.5, description: "Very talkative and loves whistling tunes.", user: users.sample },
+    { name: "Thumper", age: 1, species: "small mammal", breed: "Netherland Dwarf", weight: 1.8, description: "Small and cuddly, loves hopping around.", user: users.sample },
+    { name: "Spike", age: 5, species: "reptile/amphibian", breed: "Bearded Dragon", weight: 0.9, description: "Calm and hardy, loves basking under heat lamps.", user: users.sample },
+    { name: "Coco", age: 8, species: "dog", breed: "Poodle", weight: 22.0, description: "Smart and active, loves performing tricks.", user: users.sample },
+    { name: "Ginger", age: 2, species: "cat", breed: "Bengal", weight: 5.5, description: "Energetic and loves climbing trees.", user: users.sample },
+    { name: "Sunny", age: 1, species: "bird", breed: "Canary", weight: 0.2, description: "Chirpy and cheerful, sings beautifully.", user: users.sample },
+    { name: "Blue", age: 3, species: "fish", breed: "Betta", weight: 0.1, description: "Solitary and colorful, loves clean water.", user: users.sample },
+    { name: "Luna", age: 4, species: "dog", breed: "Husky", weight: 25.0, description: "Energetic and loves the snow.", user: users.sample },
+    { name: "Shelly", age: 12, species: "reptile/amphibian", breed: "Red-Eared Slider Turtle", weight: 1.5, description: "Calm and loves swimming in the pond.", user: users.sample },
+    { name: "Leo", age: 8, species: "reptile/amphibian", breed: "Box Turtle", weight: 1.8, description: "Shy and prefers staying on land, loves leafy greens.", user: users.sample },
+    { name: "Karma", age: 4, species: "reptile/amphibian", breed: "Panther Chameleon", weight: 0.2, description: "Color-changing and loves climbing trees.", user: users.sample },
+    { name: "Webster", age: 2, species: "other/exotic", breed: "Tarantula", weight: 0.15, description: "Quiet and fascinating, spins intricate webs.", user: users.sample },
+    { name: "Slither", age: 6, species: "reptile/amphibian", breed: "Ball Python", weight: 3.5, description: "Gentle and enjoys coiling around branches.", user: users.sample },
+    { name: "Nibbles", age: 1, species: "small mammal", breed: "Syrian Hamster", weight: 0.1, description: "Small and energetic, loves running on the wheel.", user: users.sample },
+    { name: "Ally", age: 4, species: "farm animal", breed: "Suri Alpaca", weight: 70.0, description: "Gentle and friendly, has soft, luxurious fleece.", user: users.sample }
+  ])
 
 # URL Mapping of Images for Pets
 pet_images = {
-  "Buddy" => "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg",
-  "Whiskers" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040977/karsten-winegeart-uy5l-VJ8dRM-unsplash_jf3yj3_ubzi7a.jpg",
-  "Rex" =>  "https://res.cloudinary.com/dpeys37ef/image/upload/v1732041122/pexels-sam-lion-5732454_djy9ve_dshmkg.jpg",
-  "Loco" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040324/jill-dimond-LdlNdclgVrI-unsplash_zz8lvo_f1l87k.jpg"
+  "Buddy"    => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040310/berkay-gumustekin-Crj3gU0aJsU-unsplash_qbyfvx_ol47lh.jpg",
+  "Whiskers" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732117310/pexels-leah-newhouse-50725-596590_pqlecx.jpg",
+  "Rex"      => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040228/rob-fuller-u9GEK0AuOU8-unsplash_mq1ndn_df6bxj.jpg",
+  "Loco"     => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732042969/nikolett-emmert-4ZSJf7qthQA-unsplash_p6k91m_owkqnt.jpg",
+  "Fluffy"   => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040530/karlijn-prot-3fjyk4CLfvA-unsplash_tdctkq_pibgfr.jpg",
+  "Max"      => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040221/julie-marsh-mAQdvE2zyLY-unsplash_nsnuv2_fnlg2e.jpg",
+  "Bella"    => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040344/veronika-homchis-1ejZ2XBjJgU-unsplash_pqflca_hjmxvq.jpg",
+  "Charlie"  => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732041182/sultan-yZTbN9-5fx4-unsplash_d2s3wn_fr7fzh.jpg",
+  "Daisy"    => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040321/sam-mcnamara-lBdVjQcfSRQ-unsplash_f2pxir_hheqyz.jpg",
+  "Oscar"    => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040522/mona-magnussen-a7bdqjeG6M4-unsplash_evaxta_ee3snm.jpg",
+  "Shadow"   => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040231/jairo-alzate-sssxyuZape8-unsplash_hq8wbf_avzyu8.jpg",
+  "Mittens"  => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040349/amber-kipp-75715CVEJhI-unsplash_a8w15q_r5hj42.jpg",
+  "Zazu"     => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732041182/sultan-yZTbN9-5fx4-unsplash_d2s3wn_fr7fzh.jpg",
+  "Thumper"  => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040540/sincerely-media-Umg6HxxLQ3Q-unsplash_t7tlxn_ckbtzo.jpg",
+  "Spike"    => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732041528/gary-ellis-VU3rTuPtkDM-unsplash_vsbmpr_idylnx.jpg",
+  "Coco"     => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040237/jake-oates-E38KRRk1fvg-unsplash_lnnqvw_urjrjt.jpg",
+  "Ginger"   => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040326/jae-park-7GX5aICb5i4-unsplash_moap8b_dvb5yb.jpg",
+  "Sunny"    => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732041330/laurent-jollet-9nyWYJuNq18-unsplash_zqfnp4_dhxe8c.jpg",
+  "Blue"     => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732041414/brian-wangenheim-VyFdgN2UYeU-unsplash_slsjgb_dd0c3e.jpg",
+  "Luna"     => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040234/claire-brear-Ri6DjpT7uPc-unsplash_kjvkrt_q59qjv.jpg",
+  "Shelly"   => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732041833/engin-akyurt-UWJ4bXEJFec-unsplash_xqtalv_ie7x6a.jpg",
+  "Leo"      => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732041644/aron-visuals-_rK32L_RjtU-unsplash_x3em4m_byxyon.jpg",
+  "Karma"    => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732041829/nikolett-emmert-QqmdyktgBVg-unsplash_iukaau_nb4oyo.jpg",
+  "Webster"  => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732118912/ryan-hyde-w_JpsnSvPcQ-unsplash_kvaq32.jpg",
+  "Slither"  => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732041835/timothy-dykes-JHNS4Flf9u0-unsplash_ceap6w_s7hb5q.jpg",
+  "Ally"     => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732118625/nicholas-mullins-sIMAnsROUns-unsplash_vsc1vq.jpg",
+  "Nibbles"  => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040626/silje-roseneng-cMp84C0fPSg-unsplash_vuaj3i_fop7hy.jpg"
 }
 
 # Attach Photos to Pets
@@ -86,30 +111,30 @@ puts "Pets created: #{pets.map(&:name)}"
 
 # Create Clinics
 puts "Creating clinics..."
-clinics = [
-  { email: "cityvet@example.com", phone_numer: "123-456-7890", webpage: "https://www.cityvet.com", address: "123 Main St, Cityville", description: "A full-service veterinary clinic for cats and dogs.", species: "dog", rate: 4.5, care_type: "general", longitude: -74.0059728, latitude: 40.7127753, user: users[11] },
-  { email: "exoticcare@example.com", phone_numer: "987-654-3210", webpage: "https://www.exoticcareclinic.com", address: "456 Side Ave, Petown", description: "Specializes in exotic pets including birds, reptiles, and small mammals.", species: "exotic", rate: 4.8, care_type: "specialty", longitude: -73.935242, latitude: 40.73061, user: users[12] },
-  { email: "petexpress@example.com", phone_numer: "555-123-4567", webpage: "https://www.petexpress.com", address: "789 Uptown Blvd, Animaltown", description: "Emergency and urgent care for all domestic pets.", species: "cat", rate: 4.3, care_type: "emergency", longitude: -74.006, latitude: 40.714, user: users[13] },
-  { email: "oceanviewvet@example.com", phone_numer: "444-555-6666", webpage: "https://www.oceanviewvet.com", address: "3030 Seaside Ave, Coastal City", description: "Specializing in marine and coastal pets.", species: "exotic", rate: 4.6, care_type: "specialty", longitude: -73.9857, latitude: 40.7488, user: users[14] },
-  { email: "centralparkpets@example.com", phone_numer: "555-666-7777", webpage: "https://www.centralparkpets.com", address: "505 Park St, Midtown", description: "Caring for all urban pets with expert attention.", species: "dog", rate: 4.5, care_type: "general", longitude: -73.9708, latitude: 40.7648, user: users[15] },
-  { email: "harmonyanimalclinic@example.com", phone_numer: "666-777-8888", webpage: "https://www.harmonyanimalclinic.com", address: "678 Harmony Rd, Petown", description: "Holistic veterinary care for all pets.", species: "dog", rate: 4.9, care_type: "general", longitude: -73.9878, latitude: 40.7329, user: users[16] },
-  { email: "sunnydaypets@example.com", phone_numer: "777-888-9999", webpage: "https://www.sunnydaypets.com", address: "101 Sunshine Blvd, Sunnytown", description: "Known for its friendly staff and modern facilities.", species: "dog", rate: 4.7, care_type: "general", longitude: -73.9577, latitude: 40.7520, user: users[17] },
-  { email: "littlepawsvet@example.com", phone_numer: "888-999-1111", webpage: "https://www.littlepawsvet.com", address: "505 Tiny Paws St, Littletown", description: "Specializing in small mammals like rabbits, hamsters, and guinea pigs.", species: "rabbit", rate: 4.8, care_type: "specialty", longitude: -74.0028, latitude: 40.7335, user: users[18] },
-  { email: "happyhoovesclinic@example.com", phone_numer: "999-111-2222", webpage: "https://www.happyhoovesvet.com", address: "303 Green Pastures Rd, Farmville", description: "Offers services for farm animals and large pets.", species: "cat", rate: 4.6, care_type: "specialty", longitude: -74.0150, latitude: 40.7211, user: users[19] },
-  { email: "birdsongvet@example.com", phone_numer: "111-222-3333", webpage: "https://www.birdsongvet.com", address: "909 Aviary Ln, Birdland", description: "Dedicated to avian care with a focus on exotic birds.", species: "exotic", rate: 4.9, care_type: "specialty", longitude: -73.9850, latitude: 40.7205, user: users[20] },
-  { email: "aquacareclinic@example.com", phone_numer: "333-444-5555", webpage: "https://www.aquacareclinic.com", address: "707 Coral Reef Dr, Seaside", description: "Expert care for aquatic animals like fish and turtles.", species: "dog", rate: 4.7, care_type: "specialty", longitude: -73.9942, latitude: 40.7188, user: users[21] },
-  { email: "drsmithclinic@example.com", phone_numer: "999-888-7777", webpage: "https://www.drsmithclinic.com", address: "101 Elm St, Springfield", description: "Personalized care for all domestic pets by Dr. Smith.", species: "dog", rate: 4.9, care_type: "general", longitude: -73.9850, latitude: 40.7300, user: users[22] },
-  { email: "drkimsanimalcare@example.com", phone_numer: "888-777-6666", webpage: "https://www.drkimcare.com", address: "505 Maple Ave, Riverdale", description: "Expert care for exotic pets provided by Dr. Kim.", species: "exotic", rate: 4.8, care_type: "specialty", longitude: -74.0100, latitude: 40.7210, user: users[23] },
-  { email: "drjohnsonvethaven@example.com", phone_numer: "777-666-5555", webpage: "https://www.drjohnsonhaven.com", address: "303 Birch Rd, Greenville", description: "Dr. Johnson's clinic for birds and small mammals.", species: "cat", rate: 4.7, care_type: "specialty", longitude: -73.9800, latitude: 40.7280, user: users[24] },
-  { email: "drbrownfarmcare@example.com", phone_numer: "666-555-4444", webpage: "https://www.drbrownfarmcare.com", address: "789 Countryside Lane, Farmville", description: "Farm animal care and large pet services by Dr. Brown.", species: "cat", rate: 4.6, care_type: "specialty", longitude: -74.0200, latitude: 40.7290, user: users[25] },
-  { email: "drleewildcare@example.com", phone_numer: "555-444-3333", webpage: "https://www.drleewildcare.com", address: "202 Forest St, Woodland", description: "Specialty care for wild and exotic animals by Dr. Lee.", species: "exotic", rate: 4.9, care_type: "specialty", longitude: -73.9500, latitude: 40.7310, user: users[26] },
-  { email: "drandersonpetclinic@example.com", phone_numer: "444-333-2222", webpage: "https://www.drandersonclinic.com", address: "101 Park Ave, Midtown", description: "Dr. Anderson’s full-service clinic for urban pets.", species: "dog", rate: 4.7, care_type: "general", longitude: -73.9700, latitude: 40.7500, user: users[27] },
-  { email: "drgarciaaquatics@example.com", phone_numer: "333-222-1111", webpage: "https://www.drgarciaaquatics.com", address: "505 Coral Rd, Seaside", description: "Aquatic animal care and rehabilitation by Dr. Garcia.", species: "cat", rate: 4.8, care_type: "specialty", longitude: -73.9900, latitude: 40.7220, user: users[28] },
-  { email: "drdolittle@example.com", phone_numer: "111-333-5555", webpage: "https://www.drdolittleshaven.com", address: "123 Animal St, Wildtown", description: "Dr. Dolittle's clinic provides care for all animals, from domestic pets to exotic wildlife.", species: "exotic", rate: 5.0, care_type: "specialty", longitude: -73.9800, latitude: 40.7200, user: users[29] },
-  { email: "dradamswildlifeclinic@example.com", phone_numer: "999-222-5555", webpage: "https://www.dradamswildlifeclinic.com", address: "305 Safari Lane, Wildwood", description: "Specializes in rehabilitation and care for wild animals, including injured wildlife.", species: "cat", rate: 4.9, care_type: "rehabilitation", longitude: -73.9750, latitude: 40.7350, user: users[30] },
-  { email: "drmorganpetparadise@example.com", phone_numer: "222-333-4444", webpage: "https://www.drmorganpetparadise.com", address: "505 Paradise St, Petown", description: "Offers luxury veterinary services for urban pets.", species: "dog", rate: 4.8, care_type: "specialty", longitude: -74.0010, latitude: 40.7285, user: users[31] },
-  { email: "drgreenherbalsclinic@example.com", phone_numer: "333-444-5555", webpage: "https://www.drgreenherbalsclinic.com", address: "707 Herbal Rd, Greenfield", description: "Provides holistic and herbal treatments for pets.", species: "dog", rate: 4.7, care_type: "holistic", longitude: -73.9655, latitude: 40.7400, user: users[34] }
-].map do |clinic_attrs|
+  clinics = [
+    { email: "cityvet@example.com", phone_numer: "123-456-7890", webpage: "https://www.cityvet.com", address: "123 Main St, Cityville", description: "A full-service veterinary clinic for cats and dogs.", species: ['cat', 'dog'], rate: 4.5, care_type: ['general', 'routine check', 'preventive care'], longitude: -74.0059728, latitude: 40.7127753, user: users[11], clinic_name: "cityvet" },
+    { email: "exoticcare@example.com", phone_numer: "987-654-3210", webpage: "https://www.exoticcareclinic.com", address: "456 Side Ave, Petown", description: "Specializes in exotic pets including birds, reptiles, and small mammals.", species: ['bird', 'reptile/amphibian', 'small mammal', 'other/exotic'], rate: 4.8, care_type: ['specialty', 'routine check', 'nutrition'], longitude: -73.935242, latitude: 40.73061, user: users[12], clinic_name: "exoticcare" },
+    { email: "petexpress@example.com", phone_numer: "555-123-4567", webpage: "https://www.petexpress.com", address: "789 Uptown Blvd, Animaltown", description: "Emergency and urgent care for all domestic pets.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.3, care_type: ['emergency', 'trauma and injury', 'toxin ingestion'], longitude: -74.006, latitude: 40.714, user: users[13], clinic_name: "petexpress" },
+    { email: "oceanviewvet@example.com", phone_numer: "444-555-6666", webpage: "https://www.oceanviewvet.com", address: "3030 Seaside Ave, Coastal City", description: "Specializing in marine and coastal pets.", species: ['fish', 'other/exotic'], rate: 4.6, care_type: ['specialty', 'x-ray', 'mobility concerns'], longitude: -73.9857, latitude: 40.7488, user: users[14], clinic_name: "oceanviewvet" },
+    { email: "centralparkpets@example.com", phone_numer: "555-666-7777", webpage: "https://www.centralparkpets.com", address: "505 Park St, Midtown", description: "Caring for all urban pets with expert attention.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.5, care_type: ['general', 'routine check', 'vaccination'], longitude: -73.9708, latitude: 40.7648, user: users[15], clinic_name: "centralparkpets" },
+    { email: "harmonyanimalclinic@example.com", phone_numer: "666-777-8888", webpage: "https://www.harmonyanimalclinic.com", address: "678 Harmony Rd, Petown", description: "Holistic veterinary care for all pets.", species: ['cat', 'dog', 'bird', 'small mammal', 'reptile/amphibian', 'farm animal', 'horse', 'fish', 'other/exotic'], rate: 4.9, care_type: ['holistic', 'skin and ear infections', 'nutrition'], longitude: -73.9878, latitude: 40.7329, user: users[16], clinic_name: "harmonyanimalclinic" },
+    { email: "sunnydaypets@example.com", phone_numer: "777-888-9999", webpage: "https://www.sunnydaypets.com", address: "101 Sunshine Blvd, Sunnytown", description: "Known for its friendly staff and modern facilities.", species: ['cat', 'dog'], rate: 4.7, care_type: ['general', 'grooming', 'routine check'], longitude: -73.9577, latitude: 40.7520, user: users[17], clinic_name: "sunnydaypets" },
+    { email: "littlepawsvet@example.com", phone_numer: "888-999-1111", webpage: "https://www.littlepawsvet.com", address: "505 Tiny Paws St, Littletown", description: "Specializing in small mammals like rabbits, hamsters, and guinea pigs.", species: ['small mammal'], rate: 4.8, care_type: ['specialty', 'nutrition', 'microchipping'], longitude: -74.0028, latitude: 40.7335, user: users[18], clinic_name: "littlepawsvet" },
+    { email: "happyhoovesclinic@example.com", phone_numer: "999-111-2222", webpage: "https://www.happyhoovesvet.com", address: "303 Green Pastures Rd, Farmville", description: "Offers services for farm animals and large pets.", species: ['farm animal', 'horse'], rate: 4.6, care_type: ['specialty', 'routine check', 'nutrition'], longitude: -74.0150, latitude: 40.7211, user: users[19], clinic_name: "happyhoovesclinic" },
+    { email: "birdsongvet@example.com", phone_numer: "111-222-3333", webpage: "https://www.birdsongvet.com", address: "909 Aviary Ln, Birdland", description: "Dedicated to avian care with a focus on exotic birds.", species: ['bird', 'other/exotic'], rate: 4.9, care_type: ['specialty', 'eye issues', 'routine check'], longitude: -73.9850, latitude: 40.7205, user: users[20], clinic_name: "birdsongvet" },
+    { email: "aquacareclinic@example.com", phone_numer: "333-444-5555", webpage: "https://www.aquacareclinic.com", address: "707 Coral Reef Dr, Seaside", description: "Expert care for aquatic animals like fish and turtles.", species: ['fish', 'reptile/amphibian'], rate: 4.7, care_type: ['specialty', 'mobility concerns', 'routine check'], longitude: -73.9942, latitude: 40.7188, user: users[21], clinic_name: "aquacareclinic" },
+    { email: "drsmithclinic@example.com", phone_numer: "999-888-7777", webpage: "https://www.drsmithclinic.com", address: "101 Elm St, Springfield", description: "Personalized care for all domestic pets by Dr. Smith.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.9, care_type: ['routine check', 'dental', 'vaccination'], longitude: -73.9850, latitude: 40.7300, user: users[22], clinic_name: "drsmithclinic" },
+    { email: "drkimsanimalcare@example.com", phone_numer: "888-777-6666", webpage: "https://www.drkimcare.com", address: "505 Maple Ave, Riverdale", description: "Expert care for exotic pets provided by Dr. Kim.", species: ['bird', 'reptile/amphibian', 'small mammal', 'other/exotic'], rate: 4.8, care_type: ['specialty', 'nutrition', 'skin and ear infections'], longitude: -74.0100, latitude: 40.7210, user: users[23], clinic_name: "drkimsanimalcare" },
+    { email: "drjohnsonvethaven@example.com", phone_numer: "777-666-5555", webpage: "https://www.drjohnsonhaven.com", address: "303 Birch Rd, Greenville", description: "Dr. Johnson's clinic for birds and small mammals.", species: ['bird', 'small mammal'], rate: 4.7, care_type: ['specialty', 'routine check', 'mobility concerns'], longitude: -73.9800, latitude: 40.7280, user: users[24], clinic_name: "drjohnsonvethaven" },
+    { email: "drbrownfarmcare@example.com", phone_numer: "666-555-4444", webpage: "https://www.drbrownfarmcare.com", address: "789 Countryside Lane, Farmville", description: "Farm animal care and large pet services by Dr. Brown.", species: ['farm animal', 'horse'], rate: 4.6, care_type: ['specialty', 'routine check', 'nutrition'], longitude: -74.0200, latitude: 40.7290, user: users[25], clinic_name: "drbrownfarmcare" },
+    { email: "drleewildcare@example.com", phone_numer: "555-444-3333", webpage: "https://www.drleewildcare.com", address: "202 Forest St, Woodland", description: "Specialty care for wild and exotic animals by Dr. Lee.", species: ['reptile/amphibian', 'other/exotic'], rate: 4.9, care_type: ['specialty', 'skin and ear infections', 'nutrition'], longitude: -73.9500, latitude: 40.7310, user: users[26], clinic_name: "drleewildcare" },
+    { email: "drandersonpetclinic@example.com", phone_numer: "444-333-2222", webpage: "https://www.drandersonclinic.com", address: "101 Park Ave, Midtown", description: "Dr. Anderson’s full-service clinic for urban pets.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.7, care_type: ['routine check', 'dental', 'vaccination'], longitude: -73.9700, latitude: 40.7500, user: users[27], clinic_name: "drandersonpetclinic" },
+    { email: "drgarciaaquatics@example.com", phone_numer: "333-222-1111", webpage: "https://www.drgarciaaquatics.com", address: "505 Coral Rd, Seaside", description: "Aquatic animal care and rehabilitation by Dr. Garcia.", species: ['fish', 'reptile/amphibian'], rate: 4.8, care_type: ['specialty', 'mobility concerns', 'nutrition'], longitude: -73.9900, latitude: 40.7220, user: users[28], clinic_name: "drgarciaaquatics" },
+    { email: "drdolittle@example.com", phone_numer: "111-333-5555", webpage: "https://www.drdolittleshaven.com", address: "123 Animal St, Wildtown", description: "Dr. Dolittle's clinic provides care for all animals, from domestic pets to exotic wildlife.", species: ['cat', 'dog', 'bird', 'small mammal', 'reptile/amphibian', 'farm animal', 'horse', 'fish', 'other/exotic'], rate: 5.0, care_type: ['specialty', 'trauma and injury', 'nutrition'], longitude: -73.9800, latitude: 40.7200, user: users[29], clinic_name: "drdolittle" },
+    { email: "dradamswildlifeclinic@example.com", phone_numer: "999-222-5555", webpage: "https://www.dradamswildlifeclinic.com", address: "305 Safari Lane, Wildwood", description: "Specializes in rehabilitation and care for wild animals, including injured wildlife.", species: ['bird', 'reptile/amphibian', 'small mammal', 'other/exotic'], rate: 4.9, care_type: ['rehabilitation', 'trauma and injury', 'mobility concerns'], longitude: -73.9750, latitude: 40.7350, user: users[30], clinic_name: "dradamswildlifeclinic" },
+    { email: "drmorganpetparadise@example.com", phone_numer: "222-333-4444", webpage: "https://www.drmorganpetparadise.com", address: "505 Paradise St, Petown", description: "Offers luxury veterinary services for urban pets.", species: ['cat', 'dog', 'bird', 'small mammal', 'fish'], rate: 4.8, care_type: ['specialty', 'grooming', 'routine check'], longitude: -74.0010, latitude: 40.7285, user: users[31], clinic_name: "drmorganpetparadise" },
+    { email: "drgreenherbalsclinic@example.com", phone_numer: "333-444-5555", webpage: "https://www.drgreenherbalsclinic.com", address: "707 Herbal Rd, Greenfield", description: "Provides holistic and herbal treatments for pets.", species: ['cat', 'dog', 'small mammal'], rate: 4.7, care_type: ['holistic', 'nutrition', 'routine check'], longitude: -73.9655, latitude: 40.7400, user: users[34], clinic_name: "drgreenherbalsclinic" }
+  ].map do |clinic_attrs|
   clinic = Clinic.new(clinic_attrs)
   if clinic.save
     puts "Created clinic: #{clinic.address}"
