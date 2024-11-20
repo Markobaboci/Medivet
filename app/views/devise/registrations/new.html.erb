@@ -30,8 +30,12 @@
 
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<div class="d-flex justify-content-start text-center mt-5">
+  <%= link_to '← Back', root_path, class: "btn btn-outline-secondary" %>
+</div>

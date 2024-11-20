@@ -29,7 +29,9 @@
   </div>
 
   <div class="clinic-actions mt-1 d-flex justify-content-center">
-    <%= link_to "Book an Appointment", new_clinic_booking_path(clinic_id: @clinic.id), class: "btn btn-primary" %>
+    <% if !current_user || (current_user && !current_user.vet?) %>
+        <%= link_to "Book an Appointment", new_clinic_booking_path(clinic_id: @clinic.id), class: "btn btn-primary" %>
+    <% end %>
   </div>
 
 
@@ -89,11 +91,11 @@
 
   <!-- Clinic Action Buttons -->
   <div class="clinic-actions_container">
-    <% if !current_user || (current_user && !current_user.vet?) %>
+    <!-- <% if !current_user || (current_user && !current_user.vet?) %>
       <div class="clinic-actions mt-4 d-flex justify-content-center">
         <%= link_to "Book an Appointment", new_clinic_booking_path(clinic_id: @clinic.id), class: "btn btn-primary" %>
       </div>
-    <% end %>
+    <% end %> -->
 
     <% if current_user&.vet? && @clinic.user_id == current_user.id %>
       <div class="clinic-actions mt-4 d-flex justify-content-center">
@@ -103,8 +105,8 @@
     <% end %>
 
     <!-- Back to All Clinics Link -->
-    <div class="back-link mt-3">
-      <%= link_to "← Back to All Clinics", clinics_path, class: "btn btn-outline-secondary" %>
+    <div class="d-flex justify-content-start text-center mt-5">
+      <%= link_to '← Back', root_path, class: "btn btn-outline-secondary" %>
     </div>
   </div> <!-- End of .clinic-actions_container -->
 
