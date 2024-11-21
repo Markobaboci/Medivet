@@ -2,20 +2,19 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
-    @user = current_user
-
     @clinics = params[:query].present? ? Clinic.search_by_address(params[:query]) : Clinic.all
 
-    filters = []
-    filters << "LOWER(species) = :species" if params[:species].present? && params[:species] != 'All'
-    filters << "LOWER(care_type) = :care_type" if params[:care_type].present? && params[:care_type] != 'All'
-
-    if filters.any?
-      @clinics = @clinics.where(filters.join(" OR "), species: params[:species].downcase, care_type: params[:care_type].downcase)
+    # Filter by species if not "All"
+    if params[:species].present? && !Array(params[:species]).include?('All')
+      species_filters = Array(params[:species]).map(&:downcase)
+      @clinics = @clinics.where('species @> ARRAY[?]::varchar[]', species_filters)
     end
 
-    # @all_clinics = Clinic.all
+    # Filter by care type if not "All"
+    if params[:care_type].present? && !Array(params[:care_type]).include?('All')
+      care_type_filters = Array(params[:care_type]).map(&:downcase)
+      @clinics = @clinics.where('care_type @> ARRAY[?]::varchar[]', care_type_filters)
+    end
   end
-
 
 end

@@ -14,18 +14,20 @@
 
 <!-- Species Selection -->
 <div class="mb-3">
-  <%= form.input :species, collection: ['cat', 'dog', 'bird', 'small mammal', 'reptile/amphibian', 'farm animal', 'horse', 'fish', 'other/exotic'],
-                  label: "Pet Species",
-                  include_blank: "Select species",
-                  input_html: { class: "form-control" } %>
+<%= form.input :species,
+               collection: Booking.pluck(:species).uniq,
+               label: "Pet Species",
+               include_blank: "Select species",
+               input_html: { class: "form-control" } %>
 </div>
 
 <!-- Care Type Selection -->
 <div class="mb-3">
-  <%= form.input :care_type, collection: ['general', 'emergency', 'vaccination', 'flea and tick', 'dental', 'surgery', 'microchipping', 'neutering', 'grooming', 'holistic', 'house calls', 'routine check', 'skin and ear infections', 'urinary problems', 'eye issues', 'diarrhea and vomiting', 'mobility concerns', 'trauma and injury', 'nutrition', 'toxin ingestion', 'x-ray', 'preventive care'],
-                  label: "Care Type",
-                  include_blank: "Select care type",
-                  input_html: { class: "form-control" } %>
+  <%= form.input :care_type,
+               collection: Booking.pluck(:care_type).uniq,
+               label: "Care Type",
+               include_blank: "Select care type",
+               input_html: { class: "form-control" } %>
 </div>
       <!-- Booking Date -->
       <div class="mb-3">

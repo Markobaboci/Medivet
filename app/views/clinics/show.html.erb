@@ -11,9 +11,16 @@
 
   <!-- [Section 3] Clinic Header -->
   <div class="clinic-header mt-4">
-    <h2>🐾 Vet Care Provider 🐾</h2>
+    <h2>🐾 <%= @clinic.clinic_name.capitalize %> 🐾</h2>
     <p><strong>📍 Address:</strong> <%= @clinic.address %></p>
-    <p><strong>🧑🏼‍⚕️ Specialization:</strong> <%= @clinic.species %></p>
+    <p><strong>🧑🏼‍⚕️ Specialization:</strong></p>
+    <ul>
+      <% @clinic.species.each do |species| %>
+        <li><%= species.split('/').map { |s| s.split.map(&:capitalize).join(' ') }.join('/').pluralize %></li>
+      <% end %>
+    </ul>
+
+
     <p>4.89 ⭐️ | Pet's owner favorite | 365 reviews</p>
   </div>
 

@@ -1,4 +1,4 @@
-<div class="vet-card card shadow-sm border-0 rounded p-3 h-100">
+<div class="vet-card card shadow-sm border-0 p-3 h-100">
   <!-- Full Width Top Section with Green Background -->
   <div class="vet-card-header text-center p-4">
     <div class="vet-image mb-3">
@@ -8,8 +8,7 @@
         <%= image_tag 'clinic.png', alt: 'Vet Image', class: 'img-fluid vet-profile-img' %>
       <% end %>
     </div>
-    <h5 class="card-title text-white"><strong>Vet Care Provider</strong></h5>
-    <p class="text-white mb-0">Practice</p>
+    <h5 class="card-title text-white"><strong><%= clinic.clinic_name.capitalize %></strong></h5>
   </div>
 
   <!-- Wide Book Appointment Button -->
@@ -36,7 +35,7 @@
     </div>
     <div class="d-flex justify-content-center align-items-center">
       <i class="fas fa-paw text-success me-2"></i>
-      <span class="text-muted"><%= clinic.species %></span>
+      <span class="text-muted"><%= clinic.species.map { |species| species.split('/').map { |s| s.split.map(&:capitalize).join(' ') }.join('/').pluralize }.join(", ") %></span>
     </div>
   </div>
 

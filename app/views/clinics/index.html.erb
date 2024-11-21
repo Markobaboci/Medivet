@@ -16,9 +16,9 @@
             <p><strong>Email</strong> : <%= clinic.email %></p>
             <p><strong>Phone Number</strong> : <%= clinic.phone_numer %></p>
             <p><strong>Rate</strong> : <%= clinic.rate %></p>
-            <p><strong>Care Type</strong> : <%= clinic.care_type %></p>
             <p><strong>Webpage</strong> : <%= clinic.webpage %></p>
-            <p><strong>Species</strong> : <%= clinic.species %></p>
+            <p><strong>Care Type</strong>: <%= clinic.care_type.join(", ") %></p>
+            <p><strong>Species</strong>: <%= clinic.species.map { |species| species.split('/').map { |s| s.split.map(&:capitalize).join(' ') }.join('/').pluralize }.join(", ") %></p>
             <p><em><%= clinic.description %></em></p>
             <%= link_to "Clinic details", clinic_path(clinic), class: "btn btn-primary mt-2" %>
 
