@@ -1,0 +1,5 @@
+meta_product_name: "Medivet"
+meta_title: "Medivet - Protect your pet"
+meta_description: "MediVet provides expert veterinary care and personalized treatment for pets, offering services ranging from routine check-ups to advanced medical care. Our compassionate team is dedicated to ensuring the health and happiness of your furry family members."
+meta_image: "medivet_logo.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account" # required for Twitter Cards
