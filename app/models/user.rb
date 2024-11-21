@@ -11,7 +11,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :clinics, dependent: :destroy
-  has_many :bookings, dependent: :destroy
+  has_many :bookings, through: :pets, dependent: :destroy
   has_many :reviews, through: :bookings
   # validates :first_name, presence: true, length: { minimum: 2, maximum: 50 }
   # validates :last_name, presence: true, length: { minimum: 2, maximum: 50 }
@@ -34,7 +34,7 @@ class User < ApplicationRecord
 
   # Check if a user needs to provide a full name
   def requires_full_name_for_booking?
-    bookings.any? # Enforces validation if the user is associated with any booking
+      pets.bookings.exists || false
   end
 
   def vet?

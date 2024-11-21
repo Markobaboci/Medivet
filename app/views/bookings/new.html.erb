@@ -2,7 +2,7 @@
   <h1 class="text-center mb-4">New Appointment 📅</h1>
 
   <!-- Render the shared booking form -->
-  <%= render 'form', booking: @booking %>
+  <%= render 'form', booking: @booking, clinic: @clinic %>
 
   <div class="d-flex justify-content-start text-center mt-3">
     <%= link_to '← Back', clinic_path(@clinic), class: "btn btn-outline-secondary" %>

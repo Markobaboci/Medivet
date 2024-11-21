@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   # Set the booking before showing, editing, updating or destroying
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: %i[show edit update destroy]
 
   # GET /bookings
   def index
@@ -18,8 +18,6 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @clinic = Clinic.find(params[:clinic_id])
-    @booking.first_name = current_user.first_name if current_user.first_name.present?
-    @booking.last_name = current_user.last_name if current_user.last_name.present?
   end
 
   # POST /bookings
@@ -27,6 +25,8 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @clinic = Clinic.find(params[:clinic_id])
     @booking.clinic = @clinic
+    @booking.pet.user.first_name = current_user.first_name if current_user.first_name.present?
+    @booking.pet.user.last_name = current_user.last_name if current_user.last_name.present?
     if @booking.save
       redirect_to booking_path(@booking), notice: 'Booking was successfully created.'
     else
@@ -54,6 +54,7 @@ class BookingsController < ApplicationController
   end
 
   private
+
   def booking_params
     params.require(:booking).permit(:date, :time, :description, :pet_id, :species, :care_type, :first_name, :last_name)
   end
