@@ -32,5 +32,13 @@
   <% end %>
   <br>
   <p></p>
-  <%= link_to 'Back', bookings_path %>
+
+<div class="d-flex justify-content-start text-center mt-5">
+  <% if request.referer.include?("bookings") %>
+    <%= link_to '← Back', bookings_path, class: "btn btn-outline-secondary" %>
+  <% elsif request.referer.include?("pet") %>
+    <%= link_to '← Back', request.referer || root_path, class: "btn btn-outline-secondary" %>
+  <% end %>
+</div>
+
 </div>

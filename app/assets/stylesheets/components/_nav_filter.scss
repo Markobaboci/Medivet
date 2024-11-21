@@ -14,5 +14,46 @@
 }
 
 .filter-submit {
-  padding: 6px 16px 6px 16px;
+  padding: 6px 10px 6px 10px;
+}
+
+.filter-select {
+  background-color: #fff;
+  color: $primary-green;
+  margin-left: 4px;
+}
+
+.text-primary-green {
+  color: $primary-green;
+}
+
+#new-filter-container .dropdown-toggle {
+  background-color: $primary-green;
+  color: #fff;
+}
+
+.form-control.form-select.filter-select {
+  background-color: white;
+  color: var($primary-green);
+  border: 1px solid var($primary-green);
+}
+
+.form-control.form-select.filter-select option {
+  background-color: white;
+  color: var($primary-green);
+}
+
+.form-control.form-select.filter-select option:checked {
+  background-color: var($primary-green);
+  color: white;
+}
+
+
+#new-filter-container .filter-select {
+  display: inline-block;
+  width: auto;
+}
+
+#new-filter-container .filter-select option {
+  white-space: nowrap;
 }

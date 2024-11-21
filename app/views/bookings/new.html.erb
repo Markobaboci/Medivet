@@ -4,7 +4,7 @@
   <!-- Render the shared booking form -->
   <%= render 'form', booking: @booking %>
 
-  <div class="text-center mt-3">
-    <%= link_to 'Back', bookings_path, class: "btn btn-secondary" %>
+  <div class="d-flex justify-content-start text-center mt-3">
+    <%= link_to '← Back', clinic_path(@clinic), class: "btn btn-outline-secondary" %>
   </div>
 </div>

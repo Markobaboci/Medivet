@@ -2,7 +2,7 @@
 
 <% if params[:query].present? || params[:species].present? || params[:care_type].present? %>
   <div class="container mt-5">
-    <h1 class="mb-3">Filtered Veterinarians</h1>
+    <h1 class="mb-3">Filtered Vets</h1>
     <div class="row">
       <% if @clinics.any? %>
         <% @clinics.each do |clinic| %>
@@ -17,7 +17,7 @@
   </div>
 <% else %>
   <div class="container mt-5">
-    <h1 class="mb-3">Best Rated Veterinarians</h1>
+    <h1 class="mb-3">Best Rated Vets</h1>
     <div class="row">
       <% @clinics.each do |clinic| %>
         <div class="col-md-6 col-lg-4 mb-4">

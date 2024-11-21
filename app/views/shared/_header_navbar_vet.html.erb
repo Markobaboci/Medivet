@@ -35,9 +35,9 @@
 
 
 
-          <li class="nav-item mx-4">
+          <!--<li class="nav-item mx-4">
             <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
+          </li> -->
 
           <!-- Profile Dropdown with Dropdown Arrow on Left Side -->
           <li class="nav-item dropdown d-flex align-items-center flex-column align-items-md-end">
@@ -52,9 +52,6 @@
               <% end %>
               <%= link_to new_user_clinic_path(current_user), class: "dropdown-item" do %>
                 <i class="fa-solid fa-house-chimney-medical"></i> Add a clinic
-              <% end %>
-              <%= link_to new_pet_path, class: "dropdown-item" do %>
-                <i class="fa-solid fa-paw"></i> Add your clinic
               <% end %>
               <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" do %>
                 <i class="fas fa-sign-out-alt"></i> Log out

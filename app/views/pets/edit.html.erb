@@ -1,3 +1,6 @@
 <h1>Edit Pet</h1>
 <%= render 'form', pet: @pet %>
-<%= link_to 'Back', pets_path %>
+
+<div class= "mt-5">
+<%= link_to '← Back', pet_path(@pet), class: 'btn btn-outline-secondary' %>
+</div>
