@@ -6,6 +6,8 @@ class Booking < ApplicationRecord
 
   validates :date, presence: true
   validates :time, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :description, presence: true, length: { maximum: 300 }
   validates :species, presence: true,
                       inclusion: {
@@ -17,5 +19,14 @@ class Booking < ApplicationRecord
                         inclusion: {
                           in: ['other', 'emergency', 'vaccination', 'flea and tick', 'dental', 'surgery', 'microchipping', 'neutering', 'grooming', 'holistic', 'house calls', 'routine check', 'skin and ear infections', 'urinary problems', 'eye issues', 'diarrhea and vomiting', 'mobility concerns', 'trauma and injury', 'nutrition', 'toxin ingestion', 'x-ray', 'preventive care'],
                           message: "%<value>s is not a valid care type, must be one of: other, emergency, vaccination, flea and tick, dental, surgery, microchipping, neutering, grooming, holistic, house calls, routine check, skin and ear infections, urinary problems, eye issues, diarrhea and vomiting, mobility concerns, trauma and injury, nutrition, toxin ingestion, x-ray, or preventive care"
-                        }
+                          }
+  before_validation :populate_user_details
+  private
+
+  def populate_user_details
+    if pet && pet.user
+      self.first_name ||= pet.user.first_name
+      self.last_name ||= pet.user.last_name
+    end
+  end
 end

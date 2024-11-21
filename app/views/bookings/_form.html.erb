@@ -51,7 +51,7 @@
                           label: "First Name",
                           input_html: {
                             class: "form-control",
-                            value: current_user.first_name || "",
+                            value: @booking.first_name || current_user.first_name || "",
                             placeholder: "Enter your first name"
                           } %>
         </div>
@@ -61,7 +61,7 @@
                           label: "Last Name",
                           input_html: {
                             class: "form-control",
-                            value: current_user.last_name || "",
+                            value: @booking.last_name || current_user.last_name || "",
                             placeholder: "Enter your last name"
                           } %>
         </div>

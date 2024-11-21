@@ -34,7 +34,8 @@ class User < ApplicationRecord
 
   # Check if a user needs to provide a full name
   def requires_full_name_for_booking?
-      pets.bookings.exists || false
+     # pets.bookings.exists || false
+    pets.joins(:bookings).exists?
   end
 
   def vet?
