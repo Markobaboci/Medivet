@@ -100,3 +100,10 @@
 .pet-link {
   text-decoration: none;
 }
+
+@media (max-width: 360px) {
+  .pet-stats {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
