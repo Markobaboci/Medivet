@@ -1,16 +1,14 @@
 class User < ApplicationRecord
-
-   # Relationships and attachments
+  # Relationships and attachments
   has_many :pets, dependent: :destroy # Ensures a user has many pets
   has_one_attached :photo
 
   # Devise modules
-# Include default devise modules. Others available are:
+  # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   devise :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :validatable
-
+         :recoverable, :rememberable, :validatable
 
   has_many :clinics, dependent: :destroy
   has_many :bookings, dependent: :destroy
@@ -33,18 +31,26 @@ class User < ApplicationRecord
 
   # Callback
   before_validation :assign_role_based_on_checkbox
-  # before_validation :assign_role_based_on_checkbox, on: :create
+
+  # Check if a user needs to provide a full name
+  def requires_full_name_for_booking?
+    bookings.any? # Enforces validation if the user is associated with any booking
+  end
+
   def vet?
     role == 'vet'
   end
 
+  # Conditional validation for bookings
+  validates :first_name, presence: true, if: :requires_full_name_for_booking?
+  validates :last_name, presence: true, if: :requires_full_name_for_booking?
+
   private
 
   # Assign role based on the virtual `is_vet` attribute
-  #checks if is_vet is "1" (value set by the checkbox) and then sets role to "vet"
+  # checks if is_vet is "1" (value set by the checkbox) and then sets role to "vet"
   def assign_role_based_on_checkbox
     self.role = is_vet == "1" ? "vet" : "client"
   end
   # validates :vet , inclusion: { in: [true, false] }
-
 end

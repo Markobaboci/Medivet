@@ -3,10 +3,13 @@ require "open-uri"
 puts "Clearing existing data..."
 Review.destroy_all
 Booking.destroy_all
-Clinic.destroy_all
 Pet.destroy_all
+Clinic.destroy_all
 User.destroy_all
 puts "Existing data cleared!"
+
+# Initialize `users` as an empty array
+users = []
 
 # Create Users
 puts "Creating client users..."
@@ -22,16 +25,15 @@ client_users = [
   { email: "charlie@example.com", password: "password", role: "client", first_name: "charlie".capitalize, last_name: "Doe" },
   { email: "diana@example.com", password: "password", role: "client", first_name: "diana".capitalize, last_name: "Doe" }
 ]
-# Create vet users
-puts "Creating vet users..."
-(1..20).each do |i|
-  users << User.create!(email: "vet#{i}@example.com", password: "password", role: "vet", first_name: "Dr.Vet#{i}", last_name: "Smith")
+users += client_users.map { |attrs| User.create!(attrs) }
+
+# Add vet users
+(1..22).each do |i|
+  vet_user = { email: "vet#{i}@example.com", password: "password", role: "vet", first_name: "Dr.Vet#{i}", last_name: "Smith" }
+  users << User.create!(vet_user)
 end
 
 puts "Users created: #{users.map(&:email)}"
-
-puts "Users created: #{users.map(&:email)}"
-
 
 # Create Pets
 puts "Creating pets..."
@@ -111,119 +113,170 @@ puts "Pets created: #{pets.map(&:name)}"
 
 # Create Clinics
 puts "Creating clinics..."
-  clinics = [
-    { email: "cityvet@example.com", phone_numer: "123-456-7890", webpage: "https://www.cityvet.com", address: "123 Main St, Cityville", description: "A full-service veterinary clinic for cats and dogs.", species: ['cat', 'dog'], rate: 4.5, care_type: ['general', 'routine check', 'preventive care'], longitude: -74.0059728, latitude: 40.7127753, user: users[11], clinic_name: "cityvet" },
-    { email: "exoticcare@example.com", phone_numer: "987-654-3210", webpage: "https://www.exoticcareclinic.com", address: "456 Side Ave, Petown", description: "Specializes in exotic pets including birds, reptiles, and small mammals.", species: ['bird', 'reptile/amphibian', 'small mammal', 'other/exotic'], rate: 4.8, care_type: ['specialty', 'routine check', 'nutrition'], longitude: -73.935242, latitude: 40.73061, user: users[12], clinic_name: "exoticcare" },
-    { email: "petexpress@example.com", phone_numer: "555-123-4567", webpage: "https://www.petexpress.com", address: "789 Uptown Blvd, Animaltown", description: "Emergency and urgent care for all domestic pets.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.3, care_type: ['emergency', 'trauma and injury', 'toxin ingestion'], longitude: -74.006, latitude: 40.714, user: users[13], clinic_name: "petexpress" },
-    { email: "oceanviewvet@example.com", phone_numer: "444-555-6666", webpage: "https://www.oceanviewvet.com", address: "3030 Seaside Ave, Coastal City", description: "Specializing in marine and coastal pets.", species: ['fish', 'other/exotic'], rate: 4.6, care_type: ['specialty', 'x-ray', 'mobility concerns'], longitude: -73.9857, latitude: 40.7488, user: users[14], clinic_name: "oceanviewvet" },
-    { email: "centralparkpets@example.com", phone_numer: "555-666-7777", webpage: "https://www.centralparkpets.com", address: "505 Park St, Midtown", description: "Caring for all urban pets with expert attention.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.5, care_type: ['general', 'routine check', 'vaccination'], longitude: -73.9708, latitude: 40.7648, user: users[15], clinic_name: "centralparkpets" },
-    { email: "harmonyanimalclinic@example.com", phone_numer: "666-777-8888", webpage: "https://www.harmonyanimalclinic.com", address: "678 Harmony Rd, Petown", description: "Holistic veterinary care for all pets.", species: ['cat', 'dog', 'bird', 'small mammal', 'reptile/amphibian', 'farm animal', 'horse', 'fish', 'other/exotic'], rate: 4.9, care_type: ['holistic', 'skin and ear infections', 'nutrition'], longitude: -73.9878, latitude: 40.7329, user: users[16], clinic_name: "harmonyanimalclinic" },
-    { email: "sunnydaypets@example.com", phone_numer: "777-888-9999", webpage: "https://www.sunnydaypets.com", address: "101 Sunshine Blvd, Sunnytown", description: "Known for its friendly staff and modern facilities.", species: ['cat', 'dog'], rate: 4.7, care_type: ['general', 'grooming', 'routine check'], longitude: -73.9577, latitude: 40.7520, user: users[17], clinic_name: "sunnydaypets" },
-    { email: "littlepawsvet@example.com", phone_numer: "888-999-1111", webpage: "https://www.littlepawsvet.com", address: "505 Tiny Paws St, Littletown", description: "Specializing in small mammals like rabbits, hamsters, and guinea pigs.", species: ['small mammal'], rate: 4.8, care_type: ['specialty', 'nutrition', 'microchipping'], longitude: -74.0028, latitude: 40.7335, user: users[18], clinic_name: "littlepawsvet" },
-    { email: "happyhoovesclinic@example.com", phone_numer: "999-111-2222", webpage: "https://www.happyhoovesvet.com", address: "303 Green Pastures Rd, Farmville", description: "Offers services for farm animals and large pets.", species: ['farm animal', 'horse'], rate: 4.6, care_type: ['specialty', 'routine check', 'nutrition'], longitude: -74.0150, latitude: 40.7211, user: users[19], clinic_name: "happyhoovesclinic" },
-    { email: "birdsongvet@example.com", phone_numer: "111-222-3333", webpage: "https://www.birdsongvet.com", address: "909 Aviary Ln, Birdland", description: "Dedicated to avian care with a focus on exotic birds.", species: ['bird', 'other/exotic'], rate: 4.9, care_type: ['specialty', 'eye issues', 'routine check'], longitude: -73.9850, latitude: 40.7205, user: users[20], clinic_name: "birdsongvet" },
-    { email: "aquacareclinic@example.com", phone_numer: "333-444-5555", webpage: "https://www.aquacareclinic.com", address: "707 Coral Reef Dr, Seaside", description: "Expert care for aquatic animals like fish and turtles.", species: ['fish', 'reptile/amphibian'], rate: 4.7, care_type: ['specialty', 'mobility concerns', 'routine check'], longitude: -73.9942, latitude: 40.7188, user: users[21], clinic_name: "aquacareclinic" },
-    { email: "drsmithclinic@example.com", phone_numer: "999-888-7777", webpage: "https://www.drsmithclinic.com", address: "101 Elm St, Springfield", description: "Personalized care for all domestic pets by Dr. Smith.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.9, care_type: ['routine check', 'dental', 'vaccination'], longitude: -73.9850, latitude: 40.7300, user: users[22], clinic_name: "drsmithclinic" },
-    { email: "drkimsanimalcare@example.com", phone_numer: "888-777-6666", webpage: "https://www.drkimcare.com", address: "505 Maple Ave, Riverdale", description: "Expert care for exotic pets provided by Dr. Kim.", species: ['bird', 'reptile/amphibian', 'small mammal', 'other/exotic'], rate: 4.8, care_type: ['specialty', 'nutrition', 'skin and ear infections'], longitude: -74.0100, latitude: 40.7210, user: users[23], clinic_name: "drkimsanimalcare" },
-    { email: "drjohnsonvethaven@example.com", phone_numer: "777-666-5555", webpage: "https://www.drjohnsonhaven.com", address: "303 Birch Rd, Greenville", description: "Dr. Johnson's clinic for birds and small mammals.", species: ['bird', 'small mammal'], rate: 4.7, care_type: ['specialty', 'routine check', 'mobility concerns'], longitude: -73.9800, latitude: 40.7280, user: users[24], clinic_name: "drjohnsonvethaven" },
-    { email: "drbrownfarmcare@example.com", phone_numer: "666-555-4444", webpage: "https://www.drbrownfarmcare.com", address: "789 Countryside Lane, Farmville", description: "Farm animal care and large pet services by Dr. Brown.", species: ['farm animal', 'horse'], rate: 4.6, care_type: ['specialty', 'routine check', 'nutrition'], longitude: -74.0200, latitude: 40.7290, user: users[25], clinic_name: "drbrownfarmcare" },
-    { email: "drleewildcare@example.com", phone_numer: "555-444-3333", webpage: "https://www.drleewildcare.com", address: "202 Forest St, Woodland", description: "Specialty care for wild and exotic animals by Dr. Lee.", species: ['reptile/amphibian', 'other/exotic'], rate: 4.9, care_type: ['specialty', 'skin and ear infections', 'nutrition'], longitude: -73.9500, latitude: 40.7310, user: users[26], clinic_name: "drleewildcare" },
-    { email: "drandersonpetclinic@example.com", phone_numer: "444-333-2222", webpage: "https://www.drandersonclinic.com", address: "101 Park Ave, Midtown", description: "Dr. Anderson’s full-service clinic for urban pets.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.7, care_type: ['routine check', 'dental', 'vaccination'], longitude: -73.9700, latitude: 40.7500, user: users[27], clinic_name: "drandersonpetclinic" },
-    { email: "drgarciaaquatics@example.com", phone_numer: "333-222-1111", webpage: "https://www.drgarciaaquatics.com", address: "505 Coral Rd, Seaside", description: "Aquatic animal care and rehabilitation by Dr. Garcia.", species: ['fish', 'reptile/amphibian'], rate: 4.8, care_type: ['specialty', 'mobility concerns', 'nutrition'], longitude: -73.9900, latitude: 40.7220, user: users[28], clinic_name: "drgarciaaquatics" },
-    { email: "drdolittle@example.com", phone_numer: "111-333-5555", webpage: "https://www.drdolittleshaven.com", address: "123 Animal St, Wildtown", description: "Dr. Dolittle's clinic provides care for all animals, from domestic pets to exotic wildlife.", species: ['cat', 'dog', 'bird', 'small mammal', 'reptile/amphibian', 'farm animal', 'horse', 'fish', 'other/exotic'], rate: 5.0, care_type: ['specialty', 'trauma and injury', 'nutrition'], longitude: -73.9800, latitude: 40.7200, user: users[29], clinic_name: "drdolittle" },
-    { email: "dradamswildlifeclinic@example.com", phone_numer: "999-222-5555", webpage: "https://www.dradamswildlifeclinic.com", address: "305 Safari Lane, Wildwood", description: "Specializes in rehabilitation and care for wild animals, including injured wildlife.", species: ['bird', 'reptile/amphibian', 'small mammal', 'other/exotic'], rate: 4.9, care_type: ['rehabilitation', 'trauma and injury', 'mobility concerns'], longitude: -73.9750, latitude: 40.7350, user: users[30], clinic_name: "dradamswildlifeclinic" },
-    { email: "drmorganpetparadise@example.com", phone_numer: "222-333-4444", webpage: "https://www.drmorganpetparadise.com", address: "505 Paradise St, Petown", description: "Offers luxury veterinary services for urban pets.", species: ['cat', 'dog', 'bird', 'small mammal', 'fish'], rate: 4.8, care_type: ['specialty', 'grooming', 'routine check'], longitude: -74.0010, latitude: 40.7285, user: users[31], clinic_name: "drmorganpetparadise" },
-    { email: "drgreenherbalsclinic@example.com", phone_numer: "333-444-5555", webpage: "https://www.drgreenherbalsclinic.com", address: "707 Herbal Rd, Greenfield", description: "Provides holistic and herbal treatments for pets.", species: ['cat', 'dog', 'small mammal'], rate: 4.7, care_type: ['holistic', 'nutrition', 'routine check'], longitude: -73.9655, latitude: 40.7400, user: users[34], clinic_name: "drgreenherbalsclinic" }
+    clinics = [
+  { email: "cityvet@example.com", clinic_name: "cityvet", phone_numer: "123-456-7890", webpage: "https://www.cityvet.com", address: "123 Main St, Cityville", description: "A full-service veterinary clinic for all species and care types.", species: ['cat', 'dog', 'bird', 'small mammal', 'reptile/amphibian', 'fish', 'farm animal', 'horse', 'other/exotic'], rate: 4.5, care_type: ['routine check', 'preventive care', 'microchipping', 'vaccination', 'dental', 'nutrition', 'skin and ear infections', 'trauma and injury', 'toxin ingestion', 'x-ray', 'grooming', 'mobility concerns', 'eye issues', 'holistic', 'neutering', 'surgery', 'flea and tick'], longitude: -74.0059728, latitude: 40.7127753, user: users[11] },
+  { email: "exoticcare@example.com", clinic_name: "exoticcare", phone_numer: "987-654-3210", webpage: "https://www.exoticcareclinic.com", address: "456 Side Ave, Petown", description: "Specializes in exotic pets including birds, reptiles, and small mammals.", species: ['bird', 'reptile/amphibian', 'small mammal', 'other/exotic'], rate: 4.8, care_type: ['routine check', 'nutrition', 'skin and ear infections', 'trauma and injury'], longitude: -73.935242, latitude: 40.73061, user: users[12] },
+  { email: "petexpress@example.com", clinic_name: "petexpress", phone_numer: "555-123-4567", webpage: "https://www.petexpress.com", address: "789 Uptown Blvd, Animaltown", description: "Emergency and urgent care for all domestic pets.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.3, care_type: ['emergency', 'trauma and injury', 'toxin ingestion', 'routine check', 'x-ray'], longitude: -74.006, latitude: 40.714, user: users[13] },
+  { email: "oceanviewvet@example.com", clinic_name: "oceanviewvet", phone_numer: "444-555-6666", webpage: "https://www.oceanviewvet.com", address: "3030 Seaside Ave, Coastal City", description: "Specializing in marine and coastal pets.", species: ['fish', 'other/exotic'], rate: 4.6, care_type: ['x-ray', 'mobility concerns', 'nutrition', 'routine check'], longitude: -73.9857, latitude: 40.7488, user: users[14] },
+  { email: "centralparkpets@example.com", clinic_name: "centralparkpets", phone_numer: "555-666-7777", webpage: "https://www.centralparkpets.com", address: "505 Park St, Midtown", description: "Caring for all urban pets with expert attention.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.5, care_type: ['routine check', 'vaccination', 'microchipping', 'skin and ear infections'], longitude: -73.9708, latitude: 40.7648, user: users[15] },
+  { email: "harmonyanimalclinic@example.com", clinic_name: "harmonyanimalclinic", phone_numer: "666-777-8888", webpage: "https://www.harmonyanimalclinic.com", address: "678 Harmony Rd, Petown", description: "Holistic veterinary care for all pets.", species: ['cat', 'dog', 'bird', 'small mammal', 'reptile/amphibian', 'farm animal', 'horse', 'fish', 'other/exotic'], rate: 4.9, care_type: ['holistic', 'skin and ear infections', 'nutrition', 'routine check', 'eye issues'], longitude: -73.9878, latitude: 40.7329, user: users[16] },
+  { email: "sunnydaypets@example.com", clinic_name: "sunnydaypets", phone_numer: "777-888-9999", webpage: "https://www.sunnydaypets.com", address: "101 Sunshine Blvd, Sunnytown", description: "Known for its friendly staff and modern facilities.", species: ['cat', 'dog'], rate: 4.7, care_type: ['routine check', 'grooming', 'vaccination', 'dental'], longitude: -73.9577, latitude: 40.7520, user: users[17] },
+  { email: "littlepawsvet@example.com", clinic_name: "littlepawsvet", phone_numer: "888-999-1111", webpage: "https://www.littlepawsvet.com", address: "505 Tiny Paws St, Littletown", description: "Specializing in small mammals like rabbits, hamsters, and guinea pigs.", species: ['small mammal'], rate: 4.8, care_type: ['routine check', 'nutrition', 'microchipping', 'skin and ear infections'], longitude: -74.0028, latitude: 40.7335, user: users[18] },
+  { email: "happyhoovesclinic@example.com", clinic_name: "happyhoovesclinic", phone_numer: "999-111-2222", webpage: "https://www.happyhoovesvet.com", address: "303 Green Pastures Rd, Farmville", description: "Offers services for farm animals and large pets.", species: ['farm animal', 'horse'], rate: 4.6, care_type: ['routine check', 'nutrition', 'mobility concerns', 'trauma and injury'], longitude: -74.0150, latitude: 40.7211, user: users[19] },
+  { email: "birdsongvet@example.com", clinic_name: "birdsongvet", phone_numer: "111-222-3333", webpage: "https://www.birdsongvet.com", address: "909 Aviary Ln, Birdland", description: "Dedicated to avian care with a focus on exotic birds.", species: ['bird', 'other/exotic'], rate: 4.9, care_type: ['routine check', 'eye issues', 'nutrition', 'trauma and injury'], longitude: -73.9850, latitude: 40.7205, user: users[20] },
+  { email: "aquacareclinic@example.com", clinic_name: "aquacareclinic", phone_numer: "333-444-5555", webpage: "https://www.aquacareclinic.com", address: "707 Coral Reef Dr, Seaside", description: "Expert care for aquatic animals like fish and turtles.", species: ['fish', 'reptile/amphibian'], rate: 4.7, care_type: ['mobility concerns', 'routine check', 'nutrition', 'toxin ingestion'], longitude: -73.9942, latitude: 40.7188, user: users[21] },
+  { email: "drsmithclinic@example.com", clinic_name: "drsmithclinic", phone_numer: "999-888-7777", webpage: "https://www.drsmithclinic.com", address: "101 Elm St, Springfield", description: "Personalized care for all domestic pets by Dr. Smith.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.9, care_type: ['routine check', 'dental', 'vaccination', 'microchipping'], longitude: -73.9850, latitude: 40.7300, user: users[22] },
+  { email: "drkimsanimalcare@example.com", clinic_name: "drkimsanimalcare", phone_numer: "888-777-6666", webpage: "https://www.drkimcare.com", address: "505 Maple Ave, Riverdale", description: "Expert care for exotic pets provided by Dr. Kim.", species: ['bird', 'reptile/amphibian', 'small mammal', 'other/exotic'], rate: 4.8, care_type: ['routine check', 'nutrition', 'skin and ear infections', 'trauma and injury'], longitude: -74.0100, latitude: 40.7210, user: users[23] },
+  { email: "drjohnsonvethaven@example.com", clinic_name: "drjohnsonvethaven", phone_numer: "777-666-5555", webpage: "https://www.drjohnsonhaven.com", address: "303 Birch Rd, Greenville", description: "Dr. Johnson's clinic for birds and small mammals.", species: ['bird', 'small mammal'], rate: 4.7, care_type: ['routine check', 'mobility concerns', 'skin and ear infections'], longitude: -73.9800, latitude: 40.7280, user: users[24] },
+  { email: "drbrownfarmcare@example.com", phone_numer: "666-555-4444", webpage: "https://www.drbrownfarmcare.com", address: "789 Countryside Lane, Farmville", description: "Farm animal care and large pet services by Dr. Brown.", species: ['farm animal', 'horse'], rate: 4.6, care_type: ['routine check', 'nutrition', 'mobility concerns', 'trauma and injury'], longitude: -74.0200, latitude: 40.7290, user: users[25], clinic_name: "drbrownfarmcare" },
+    { email: "drleewildcare@example.com", phone_numer: "555-444-3333", webpage: "https://www.drleewildcare.com", address: "202 Forest St, Woodland", description: "Specialty care for wild and exotic animals by Dr. Lee.", species: ['reptile/amphibian', 'other/exotic'], rate: 4.9, care_type: ['skin and ear infections', 'nutrition', 'trauma and injury', 'mobility concerns'], longitude: -73.9500, latitude: 40.7310, user: users[26], clinic_name: "drleewildcare" },
+    { email: "drandersonpetclinic@example.com", phone_numer: "444-333-2222", webpage: "https://www.drandersonclinic.com", address: "101 Park Ave, Midtown", description: "Dr. Anderson’s full-service clinic for urban pets.", species: ['cat', 'dog', 'bird', 'small mammal'], rate: 4.7, care_type: ['routine check', 'dental', 'vaccination', 'microchipping', 'skin and ear infections'], longitude: -73.9700, latitude: 40.7500, user: users[27], clinic_name: "drandersonpetclinic" },
+    { email: "drgarciaaquatics@example.com", phone_numer: "333-222-1111", webpage: "https://www.drgarciaaquatics.com", address: "505 Coral Rd, Seaside", description: "Aquatic animal care and rehabilitation by Dr. Garcia.", species: ['fish', 'reptile/amphibian'], rate: 4.8, care_type: ['mobility concerns', 'nutrition', 'routine check', 'toxin ingestion', 'trauma and injury'], longitude: -73.9900, latitude: 40.7220, user: users[28], clinic_name: "drgarciaaquatics" },
+    { email: "drdolittle@example.com", phone_numer: "111-333-5555", webpage: "https://www.drdolittleshaven.com", address: "123 Animal St, Wildtown", description: "Dr. Dolittle's clinic provides care for all animals, from domestic pets to exotic wildlife.", species: ['cat', 'dog', 'bird', 'small mammal', 'reptile/amphibian', 'farm animal', 'horse', 'fish', 'other/exotic'], rate: 5.0, care_type: ['trauma and injury', 'nutrition', 'routine check', 'x-ray', 'skin and ear infections'], longitude: -73.9800, latitude: 40.7200, user: users[29], clinic_name: "drdolittle" },
+    { email: "dradamswildlifeclinic@example.com", phone_numer: "999-222-5555", webpage: "https://www.dradamswildlifeclinic.com", address: "305 Safari Lane, Wildwood", description: "Specializes in rehabilitation and care for wild animals, including injured wildlife.", species: ['bird', 'reptile/amphibian', 'small mammal', 'other/exotic'], rate: 4.9, care_type: ['trauma and injury', 'mobility concerns', 'routine check'], longitude: -73.9750, latitude: 40.7350, user: users[30], clinic_name: "dradamswildlifeclinic" },
+    { email: "drmorganpetparadise@example.com", phone_numer: "222-333-4444", webpage: "https://www.drmorganpetparadise.com", address: "505 Paradise St, Petown", description: "Offers luxury veterinary services for urban pets.", species: ['cat', 'dog', 'bird', 'small mammal', 'fish'], rate: 4.8, care_type: ['routine check', 'grooming', 'nutrition', 'dental', 'vaccination'], longitude: -74.0010, latitude: 40.7285, user: users[31], clinic_name: "drmorganpetparadise" },
+    { email: "drgreenherbalsclinic@example.com", phone_numer: "323-444-5551", webpage: "https://www.drgreenherbalsclinic.com", address: "707 Herbal Rd, Greenfield", description: "Provides holistic and herbal treatments for pets.", species: ['cat', 'dog', 'small mammal'], rate: 4.7, care_type: ['holistic', 'nutrition', 'routine check', 'skin and ear infections'], longitude: -73.9655, latitude: 40.7400, user: users[10], clinic_name: "drgreenherbalsclinic" }
   ].map do |clinic_attrs|
   clinic = Clinic.new(clinic_attrs)
   if clinic.save
-    puts "Created clinic: #{clinic.address}"
+    puts "Created clinic: #{clinic.clinic_name}"
   else
-    puts "Failed to create clinic: #{clinic_attrs[:address]}"
+    puts "Failed to create clinic: #{clinic_attrs[:clinic_name]}"
     puts "Errors: #{clinic.errors.full_messages}"
   end
   clinic
 end
-puts "Clinics created: #{clinics.map { |c| [c.id, c.address, c.user_id] }}"
+puts "Clinics created: #{clinics.map { |c| [c.id, c.clinic_name, c.user_id] }}"
 
 clinic_images = {
 "cityvet@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040869/pexels-mikhail-nilov-7465698_jyqmyl_osqpq5.jpg",
 "exoticcare@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040879/pexels-sparkphotopro-10559203_v8pzlt_c9dbz0.jpg",
-"petexpress@gmail.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040882/suzi-kim-8bRdsXqzc6k-unsplash_ssv62a_aptnmr.jpg",
+"petexpress@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732143152/close-up-veterinarian-taking-care-dog_esw5as.jpg",
 "oceanviewvet@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040635/pexels-tima-miroshnichenko-6235666_npetby_ezs4cf.jpg",
 "centralparkpets@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040881/cdc-bBm_QwIAsyc-unsplash_xaz459_gsmy59.jpg",
 "harmonyanimalclinic@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040801/karlo-tottoc-ybZ5hRxaWS4-unsplash_qj0vfe_ha4ikh.jpg",
 "sunnydaypets@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040795/pexels-marinaphotos-17084273_z7ciel_xdluoi.jpg",
 "littlepawsvet@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040797/jeremy-alford-O13B7suRG4A-unsplash_ddux4e_pk5hd8.jpg",
-"happyhoovesclinic@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040540/sincerely-media-Umg6HxxLQ3Q-unsplash_t7tlxn_ckbtzo.jpg",
+"happyhoovesclinic@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732128806/development/4g4v2torfic5i9xa1qgvclwvi630.jpg",
 "birdsongvet@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040644/pexels-karolina-grabowska-4386467_mmbozc_hqpx9h.jpg",
 "aquacareclinic@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040791/pexels-tessy-agbonome-521343232-19963193_ndbrqq_vd31z7.jpg",
 "drsmithclinic@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040542/freestocks-qqjWNVn8CvU-unsplash_ud5quo_vm2ro5.jpg",
 "drkimsanimalcare@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040784/centre-for-ageing-better-LDbxOjVNxec-unsplash_mw8s8u_irtod0.jpg",
-"drjohnsonvetheaven@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040630/travis-grossen-bOlOsY-pLgk-unsplash_gqxhhb_tsipj7.jpg",
+"drjohnsonvethaven@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040540/sincerely-media-Umg6HxxLQ3Q-unsplash_t7tlxn_ckbtzo.jpg",
 "drbrownfarmcare@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040788/jonatan-bustos-P1Ku27zZJDs-unsplash_agpi3o_toodth.jpg",
 "drleewildcare@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040781/cdc-uoYFqyvm6Bo-unsplash_iek4or_zusvcv.jpg",
 "drandersonpetclinic@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040786/judy-beth-morris-k6-WI3A0i1s-unsplash_be4vrw_oo90h5.jpg",
 "drgarciaaquatics@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040777/pexels-ifaw-5486965_yz13ea_fg3sza.jpg",
 "drdolittle@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040637/joenomias-m-de-jong-zhYy10qCzdw-unsplash_hkrrlf_rpjdvi.jpg",
-"dradamswildlifeclimic@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040640/pexels-tima-miroshnichenko-6235233_nqgyho_pbvwlk.jpg",
+"dradamswildlifeclinic@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732142878/vet-clinic-concept-happy-male-doctor-veterinarian-holding-cute-black-pug-dog-smiling-camera-white-background_nn9sem.jpg",
 "drmorganpetparadise@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040775/pexels-gustavo-fring-4173251_vhu03z_glrgdz.jpg",
 "drgreenherbalsclinic@example.com" => "https://res.cloudinary.com/dpeys37ef/image/upload/v1732040628/pexels-ifaw-5487067_qymkdi_qggnwj.jpg",
 }
 
-
 # Attach Photos to Clinics
+
 Clinic.all.each do |clinic|
   image_url = clinic_images[clinic.email]
   if image_url
     file = URI.open(image_url)
-    clinic.photo.attach(io: file, filename: "#{clinic.email.downcase}.jpg", content_type: "image/jpeg")
-    puts "Attached photo for #{clinic.email}"
+    clinic.image.attach(io: file, filename: "#{clinic.clinic_name.downcase}.jpg", content_type: "image/jpeg")
+    puts "Attached photo for #{clinic.clinic_name}"
   else
-    puts "No image URL found for #{clinic.email}"
+    puts "No image URL found for #{clinic.clinic_name}"
   end
 end
-puts "Clinics created: #{clinics.map(&:email)}"
 
+puts "Clinics created: #{clinics.map(&:clinic_name)}"
 
-# Explicitly fetch clinics
-puts "Fetching clinics explicitly..."
-clinic_1 = Clinic.find_by(email: "cityvet@example.com")
-clinic_2 = Clinic.find_by(email: "exoticcare@example.com")
-clinic_3 = Clinic.find_by(email: "petexpress@example.com")
-clinic_4 = Clinic.find_by(email: "smallpetcare@example.com")
-clinic_5 = Clinic.find_by(email: "birdhaven@example.com")
+puts "Fetching all clinics explicitly..."
+all_clinics = Clinic.all.map { |c| [c.id, c.clinic_name, c.user_id] }
 
-raise "Clinic not found" unless clinic_1 && clinic_2 && clinic_3 && clinic_4 && clinic_5
-puts "Clinics fetched: #{[clinic_1, clinic_2, clinic_3, clinic_4, clinic_5].map { |c| [c.id, c.address] }}"
+if all_clinics.empty?
+  puts "No clinics found in the database."
+  exit # Exit seeding if no clinics exist
+else
+  puts "Clinics fetched: #{all_clinics}"
+end
+
+# Fetch clinic_1 explicitly by ID or attribute
+clinic_1 = Clinic.find_by(id: 1) # Replace `id: 1` with another attribute if necessary (e.g., email or clinic_name)
+if clinic_1.nil?
+  puts "Clinic with ID 1 does not exist. Please ensure it is created in the seed file."
+  exit # Exit seeding if the clinic is not found
+else
+  puts "Clinic 1 found: #{clinic_1.clinic_name} at #{clinic_1.address}."
+end
+
+# Fetch all pets to ensure they exist
+if pets.empty?
+  puts "No pets found in the database. Ensure pets are seeded properly."
+  exit
+end
+puts "Clinic 1: #{clinic_1.inspect}" # Should output a valid clinic object
+puts "Pets: #{pets.map(&:inspect)}" # Should list all pets
 
 # Create Bookings
 puts "Creating bookings..."
-bookings = Booking.create([
-  { clinic: clinic_1, pet: pets[0], date: Date.today, time: "10:00", description: "General check-up for Buddy." },
-  { clinic: clinic_2, pet: pets[1], date: Date.today, time: "14:00", description: "Routine vaccination for Whiskers." },
-  { clinic: clinic_3, pet: pets[2], date: Date.today, time: "16:00", description: "Urgent care for Rex." },
-  { clinic: clinic_4, pet: pets[4], date: Date.today + 1, time: "11:00", description: "Dental check-up for Fluffy." },
-  { clinic: clinic_5, pet: pets[7], date: Date.today + 2, time: "15:00", description: "Wing trimming for Charlie." },
-  { clinic: clinic_1, pet: pets[9], date: Date.today + 3, time: "09:30", description: "Vaccination for Oscar." },
-  { clinic: clinic_2, pet: pets[3], date: Date.today + 4, time: "13:00", description: "Special care for Loco." },
-  { clinic: clinic_3, pet: pets[6], date: Date.today + 5, time: "12:00", description: "Check-up for Bella." },
-  { clinic: clinic_4, pet: pets[5], date: Date.today + 6, time: "14:30", description: "Routine check-up for Max." },
-  { clinic: clinic_5, pet: pets[8], date: Date.today + 7, time: "10:15", description: "Behavioral consultation for Daisy." }
-])
-puts "Bookings created: #{bookings.map { |b| [b.clinic.address, b.pet.name] }}"
+bookings = []
 
-puts "Creating additional bookings for first vets..."
+# Define the pet-care mapping explicitly to ensure correct matching
+pet_care_details = [
+  { pet: pets[0], species: pets[0].species, time: "10:00", description: "Microchipping Buddy.", care_type: 'microchipping' },
+  { pet: pets[1], species: pets[1].species, time: "14:00", description: "Routine vaccination for Whiskers.", care_type: 'vaccination' },
+  { pet: pets[2], species: pets[2].species, time: "16:00", description: "Urgent care for Rex.", care_type: 'toxin ingestion' },
+  { pet: pets[4], species: pets[4].species, time: "11:00", description: "Dental check-up for Fluffy.", care_type: 'dental', date_offset: 1 },
+  { pet: pets[7], species: pets[7].species, time: "15:00", description: "Wing trimming for Charlie.", care_type: 'surgery', date_offset: 2 },
+  { pet: pets[9], species: pets[9].species, time: "09:30", description: "Vaccination for Oscar.", care_type: 'vaccination', date_offset: 3 },
+  { pet: pets[3], species: pets[3].species, time: "13:00", description: "Swollen eyes.", care_type: 'eye issues', date_offset: 4 },
+  { pet: pets[6], species: pets[6].species, time: "12:00", description: "Microchipping Bella", care_type: 'microchipping', date_offset: 5 },
+  { pet: pets[5], species: pets[5].species, time: "14:30", description: "Routine check-up for Max.", care_type: 'routine check', date_offset: 6 },
+  { pet: pets[8], species: pets[8].species, time: "10:15", description: "Behavioral consultation for Daisy.", care_type: 'mobility concerns', date_offset: 7 }
+]
 
-puts "Creating diverse bookings for first vets with Deworming and Lysis treatments..."
+# Loop through each entry and create bookings
+pet_care_details.each_with_index do |details, index|
+  booking = Booking.create(
+    clinic: clinic_1,
+    pet: details[:pet],
+    species: details[:species],
+    date: Date.today + (details[:date_offset] || 0),
+    time: details[:time],
+    description: details[:description],
+    care_type: details[:care_type]
+  )
 
-# Get the first 5 vet users and their clinics
-vet_users_with_clinics = vet_users[0..4].map do |vet|
-  vet_clinic = Clinic.find_by(user: vet)
-  { vet: vet, clinic: vet_clinic }
+  # Add booking to the array and log the outcome
+  if booking.persisted?
+    bookings << booking
+    puts "Booking created for #{booking.pet.name} at #{booking.clinic.clinic_name}, species: #{booking.species}."
+  else
+    puts "Failed to create booking for #{details[:pet].name}: #{booking.errors.full_messages}"
+  end
 end
 
-# Distribute bookings with diverse services
+# Print summary of all bookings
+puts "Bookings created: #{bookings.map { |b| [b.clinic.address, b.pet.name, b.species] }}"
+
+# Additional error log for failed bookings
+if bookings.any? { |b| !b.valid? }
+  puts "Some bookings failed to validate:"
+  bookings.each do |booking|
+    if booking.errors.any?
+      puts "Booking for #{booking.pet.name} failed: #{booking.errors.full_messages}"
+    end
+  end
+end
+puts "Creating additional bookings for first vets..."
+
+# Get the first 5 vet users and their clinics
+vet_users = User.where(role: "vet")
+vet_users_with_clinics = vet_users[0..4].map do |vet|
+  clinic = Clinic.find_by(user: vet)
+
+  { vet: vet, clinic: clinic }
+end
+
+# Distribute bookings with diverse care types
 vet_users_with_clinics.each_with_index do |vet_info, index|
   clinic = vet_info[:clinic]
   pets_sample = pets.sample(17) # Randomly select 17 pets for bookings
@@ -235,6 +288,7 @@ vet_users_with_clinics.each_with_index do |vet_info, index|
       pet: pet,
       date: Date.today + index * 2 + booking_index,
       time: "#{9 + booking_index}:00",
+      care_type: 'routine check',
       description: "Routine check-up for #{pet.name}, booking ##{booking_index} for vet #{vet_info[:vet].email}."
     )
   end
@@ -246,6 +300,7 @@ vet_users_with_clinics.each_with_index do |vet_info, index|
       pet: pet,
       date: Date.today + index * 2 + booking_index + 5,
       time: "#{13 + booking_index}:30",
+      care_type: 'emergency',
       description: "Emergency visit for #{pet.name}, urgent care required for #{pet.species}."
     )
   end
@@ -257,7 +312,8 @@ vet_users_with_clinics.each_with_index do |vet_info, index|
       pet: pet,
       date: Date.today + index * 2 + booking_index + 10,
       time: "#{11 + booking_index}:00",
-      description: "Neuterization surgery for #{pet.name}."
+      care_type: 'neutering',
+      description: "Neutering surgery for #{pet.name}."
     )
   end
 
@@ -268,6 +324,7 @@ vet_users_with_clinics.each_with_index do |vet_info, index|
       pet: pet,
       date: Date.today + index * 2 + booking_index + 15,
       time: "#{10 + booking_index}:15",
+      care_type: 'vaccination',
       description: "Vaccination for #{pet.name}, up-to-date immunizations."
     )
   end
@@ -279,6 +336,7 @@ vet_users_with_clinics.each_with_index do |vet_info, index|
       pet: pet,
       date: Date.today + index * 2 + booking_index + 20,
       time: "#{14 + booking_index}:45",
+      care_type: 'dental',
       description: "Dental cleaning for #{pet.name}, promoting oral health."
     )
   end
@@ -286,19 +344,21 @@ vet_users_with_clinics.each_with_index do |vet_info, index|
   # Create 1 Deworming Appointment
   deworming = Booking.create!(
     clinic: clinic,
-    pet: pets_sample[15],
+    pet: pets_sample[4],
     date: Date.today + index * 2 + 25,
     time: "10:30",
-    description: "Deworming treatment for #{pets_sample[15].name}."
+    care_type: 'preventive care',
+    description: "Deworming treatment for #{pets_sample[4].name}."
   )
 
   # Create Flea Treatment
-  lysis = Booking.create!(
+  flea = Booking.create!(
     clinic: clinic,
-    pet: pets_sample[16],
+    pet: pets_sample[8],
     date: Date.today + index * 2 + 30,
     time: "11:45",
-    description: "Flea treatment for #{pets_sample[16].name}"
+    care_type: 'flea and tick',
+    description: "Flea treatment for #{pets_sample[8].name}."
   )
 
   puts <<~INFO
@@ -313,8 +373,9 @@ vet_users_with_clinics.each_with_index do |vet_info, index|
   INFO
 end
 
-puts "Diverse bookings with Deworming and Lysis treatments created successfully!"
-
+# After the loop ends
+puts "Diverse bookings with Deworming and Flea treatments created successfully!"
+puts "Bookings created: #{Booking.all.map { |b| [b.id, b.description, b.clinic_id, b.pet_id] }}"
 
 # Create Reviews
 puts "Creating reviews..."
@@ -330,6 +391,6 @@ reviews = Review.create([
   { booking: bookings[8], user: pets[5].user, content: "Max was calm and happy.", rating: 5 },
   { booking: bookings[9], user: pets[8].user, content: "Daisy's behavior has improved.", rating: 4 }
 ])
-puts "Reviews created: #{reviews.map { |r| [r.booking.description, r.user.email, r.rating] }}"
+puts "Reviews created: #{reviews.map { |r| [r.booking.description, r.user.first_name,r.booking.clinic.clinic_name, r.rating] }}"
 
 puts "Seeding complete!"
