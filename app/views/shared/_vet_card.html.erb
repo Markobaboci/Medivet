@@ -8,32 +8,34 @@
         <%= image_tag 'clinic.png', alt: 'Vet Image', class: 'img-fluid vet-profile-img' %>
       <% end %>
     </div>
-    <h5 class="card-title text-white"><strong><%= clinic.clinic_name.capitalize %></strong></h5>
+    <h5 class="card-title text-white"><strong><%= clinic.clinic_name %></strong></h5>
   </div>
 
-  <!-- Wide Book Appointment Button -->
-  <div class="text-center">
-    <%= link_to 'Book an Appointment', '#', class: 'btn btn-success btn-lg w-75 mt-3' %>
-  </div>
 
-  <!-- Rating Section -->
-  <div class="rating d-flex justify-content-center mt-4">
-    <% 5.times do |i| %>
-      <% if i < clinic.average_rating.to_i %>
-        <i class="fas fa-star text-warning"></i>
-      <% else %>
-        <i class="far fa-star text-warning"></i>
-      <% end %>
+<!-- Rating Section -->
+<div class="rating d-flex justify-content-center mt-4 align-items-center">
+  <% rounded_rating = (clinic.average_rating + 0.2).floor %>
+  <% 5.times do |i| %>
+    <% if i < rounded_rating %>
+      <i class="fas fa-star text-warning"></i>
+    <% else %>
+      <i class="far fa-star text-warning"></i>
     <% end %>
-  </div>
+  <% end %>
+  <span class="ms-2 text-muted">
+    <strong><%= clinic.average_rating.round(1) %></strong>
+    (<%= rand(5..102) %>)
+  </span>
+</div>
+
 
   <!-- Information Section -->
-  <div class="info-box w-100 text-center mt-4">
-    <div class="d-flex justify-content-center align-items-center mb-2">
+  <div class="info-box w-100 mt-4">
+    <div class="d-flex mb-2">
       <i class="fas fa-map-marker-alt text-success me-2"></i>
       <span class="text-muted"><%= clinic.address %></span>
     </div>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex mb-2">
       <i class="fas fa-paw text-success me-2"></i>
       <span class="text-muted"><%= clinic.species.map { |species| species.split('/').map { |s| s.split.map(&:capitalize).join(' ') }.join('/').pluralize }.join(", ") %></span>
     </div>
@@ -41,6 +43,6 @@
 
   <!-- View Profile Button -->
   <div class="text-center mt-3">
-    <%= link_to 'View Profile', clinic_path(clinic), class: 'btn btn-outline-success btn-sm' %>
+    <%= link_to 'View Profile', clinic_path(clinic), class: 'btn-primary w-75 mt-3' %>
   </div>
 </div>

@@ -33,6 +33,13 @@ class Clinic < ApplicationRecord
 
   def average_rating
     # Calculate the average rating from associated reviews
-    reviews.average(:rating)&.round(1) || 0
+    review_average = reviews.average(:rating)&.round(1)
+
+    # If there are no reviews, use the stored value_rate
+    if review_average.nil?
+      rate || '0' # Use value_rate if present, otherwise 'N/A'
+    else
+      review_average
+    end
   end
 end
