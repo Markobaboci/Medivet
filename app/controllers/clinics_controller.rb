@@ -5,10 +5,25 @@ class ClinicsController < ApplicationController
 
   def index
     if params[:query].present?
+      # Search clinics by address
       @clinics = Clinic.search_by_address(params[:query])
     else
-      @user_clinics = current_user.clinics if user_signed_in?
-      @all_clinics = Clinic.all
+      # Start with all clinics
+      @clinics = Clinic.all
+
+      # Filter by species if specified
+      if params[:species].present? && params[:species] != 'All'
+        @clinics = @clinics.where('species @> ARRAY[?]::varchar[]', params[:species])
+      end
+
+      # Filter by care type if specified
+      if params[:care_type].present? && params[:care_type] != 'All'
+        @clinics = @clinics.where('care_type @> ARRAY[?]::varchar[]', params[:care_type])
+      end
+
+      # Separate user clinics and all clinics for signed-in users?
+      @user_clinics = @clinics.where(user_id: current_user.id) if user_signed_in?
+      @all_clinics = @clinics unless user_signed_in?
     end
   end
 
@@ -69,7 +84,12 @@ class ClinicsController < ApplicationController
   end
 
   def clinic_params
-    params.require(:clinic).permit(:email, :phone_numer, :address, :description, :rate, :care_type, :webpage, :species,
-    :image)
+    params.require(:clinic).permit(
+      :email, :phone_numer, :address, :description, :rate, :webpage, :image, :clinic_name,
+      { care_type: [] }, { species: [] }
+    ).tap do |clinic_params|
+      clinic_params[:care_type].reject!(&:blank?) if clinic_params[:care_type].is_a?(Array)
+      clinic_params[:species].reject!(&:blank?) if clinic_params[:species].is_a?(Array)
+    end
   end
 end

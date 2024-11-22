@@ -1,33 +1,176 @@
-.vet-cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
+/* Card Styling */
 .vet-card {
-  border: 1px solid #ccc; /* Border color */
-  border-radius: 8px; /* Rounded corners */
-  padding: 16px; /* Inner space */
-  margin: 10px; /* Space between cards */
-  width: calc(33% - 20px); /* Adjust width for responsiveness */
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  transition: transform 0.3s; /* Animation for hover */
+  background-color: #ffffff; /* Card background */
+  border: 1px solid #e5e5e5; /* Subtle border */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Prevent header overflow */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  padding: 0px !important;
+  height: 100%; /* Ensure all cards have the same height */
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  justify-content: space-between; /* Ensure content and button are spaced */
+  padding-bottom: 15px; /* Add padding to prevent button clipping */
+  position: relative; /* Ensure button stays within the container */
 }
 
-.vet-card:hover {
-  transform: scale(1.05); /* Enlarge card on hover */
+/* Full Width Header with Green Background */
+.vet-card-header {
+  background-color:  #94D39F; /* Green background */
+  color: #ffffff; /* White text */
+  text-align: center; /* Center align */
+  width: 100%; /* Full-width header */
+  border-top-left-radius: 10px; /* Rounded top corners */
+  border-top-right-radius: 10px;
+  padding: 20px 10px 10px !important;
 }
 
-// .vet-btn {
-//   display: inline-block;
-//   padding: 10px 15px;
-//   background-color: #007bff; /* Button background */
-//   color: white; /* Button text color */
-//   text-decoration: none; /* No underline */
-//   border-radius: 5px; /* Rounded corners for button */
-//   transition: background-color 0.3s; /* Button hover effect */
-// }
+/* Profile Image */
+.vet-card-header .vet-profile-img {
+  width: 100px; /* Larger image */
+  height: 100px; /* Match circular dimensions */
+  border-radius: 50%; /* Circular shape */
+  object-fit: cover; /* Proper cropping */
+  border: 1px solid #ffffff; /* White border around image */
+  margin-bottom: 5px; /* Space below image */
+}
 
-.vet-btn:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+/* Card Title and Subtitle */
+.vet-card-header .card-title {
+  font-size: 1.3rem; /* Larger font for title */
+  font-weight: bold; /* Bold title */
+  margin-top: 5px; /* Reduce space between image and title */
+  margin-bottom: 5px; /* Provide some space before the button */
+}
+
+.vet-card-header p {
+  font-size: 0.95rem; /* Smaller font for subtitle */
+  margin-bottom: 0; /* Remove extra space below */
+}
+.vet-image mb-3 {
+  margin-bottom: 5px !important;
+}
+/* Reduce margin above the info box */
+.info-box {
+  margin-top: 10px !important; /* Reduce space above the info box */
+}
+/* Info Box Alignment */
+.info-box {
+  text-align: left; /* Align all text to the left */
+  padding: 5px 15px 5px 20px!important; /* Keep padding as requested */
+}
+
+/* Icon and Text Alignment */
+.info-box .d-flex {
+  justify-content: start; /* Align items to the left */
+  align-items: flex-start; /* Align icon with the first line of text */
+}
+
+.info-box i {
+  margin-right: 12px; /* Add space between the icon and the text */
+  font-size: 1rem; /* Ensure icons are consistent in size */
+  line-height: 1.4; /* Match the text's line height */
+  vertical-align: top; /* Align icon with the top of the text block */
+}
+
+.info-box span {
+  line-height: 1.4; /* Ensure spacing between lines of text */
+  color: #495057; /* Neutral gray color for text */
+  display: block; /* Ensure proper block alignment for text */
+}
+.vet-card {
+  position: relative; /* Ensure positioning context for the button */
+  padding-top: 30px; /* Add padding to make space for overlapping */
+}
+
+/* Rating Section */
+.rating {
+  font-size: 1.1rem; /* Slightly larger stars */
+  display: flex;
+  justify-content: center; /* Center-align stars */
+  align-items: center; /* Vertical alignment */
+  color: #ffc107; /* Yellow color for stars */
+  margin-top: 15px !important; /* Reduce top margin */
+}
+.rating i {
+  margin-right: 2px;
+}
+.rating span {
+  margin-left: 8px;
+}
+.rating strong {
+  color: #6c757d;
+}
+
+.rating small {
+  color: #6c757d; /* Muted gray for reviews */
+}
+.rating .fas,
+.rating .far {
+  margin-right: 2px; /* Small space between stars */
+}
+
+/* Information Section */
+.info-box {
+  padding: 20px; /* Add spacing */
+}
+
+.info-box i {
+  color: #28a745; /* Green icons */
+  font-size: 1rem; /* Icon size */
+  margin-right: 8px; /* Space between icon and text */
+}
+
+.info-box span {
+  color: #495057; /* Neutral gray text */
+  line-height: 1.4; /* Line spacing for wrapped text */
+}
+
+/* View Profile Button */
+.btn-primary {
+  border: 1px solid #28a745; /* Green outline */
+  padding: 10px 20px; /* Slightly wider button */
+  font-size: 0.95rem; /* Slightly larger text */
+  border-radius: 5px; /* Rounded corners */
+  width: 90%; /* Ensure button width is consistent */
+  max-width: 300px; /* Prevent it from being too wide */
+  margin: 0 auto 15px auto; /* Center-align the button and add bottom space */
+  text-decoration: none; /* Remove underline */
+  display: block; /* Ensure it stays visible */
+}
+
+.btn-primary:hover {
+  background-color: #28a745; /* Green background on hover */
+  color: #ffffff; /* White text on hover */
+  text-decoration: none !important; /* Ensure no underline on hover */
+}
+/* Mobile-Specific Styles */
+@media (max-width: 768px) {
+  .vet-card {
+    height: auto; /* Let height adapt to content */
+    display: block; /* Ensure content flows naturally */
+    padding: 0; /* Adjust padding for tighter layout */
+  }
+
+  /* Adjust button width for mobile */
+  .btn-primary {
+    width: 100%; /* Button spans the full width */
+    max-width: none; /* Remove max-width for small screens */
+    padding: 12px;
+  }
+
+  /* Ensure spacing between sections */
+  .info-box {
+    margin-top: 10px; /* Keep spacing above the info box */
+    padding: 10px 15px; /* Adjust padding for mobile */
+  }
+  .btn-primary {
+    width: 100%; /* Full-width button for mobile */
+    max-width: none; /* Remove width constraint */
+  }
+  /* Reduce star size for mobile screens */
+  .rating {
+    font-size: 0.9rem; /* Slightly smaller stars */
+    margin-top: 10px; /* Adjust spacing */
+  }
 }

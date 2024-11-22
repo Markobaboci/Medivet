@@ -1,10 +1,10 @@
 class BookingsController < ApplicationController
   # Set the booking before showing, editing, updating or destroying
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: %i[show edit update destroy]
 
   # GET /bookings
   def index
-    @bookings = Booking.joins(:pet).where(pets: { user_id: current_user.id })
+    @bookings = Booking.joins(:pet).where(pets: { user_id: current_user.id }).order(:date, :time)
     # Booking.all.order(:date, :time) # Order by date and time for readability
     @upcoming_bookings = @bookings.where("date >= ?", Date.today)
     @past_bookings = @bookings.where("date < ?", Date.today)
@@ -25,6 +25,8 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @clinic = Clinic.find(params[:clinic_id])
     @booking.clinic = @clinic
+    @booking.pet.user.first_name = current_user.first_name if current_user.first_name.present?
+    @booking.pet.user.last_name = current_user.last_name if current_user.last_name.present?
     if @booking.save
       redirect_to booking_path(@booking), notice: 'Booking was successfully created.'
     else
@@ -53,14 +55,12 @@ class BookingsController < ApplicationController
 
   private
 
+  def booking_params
+    params.require(:booking).permit(:date, :time, :description, :pet_id, :species, :care_type, :first_name, :last_name)
+  end
+
   # Set the booking based on the ID in params
   def set_booking
     @booking = Booking.find(params[:id])
   end
-
-  # Only allow trusted parameters
-  def booking_params
-    params.require(:booking).permit(:date, :time, :description, :pet_id)
-  end
-
 end

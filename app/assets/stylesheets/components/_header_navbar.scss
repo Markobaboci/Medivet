@@ -64,7 +64,15 @@
   .navbar-collapse {
     flex-grow: 0;
   }
+/* Change Navbar Toggler Color on Hover */
+.navbar-toggler:hover {
+  background-color: #24963E !important; /* Green background on hover */
+}
 
+/* Optional: Change Icon Color Inside the Toggler */
+.navbar-toggler:hover .navbar-toggler-icon {
+  color: #ffffff !important; /* White icon color on hover */
+}
   // Dropdown Menu Customization
   .dropdown-menu {
     background-color: #ffffff;   // White background for contrast

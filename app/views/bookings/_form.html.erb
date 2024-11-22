@@ -1,8 +1,8 @@
 <div class="card shadow-sm p-4 mb-4">
   <div class="card-body">
-    <h4 class="card-title mb-4"><%= @booking.persisted? ? "Update Your Appointment Deetails" : "Schedule Your Doctor's Appointment" %></h4>
+    <h4 class="card-title mb-4"><%= booking.persisted? ? "Update Your Appointment Details" : "Schedule Your Doctor's Appointment" %></h4>
 
-    <%= simple_form_for @booking, local: true do |form| %>
+    <%= simple_form_for [clinic, booking], local: true do |form| %>
 
       <!-- Pet Selection -->
       <div class="mb-3">
@@ -12,6 +12,15 @@
                         input_html: { class: "form-control" } %>
       </div>
 
+    <!-- Species Selection -->
+    <div class="mb-3">
+      <%= form.input :species, collection: Booking.pluck(:species).uniq, label: "Pet Species", include_blank: "Select species", input_html: { class: "form-control" } %>
+    </div>
+
+    <!-- Care Type Selection -->
+    <div class="mb-3">
+     <%= form.input :care_type, collection: Booking.pluck(:care_type).uniq, label: "Care Type",include_blank: "Select care type", input_html: { class: "form-control" } %>
+    </div>
       <!-- Booking Date -->
       <div class="mb-3">
         <%= form.input :date, as: :date,
@@ -42,7 +51,7 @@
                           label: "First Name",
                           input_html: {
                             class: "form-control",
-                            value: current_user.first_name || "",
+                            value: @booking.first_name || current_user.first_name || "",
                             placeholder: "Enter your first name"
                           } %>
         </div>
@@ -52,7 +61,7 @@
                           label: "Last Name",
                           input_html: {
                             class: "form-control",
-                            value: current_user.last_name || "",
+                            value: @booking.last_name || current_user.last_name || "",
                             placeholder: "Enter your last name"
                           } %>
         </div>
@@ -60,7 +69,7 @@
 
       <!-- Submit Button -->
       <div class="mt-3">
-        <%= form.button :submit, @booking.persisted? ? "Update Booking" : "Confirm Booking",
+        <%= form.button :submit, booking.persisted? ? "Update Booking" : "Confirm Booking",
                         class: "btn btn-primary w-100" %>
       </div>
 

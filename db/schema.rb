@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_18_190015) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_20_165350) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_18_190015) do
     t.bigint "pet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "species"
+    t.string "care_type"
     t.index ["clinic_id"], name: "index_bookings_on_clinic_id"
     t.index ["pet_id"], name: "index_bookings_on_pet_id"
   end
@@ -60,14 +64,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_18_190015) do
     t.string "webpage"
     t.string "address"
     t.string "description"
-    t.string "species"
+    t.string "species", default: [], array: true
     t.float "longitude"
     t.float "latitude"
     t.float "rate"
-    t.string "care_type"
+    t.string "care_type", default: [], array: true
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "clinic_name"
     t.index ["user_id"], name: "index_clinics_on_user_id"
   end
 

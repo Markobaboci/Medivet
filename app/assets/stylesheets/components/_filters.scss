@@ -1,0 +1,67 @@
+/* Dropdown Styling */
+.custom-dropdown-menu {
+  min-width: 100%; /* Expand dropdown to full width */
+  border-radius: 10px; /* Add smooth corners */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+/* Ensure Form Group Alignment */
+.custom-dropdown-menu .row {
+  display: flex; /* Use flexbox for alignment */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+
+/* Adjust Form Spacing */
+.custom-dropdown-menu .form-group {
+  margin-bottom: 15px; /* Space between form groups */
+  flex: 1; /* Ensure both take equal width */
+  margin: 0 10px; /* Add space between boxes */
+  min-width: 0; /* Avoid flexbox shrinking issues */
+}
+/* Ensure Consistent Box Sizes */
+.custom-dropdown-menu .form-select {
+  width: 100%; /* Full width within the container */
+  height: 200px; /* Set a fixed height */
+  min-height: 150px; /* Ensure minimum height is consistent */
+  font-size: 1rem; /* Ensure text is legible */
+  padding: 8px; /* Internal padding */
+  border: 1px solid #ced4da; /* Light border for consistency */
+  border-radius: 5px; /* Smooth corners */
+  color: #495057; /* Neutral text color */
+  box-sizing: border-box; /* Include padding and border in width/height */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+/* Mobile-Specific Styling */
+@media (max-width: 768px) {
+  .custom-dropdown-menu {
+    min-width: 100%; /* Make dropdown full-width */
+    margin: 0; /* Remove margin */
+  }
+
+  /* Stack Filters Vertically */
+  .custom-dropdown-menu .row {
+    flex-direction: column !important;
+    gap: 15px; /* Add space between stacked boxes */
+  }
+
+  .custom-dropdown-menu .form-group {
+    width: 100%; /* Full-width filters */
+  }
+
+  /* Stack Buttons Vertically */
+  .d-flex.flex-md-row {
+    flex-direction: column !important;
+  }
+  .custom-dropdown-menu .form-select {
+    height: 150px; /* Adjust height for smaller screens */
+  }
+  .d-flex.flex-md-row .btn {
+    width: 100%; /* Full-width buttons */
+  }
+
+  /* Reduce Padding for Compact Layout */
+  .custom-dropdown-menu {
+    padding: 10px;
+  }
+}

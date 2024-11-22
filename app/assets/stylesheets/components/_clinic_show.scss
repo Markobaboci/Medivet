@@ -7,8 +7,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   .clinic-header {
-    //text-align: center;
-    text-align: left;
+    text-align: center;
     margin-bottom: 20px;
 
     h1 {
@@ -64,7 +63,7 @@
 }
 
 .opening-hours-box {
-  border: 1px solid black; /* Thin black border */
+  border: 0.8px solid #BEE5C3; /* Thin black border */
   border-radius: 5px; /* Optional: Rounded corners */
   padding: 15px; /* Space inside the box */
   max-width: 300px; /* Optional: Limit the width for better layout */
@@ -74,7 +73,7 @@
 }
 
 .opening-hours-box h6 {
-  font-size: 1.2rem; /* Slightly larger heading */
+  font-size: 1rem; /* Slightly larger heading */
   font-weight: bold; /* Bold text for emphasis */
   text-align: center; /* Center-align the heading */
 }
@@ -82,9 +81,171 @@
 .opening-hours-box p {
   font-size: 1rem; /* Normal font size for the paragraph */
   margin: 10px 0; /* Space between the paragraph and other elements */
-  text-align: center; /* Center-align the text */
+  text-align: center;
+  color:#666/* Center-align the text */
+}
+.clinic-header div p {
+  margin: 5px 0; /* Adjust vertical spacing between blocks */
+  line-height: 1.5; /* Increase line height for readability */
+  display: flex; /* Use flex for icon-text alignment */
+  align-items: center; /* Center-align icon and text */
 }
 
+.clinic-header div p i {
+  margin-right: 10px; /* Space between icon and text */
+  color: #28a745; /* Green color for the icons */
+}
 .opening-hours-box .clinic-actions {
   margin-top: 15px; /* Space above the button */
+}
+/* Clinic Show Page Styling */
+.clinic-show-page {
+  padding: 20px; /* Add some internal spacing */
+}
+
+/* Clinic Image */
+.clinic-image {
+  width: 100%; /* Full width */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 400px; /* Limit maximum height */
+  object-fit: cover; /* Ensure image fits nicely */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Clinic Header */
+.clinic-header h2 {
+  font-size: 2rem; /* Larger for emphasis */
+  color: #186429; /* Green accent */
+  text-align: center; /* Center align */
+  margin-bottom: 10px; /* Add spacing */
+}
+
+.clinic-header p, .clinic-header ul {
+  font-size: 1rem;
+  color: #495057; /* Neutral gray */
+  margin-bottom: 10px; /* Spacing between paragraphs */
+}
+
+.clinic-header ul {
+  list-style: none; /* Remove default list styling */
+  padding: 0; /* Remove padding */
+}
+
+.clinic-header li {
+  padding-left: 20px; /* Indent items slightly */
+  position: relative;
+}
+
+.clinic-header li::before {
+
+  color: #28a745; /* Green bullet */
+  position: absolute;
+  left: 0;
+}
+
+/* Clinic Description */
+.clinic-details p {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: justify; /* Improve readability */
+}
+
+/* Opening Hours */
+.opening-hours-box {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Carousel Reviews */
+.reviews-section .carousel {
+  max-width: 600px;
+  margin: 0 auto; /* Center align */
+}
+
+.carousel-item .card {
+  border: 1px solid #e5e5e5; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.carousel-item h5 {
+  color: #ffc107; /* Yellow for stars */
+  font-weight: bold;
+}
+
+.carousel-item p {
+  font-size: 0.9rem;
+  color: #495057;
+}
+.clinic-header p strong {
+  color: #28a745; /* Green color for text */
+}
+
+.clinic-header p strong i {
+  color: #28a745; /* Green color for the icon */
+}
+
+/* Map Section */
+[data-controller="map"] {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+}
+
+/* Back Button */
+.clinic-actions_container .btn-outline-secondary {
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+
+/* Mobile-Specific Adjustments */
+@media (max-width: 768px) {
+  .clinic-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .carousel {
+    max-width: 100%;
+  }
+
+  .opening-hours-box {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+/* Common Styling for All Lists (Specialization, What We Offer, and Description) */
+ul.specialization-list,
+ul.what-we-offer-list,
+ul.description-list {
+  list-style: none; /* Remove default browser bullets */
+  padding-left: 0; /* Remove left padding */
+  margin: 10px 0; /* Add vertical spacing */
+}
+
+ul.specialization-list li,
+ul.what-we-offer-list li,
+ul.description-list li {
+  display: flex; /* Use flex for icon and text alignment */
+  align-items: flex-start; /* Align icons with the top of the text */
+  font-size: 1rem; /* Consistent font size */
+  margin-bottom: 8px; /* Add space between list items */
+}
+
+ul.specialization-list li i,
+ul.what-we-offer-list li i,
+ul.description-list li i {
+  margin-right: 8px; /* Add space between the icon and text */
+  font-size: 1.1rem; /* Icon size slightly larger */
+}
+
+/* Separator Line */
+.content-divider {
+  border: none;
+  border-top: 1px solid #28a745; /* Green separator line */
+  margin: 15px 0; /* Space around the line */
 }

@@ -11,17 +11,45 @@
 
   <!-- [Section 3] Clinic Header -->
   <div class="clinic-header mt-4">
-    <h2>🐾 Vet Care Provider 🐾</h2>
-    <p><strong>📍 Address:</strong> <%= @clinic.address %></p>
-    <p><strong>🧑🏼‍⚕️ Specialization:</strong> <%= @clinic.species %></p>
-    <p>4.89 ⭐️ | Pet's owner favorite | 365 reviews</p>
-  </div>
+    <h2><i class="fas fa-paw me-2"></i> <%= @clinic.clinic_name.capitalize %> <i class="fas fa-paw me-2"></i></h2>
 
+  <p>
+    <%= @clinic.rate %>
+    <i class="fas fa-star text-warning"></i> | Pet's owner favorite | <%= rand(5..102) %> reviews
+  </p>
+<!-- Separator -->
+<hr class="content-divider">
+<p><strong><i class="fas fa-map-marker-alt me-2"> </i> Address:</strong> <%= @clinic.address %></p>
+<!-- Separator -->
+<hr class="content-divider">
+    <!-- Specialization Section -->
+<p><strong><i class="fas fa-stethoscope me-2"></i> Specialization</strong></p>
+<ul class="specialization-list">
+  <% @clinic.species.each do |species| %>
+    <li><i class="fas fa-paw me-2"></i><%= species.split.map(&:capitalize).join(' ').pluralize %></li>
+  <% end %>
+</ul>
+<!-- Separator -->
+<hr class="content-divider">
+   <!-- What We Offer Section -->
+<p><strong><i class="fas fa-briefcase-medical me-2"></i> What we offer</strong></p>
+<ul class="what-we-offer-list">
+  <% @clinic.care_type.each do |care| %>
+    <li><i class="fa-regular fa-check me-2"></i></i><%= care.split.map(&:capitalize).join(' ').pluralize %></li>
+  <% end %>
+</ul>
+
+
+<!-- Separator -->
+<hr class="content-divider">
   <!-- [Section 4] Clinic Details -->
-  <div class="clinic-details d-flex justify-content-center">
-    <p class="clinic-description"><strong>Description:</strong> <%= @clinic.description %></p>
-  </div>
-
+<p><strong><i class="fas fa-info-circle me-2"></i> Description</strong></p>
+<ul class="description-list">
+<%= @clinic.description do |description|%>
+<li><%= description%></li>
+ <% end %>
+</ul>
+ </div>
   <!-- [Section 5A] Opening Hours and Booking Button -->
   <div class="opening-hours-box">
     <h6 class="mt-2">Opening Hours</h6>
@@ -34,7 +62,8 @@
     <% end %>
   </div>
 
-
+<!-- Separator -->
+<hr class="content-divider">
   <!-- Map Section -->
   <h6 class="mt-2">How to get there?</h6>
   <div style="width: 100%; height: 200px;"
@@ -42,7 +71,8 @@
     data-map-markers-value="<%= [{ lat: @marker[:lat], lng: @marker[:lng] }].to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-
+<!-- Separator -->
+<hr class="content-divider">
   <!-- Reviews Section -->
   <div class="reviews-section mt-5">
     <h3 class="text-center">Reviews</h3>
