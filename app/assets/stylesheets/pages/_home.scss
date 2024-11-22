@@ -1,1 +1,11 @@
 // Specific CSS for your home-page
+/* Adjust Margin for Title */
+.mt-5 {
+  margin-top: 0.7rem !important; /* Reduce margin */
+}
+
+/* Change Title Color */
+h1.mb-3 {
+  color: #186429!important; /* Set to desired green or any other color */
+  font-weight: bold; /* Optional: Emphasize the title */
+}
