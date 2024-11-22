@@ -42,7 +42,7 @@
             <a href="#" class="nav-link d-flex align-items-center" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-chevron-down me-2"></i> <!-- Dropdown arrow icon on the left -->
                 <span class="profile-text me-2"><%= current_user.first_name.present? ? "#{current_user.first_name}" : "User" %></span>
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "User Avatar" %>
+              <%= image_tag "https://media.licdn.com/dms/image/v2/C4E03AQHvlG-890y2gg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1552361570686?e=1737590400&v=beta&t=h0tD3X6_HT9lx39t-UU5m-fo4wDrg_VU6-TAFLjYxnk", class: "avatar", alt: "User Avatar" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end w-100 w-md-auto custom-dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to user_path(current_user), class: "dropdown-item" do %>
