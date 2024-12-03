@@ -1,3 +1,5 @@
+<% if current_user.role == 'client' %>
+
 <div class="container mt-4 pl-3 pr-3">
   <h1 class="text-center">My Appointments</h1>
 
@@ -78,7 +80,7 @@
               <td ><%= booking.date %></td>
               <td><%= booking.time.strftime("%I:%M %p") %></td>
               <td class="d-none d-sm-table-cell"><%= booking.description %></td>
-              <td class="d-none d-sm-table-cell"><%= booking.clinic.email if booking.clinic %></td>
+              <td class="d-none d-sm-table-cell"><%= booking.clinic.clinic_name if booking.clinic %></td>
               <td class="text-center">
                 <%= link_to "Show", booking_path(booking), class: "btn btn-secondary btn-sm text-white" %>
               </td>
@@ -95,3 +97,109 @@
 <div class="d-flex justify-content-start text-center mt-5">
     <%= link_to '← Back', root_path, class: "btn btn-outline-secondary" %>
 </div>
+
+<% elsif current_user.role == 'vet' %>
+<div class="container mt-4 pl-3 pr-3">
+  <h1 class="text-center">My Appointments</h1>
+
+  <!-- Section for Upcoming Appointments -->
+  <h2 class="mt-4 text-success">Upcoming Appointments</h2>
+  <% if @upcoming_bookings.any? %>
+    <div class="table-responsive bg-light">
+      <table class="table table-striped">
+        <thead class="table-success">
+          <tr>
+            <th>Pet</th> <!-- New column for pet image -->
+            <th>Date</th>
+            <th>Time</th>
+            <th class="d-none d-sm-table-cell">Care Type</th>
+            <th class="d-none d-sm-table-cell">Species</th>
+            <th class="d-none d-sm-table-cell">First Name</th>
+            <th class="d-none d-sm-table-cell">Last Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @upcoming_bookings.each do |booking| %>
+            <tr>
+              <!-- Pet Image and Name Column with Link -->
+              <td class="text-center ">
+                <%= link_to pet_path(booking.pet), class: "text-decoration-none" do %>
+                  <% if booking.pet&.photo&.attached? %>
+                    <%= cl_image_tag booking.pet.photo.key, alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 60px; height: 60px;' %>
+                  <% else %>
+                    <%= image_tag 'pets.png', alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 60px; height: 60px;' %>
+                  <% end %>
+                  <div class="pet-name mt-0"><%= booking.pet.name %></div>
+                <% end %>
+              </td>
+              <td><%= booking.date %></td>
+              <td><%= booking.time.strftime("%I:%M %p") %></td>
+              <td class="d-none d-sm-table-cell"><%= booking.care_type %></td>
+              <td class="d-none d-sm-table-cell"><%= booking.species%></td>
+              <td class="d-none d-sm-table-cell"><%= booking.user.first_name if booking.clinic %></td>
+                <td class="d-none d-sm-table-cell"><%= booking.user.last_name if booking.clinic %></td>
+              <td class="text-center">
+                <%= link_to "Show", booking_path(booking), class: "btn btn-primary btn-sm text-white" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="text-center">No upcoming appointments available.</p>
+  <% end %>
+
+  <!-- Section for Past Appointments -->
+  <h2 class="mt-4 text-secondary">Past Appointments</h2>
+  <% if @past_bookings.any? %>
+    <div class="table-responsive bg-light">
+      <table class="table table-striped">
+        <thead class="table-secondary">
+          <tr>
+            <th>Pet</th> <!-- New column for pet image -->
+            <th>Date</th>
+            <th>Time</th>
+            <th class="d-none d-sm-table-cell">Species</th>
+            <th class="d-none d-sm-table-cell">Care Type</th>
+            <th class="d-none d-sm-table-cell">First Name</th>
+            <th class="d-none d-sm-table-cell">Last Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @past_bookings.each do |booking| %>
+            <tr>
+              <!-- Pet Image and Name Column with Link -->
+              <td class="text-center">
+                <%= link_to pet_path(booking.pet), class: "text-decoration-none" do %>
+                  <% if booking.pet&.photo&.attached? %>
+                    <%= cl_image_tag booking.pet.photo.key, alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 60px; height: 60px;' %>
+                  <% else %>
+                    <%= image_tag 'pets.png', alt: 'Pet image', class: 'img-thumbnail rounded-circle', style: 'width: 60px; height: 60px;' %>
+                  <% end %>
+                  <div class="pet-name mt-0"><%= booking.pet.name %></div>
+                <% end %>
+              </td>
+             <td class="d-none d-sm-table-cell"><%= booking.care_type %></td>
+               <td class="d-none d-sm-table-cell"><%= booking.species%></td>
+              <td class="d-none d-sm-table-cell"><%= user.first_name if booking.clinic %></td>
+                <td class="d-none d-sm-table-cell"><%= user.last_name if booking.clinic %></td>
+              <td class="text-center">
+                <%= link_to "Show", booking_path(booking), class: "btn btn-secondary btn-sm text-white" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="text-center">No past appointments available.</p>
+  <% end %>
+</div>
+
+<div class="d-flex justify-content-start text-center mt-5">
+    <%= link_to '← Back', root_path, class: "btn btn-outline-secondary" %>
+</div>
+<% end %>

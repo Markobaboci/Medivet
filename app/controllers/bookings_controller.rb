@@ -3,8 +3,13 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: %i[show edit update destroy]
 
   # GET /bookings
+
   def index
-    @bookings = Booking.joins(:pet).where(pets: { user_id: current_user.id }).order(:date, :time)
+    if current_user.role == 'vet'
+      @bookings = Booking.joins(:clinic).where(clinics: { user_id: current_user.id }).order(:date, :time)
+    else
+      @bookings = Booking.joins(:pet).where(pets: { user_id: current_user.id }).order(:date, :time)
+    end
     # Booking.all.order(:date, :time) # Order by date and time for readability
     @upcoming_bookings = @bookings.where("date >= ?", Date.today)
     @past_bookings = @bookings.where("date < ?", Date.today)
