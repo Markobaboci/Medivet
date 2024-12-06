@@ -25,6 +25,17 @@
   padding: 20px 10px 10px !important;
 }
 
+/* Full Width Header with Light Blue Background */
+.vet-card-header.light-blue {
+  background-color: #add8e6; /* Light blue color */
+  color: #ffffff; /* White text for contrast */
+  text-align: center; /* Align text centrally */
+  width: 100%; /* Full width */
+  border-top-left-radius: 10px; /* Maintain rounded corners */
+  border-top-right-radius: 10px;
+  padding: 20px 10px 10px !important; /* Consistent padding */
+}
+
 /* Profile Image */
 .vet-card-header .vet-profile-img {
   width: 100px; /* Larger image */

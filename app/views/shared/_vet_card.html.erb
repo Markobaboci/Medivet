@@ -1,6 +1,6 @@
 <div class="vet-card card shadow-sm border-0 p-3 h-100">
   <!-- Full Width Top Section with Green Background -->
-  <div class="vet-card-header text-center p-4">
+    <div <% if current_user.role == "vet" %>class="vet-card-header light-blue text-center p-4"<% else %>class="vet-card-header text-center p-4"<% end %>>
     <div class="vet-image mb-3">
       <% if clinic.image.attached? %>
         <%= cl_image_tag clinic.image.key, alt: 'Vet Image', class: 'img-fluid vet-profile-img' %>
