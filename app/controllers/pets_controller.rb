@@ -14,7 +14,7 @@ class PetsController < ApplicationController
   def create
     @pet = current_user.pets.build(pet_params) # This associates the pet with the logged-in user
     if @pet.save
-      redirect_to @pet, notice: 'Pet was successfully created.'
+      redirect_to @pet, notice: 'Pet was successfully created.', allow_other_host: true
     else
       render :new
     end
